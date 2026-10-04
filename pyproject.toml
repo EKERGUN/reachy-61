@@ -3,16 +3,18 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my_app"
+name = "fan_robot"
 version = "0.1.0"
-description = "A Reachy Mini app"
+description = "A football fan Reachy Mini that shares the room's mood"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "reachy-mini>=1.11",
     "numpy",
     "scipy",
-    "onnxruntime",        # speech detector (one thread; see my_app/vad.py)
+    "onnxruntime",        # speech detector (one thread; see fan_robot/vad.py)
+    "pyyaml",             # team packs
+    "google-genai",       # recording the voice lines (Gemini TTS)
 ]
 
 [project.optional-dependencies]
@@ -20,7 +22,7 @@ dev = ["pytest", "httpx"]
 keywords = ["reachy-mini-app"]
 
 [project.entry-points."reachy_mini_apps"]
-my_app = "my_app.main:MyApp"
+fan_robot = "fan_robot.main:FanRobot"
 
 [tool.setuptools]
 package-dir = { "" = "." }
@@ -28,7 +30,7 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["my_app*"]
+include = ["fan_robot*"]
 
 [tool.setuptools.package-data]
-my_app = ["**/*"]   # also ship static/ and models/
+fan_robot = ["**/*"]   # also ship static/ and models/

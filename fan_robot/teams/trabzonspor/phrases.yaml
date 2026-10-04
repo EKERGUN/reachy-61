@@ -1,0 +1,47 @@
+# Short spoken lines per fan moment (Turkish). Recorded once with the AI voice on the settings page.
+# {team} = team name. Keep them short (1-2 seconds), friendly, never insulting.
+goal_us:
+  - "GOOOOL! Bu nasıl gol be!"
+  - "Gol! Gol! Gol! {team}!"
+  - "Ooo, yıkıldı ortalık! Gol!"
+goal_them:
+  - "Olamaz... Nasıl yedik bunu?"
+  - "Uyanın arkadaşlar, uyanın!"
+  - "Of ya... Neyse, daha bitmedi."
+chance_us:
+  - "Ooo! Az kalsın!"
+  - "Direk! Ya, olmadı!"
+chance_them:
+  - "Eyvah, eyvah!"
+  - "Kurtardık... Kalbim duracaktı."
+penalty_us:
+  - "Penaltı! Hadi, hadi!"
+  - "Bakamıyorum... Hadi!"
+penalty_them:
+  - "Penaltı mı? Bu penaltı değil ki!"
+  - "Kurtar, kurtar, kurtar!"
+red_card_us:
+  - "Kırmızı mı? Hakem, ne yapıyorsun?"
+red_card_them:
+  - "Kırmızı! Hak etti ama."
+referee:
+  - "Hakem! Düdüğü çal artık!"
+  - "Penaltı bu, penaltı!"
+  - "Hakem bey, VAR'a bir baksanıza!"
+var:
+  - "VAR'a gidiyor... Dayanamıyorum."
+tension:
+  - "Hadi be! Hadi!"
+  - "Bas, bas, bas!"
+win:
+  - "Kazandık! Bu gece uyumak yok!"
+  - "Üç puan bizim! {team}!"
+draw:
+  - "Bir puan, bir puandır."
+  - "Berabere... İdare eder."
+loss:
+  - "Kaybettik... Bugün konuşmayalım."
+  - "Üzgünüm. Ama {team} hep ayağa kalkar."
+chant_intro:
+  - "Hep beraber!"
+  - "Tribünler, sesinizi duyalım!"

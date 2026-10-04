@@ -2,7 +2,7 @@
 
 Usage (from the repo root, in the project's virtual environment):
     python scripts/build_space.py
-    reachy-mini-app-assistant publish dist/my_app "Describe the change" --private
+    reachy-mini-app-assistant publish dist/fan_robot "Describe the change" --private
 
 Lessons baked in (each one broke a real publish):
 - The Space is named after the FOLDER you publish, so build into dist/<package>
@@ -23,7 +23,7 @@ import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PACKAGE = "my_app"
+PACKAGE = "fan_robot"
 OUT = ROOT / "dist" / PACKAGE
 TOP_LEVEL = ["pyproject.toml", "README.md", "index.html", "style.css"]
 EXCLUDE_NAMES = {"__pycache__", ".DS_Store", ".env"}

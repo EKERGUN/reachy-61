@@ -3,8 +3,11 @@
 Installing an update from Hugging Face replaces the package, so anything the
 user sets or the app generates (keys, recordings, logs) lives here instead:
 
-    ~/my_app/            (override with MY_APP_DATA_DIR)
+    ~/fan_robot/            (override with FAN_ROBOT_DATA_DIR)
         .env             written by the setup page; never commit it, never paste keys in chat
+        teams/<id>/      your own team packs (win over the bundled ones)
+        voice/<id>/      recorded voice lines for a team
+        chants/<id>/     chant recordings you uploaded
 """
 
 from __future__ import annotations
@@ -14,11 +17,11 @@ from dataclasses import dataclass, fields
 from pathlib import Path
 
 PACKAGE_DIR = Path(__file__).resolve().parent
-DATA_DIR = Path(os.environ.get("MY_APP_DATA_DIR", Path.home() / "my_app"))
+DATA_DIR = Path(os.environ.get("FAN_ROBOT_DATA_DIR", Path.home() / "fan_robot"))
 ENV_FILE = DATA_DIR / ".env"
 
 # Keys the setup page may write. Secrets are accepted but never sent back to the browser.
-EDITABLE = ("GEMINI_API_KEY", "GREETING_NAME")
+EDITABLE = ("GEMINI_API_KEY", "TEAM")
 SECRETS = ("GEMINI_API_KEY",)
 
 
@@ -52,8 +55,10 @@ def write_env_file(updates: dict[str, str], path: Path | None = None) -> None:
 @dataclass
 class Settings:
     gemini_api_key: str = ""
-    greeting_name: str = "Reachy"
-    # Listening (all overridable as MY_APP_<NAME> in .env, e.g. MY_APP_VAD_THRESHOLD=0.7)
+    team: str = "trabzonspor"
+    gemini_tts_model: str = "gemini-3.8-flash-tts"
+    gemini_voice: str = "Kore"
+    # Listening (all overridable as FAN_ROBOT_<NAME> in .env, e.g. FAN_ROBOT_VAD_THRESHOLD=0.7)
     vad_threshold: float = 0.6
     speech_start_s: float = 0.15
     speech_end_silence_s: float = 0.4
@@ -69,10 +74,13 @@ class Settings:
     def apply(self, env: dict[str, str]) -> None:
         if "GEMINI_API_KEY" in env:
             self.gemini_api_key = env["GEMINI_API_KEY"]
-        if "GREETING_NAME" in env:
-            self.greeting_name = env["GREETING_NAME"]
+        if env.get("TEAM"):
+            self.team = env["TEAM"]
+        for key in ("GEMINI_TTS_MODEL", "GEMINI_VOICE"):
+            if env.get(key):
+                setattr(self, key.lower(), env[key])
         for f in fields(self):
-            key = f"MY_APP_{f.name.upper()}"
+            key = f"FAN_ROBOT_{f.name.upper()}"
             if f.type in ("float", float) and key in env:
                 try:
                     setattr(self, f.name, float(env[key]))

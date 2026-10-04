@@ -1,0 +1,18 @@
+# Trabzonspor team pack. Sources: tr/en Wikipedia "Trabzonspor" (verify before publishing).
+id: trabzonspor
+name: Trabzonspor
+short_name: Trabzon
+language: tr                      # UI and voice language (locales/tr.json)
+nicknames: [Bordo-Mavi, Karadeniz Fırtınası]
+city: Trabzon
+founded: 1967
+colors:
+  primary: "#7B1E3A"              # bordo (claret)
+  secondary: "#6EB4E6"            # mavi (light blue)
+rivals: [Fenerbahçe, Galatasaray, Beşiktaş]
+league: Süper Lig
+# Live score feed (phase 2, API-Football): fill in once the key is set.
+feed:
+  provider: api-football
+  team_id: null
+  league_id: null

@@ -1,0 +1,18 @@
+{
+  "title": "Fan Robot",
+  "mood": "Mood",
+  "moods": {"euphoric": "Euphoric", "happy": "Happy", "calm": "Calm", "down": "Down", "gutted": "Gutted"},
+  "groups": {"us": "Us", "them": "Them", "referee": "Referee", "full_time": "Full time", "extra": "Extra"},
+  "moments": {
+    "goal_us": "GOAL!", "chance_us": "Chance", "penalty_us": "Penalty for us",
+    "goal_them": "Conceded", "chance_them": "Danger", "penalty_them": "Penalty against",
+    "referee": "Angry at ref", "var": "VAR", "red_card_us": "Red card: us", "red_card_them": "Red card: them",
+    "win": "Won", "draw": "Draw", "loss": "Lost",
+    "tension": "Tense", "chant": "Chant", "joke": "Joke", "calm": "Calm"
+  },
+  "settings": "Settings", "team": "Team", "save": "Save", "saved": "Saved.",
+  "gemini_key": "Gemini API key", "key_saved": "(saved)", "key_missing": "(not set)",
+  "record_voice": "Record voice lines", "chants": "Chants", "upload_chant": "Upload a chant",
+  "no_chants": "No chants yet. Upload your own recordings.",
+  "offline": "Robot not reachable"
+}

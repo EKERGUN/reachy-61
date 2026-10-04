@@ -1,0 +1,18 @@
+{
+  "title": "Taraftar Robot",
+  "mood": "Ruh hali",
+  "moods": {"euphoric": "Coşkulu", "happy": "Mutlu", "calm": "Sakin", "down": "Üzgün", "gutted": "Yıkılmış"},
+  "groups": {"us": "Biz", "them": "Onlar", "referee": "Hakem", "full_time": "Maç sonu", "extra": "Ekstra"},
+  "moments": {
+    "goal_us": "GOL!", "chance_us": "Pozisyon", "penalty_us": "Penaltı bizim",
+    "goal_them": "Gol yedik", "chance_them": "Tehlike", "penalty_them": "Penaltı onlara",
+    "referee": "Hakeme kızgın", "var": "VAR", "red_card_us": "Kırmızı: bize", "red_card_them": "Kırmızı: onlara",
+    "win": "Kazandık", "draw": "Berabere", "loss": "Kaybettik",
+    "tension": "Gergin", "chant": "Tezahürat", "joke": "Fıkra", "calm": "Sakin"
+  },
+  "settings": "Ayarlar", "team": "Takım", "save": "Kaydet", "saved": "Kaydedildi.",
+  "gemini_key": "Gemini API anahtarı", "key_saved": "(kayıtlı)", "key_missing": "(yok)",
+  "record_voice": "Sesleri kaydet", "chants": "Tezahüratlar", "upload_chant": "Tezahürat yükle",
+  "no_chants": "Henüz tezahürat yok. Kendi kayıtlarınızı yükleyin.",
+  "offline": "Robota ulaşılamıyor"
+}

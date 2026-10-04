@@ -14,8 +14,8 @@ except Exception:
 
 @pytest.fixture(autouse=True)
 def isolated_env_file(tmp_path, monkeypatch):
-    """Never touch the real ~/my_app/.env from tests."""
-    from my_app import config
+    """Never touch the real ~/fan_robot/.env from tests."""
+    from fan_robot import config
     path = tmp_path / ".env"
     monkeypatch.setattr(config, "ENV_FILE", path)
     monkeypatch.setattr(config.read_env_file, "__defaults__", (path,))

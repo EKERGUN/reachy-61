@@ -22,6 +22,8 @@ def main() -> None:
     if len(sys.argv) != 3 or not re.fullmatch(r"[a-z][a-z0-9_]*", sys.argv[1]):
         sys.exit(__doc__)
     package, title = sys.argv[1], sys.argv[2]
+    if not (ROOT / "my" "_app").is_dir():          # two pieces: survives its own renaming
+        sys.exit("This copy has already been renamed (there is no my_app/ folder). Nothing to do.")
     cls = "".join(w.capitalize() for w in package.split("_"))
     env_prefix = package.upper() + "_"
     paths = []
