@@ -22,7 +22,12 @@ def voice_dir(team: TeamPack, data_dir: Path | None = None) -> Path:
 
 
 def clip_path(team: TeamPack, moment: str, index: int, data_dir: Path | None = None) -> Path:
-    return voice_dir(team, data_dir) / f"{moment}_{index}.wav"
+    return line_path(team, f"{moment}_{index}", data_dir)
+
+
+def line_path(team: TeamPack, name: str, data_dir: Path | None = None) -> Path:
+    """A recorded line by its clip name (see TeamPack.all_lines)."""
+    return voice_dir(team, data_dir) / f"{name}.wav"
 
 
 def max_plausible_seconds(text: str) -> float:
@@ -31,11 +36,11 @@ def max_plausible_seconds(text: str) -> float:
 
 def record_all(settings: Settings, team: TeamPack, force: bool = False, progress=lambda done, total: None,
                data_dir: Path | None = None) -> int:
-    lines = team.all_phrases()
+    lines = team.all_lines()
     tts = GeminiTTS(settings)
     done = 0
-    for n, (moment, i, text) in enumerate(lines, 1):
-        path = clip_path(team, moment, i, data_dir)
+    for n, (name, text) in enumerate(lines, 1):
+        path = line_path(team, name, data_dir)
         if force or not path.exists():
             path.parent.mkdir(parents=True, exist_ok=True)
             tmp = path.with_suffix(".part.wav")

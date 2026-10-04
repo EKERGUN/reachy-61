@@ -1,6 +1,7 @@
 """Team packs: everything club- and language-specific, so any fan can adopt the robot.
 
-A pack is a folder `teams/<id>/` with team.yaml, phrases.yaml and jokes.yaml (see teams/README.md).
+A pack is a folder `teams/<id>/` with team.yaml, phrases.yaml, jokes.yaml, quiz.yaml and
+knowledge.yaml (see teams/README.md).
 Packs in the data folder (~/fan_robot/teams/<id>/) win over the bundled ones, so a user's own
 club survives app updates.
 """
@@ -15,6 +16,8 @@ from pathlib import Path
 import yaml
 
 from .config import DATA_DIR, PACKAGE_DIR
+from .jokes import Joke, parse_jokes
+from .quiz import Question, parse_questions
 
 BUNDLED = PACKAGE_DIR / "teams"
 LOCALES = PACKAGE_DIR / "locales"
@@ -28,16 +31,31 @@ class TeamPack:
     language: str
     info: dict
     phrases: dict[str, list[str]] = field(default_factory=dict)
-    jokes: list[str] = field(default_factory=list)
-    joke_tags: list[list[str]] = field(default_factory=list)   # same order as jokes
+    jokes: list[Joke] = field(default_factory=list)
+    quiz: list[Question] = field(default_factory=list)
+    quiz_problems: list[str] = field(default_factory=list)      # questions left out, and why
+    knowledge: list[dict] = field(default_factory=list)          # sourced facts: {fact, topic, source}
 
     def phrase(self, key: str, rng=random) -> str | None:
         lines = self.phrases.get(key) or []
         return rng.choice(lines).replace("{team}", self.name) if lines else None
 
     def all_phrases(self) -> list[tuple[str, int, str]]:
-        """(moment, index, text) for every line, for recording the voice clips."""
+        """(moment, index, text) for every short line."""
         return [(k, i, t.replace("{team}", self.name)) for k, lines in self.phrases.items() for i, t in enumerate(lines)]
+
+    def all_lines(self) -> list[tuple[str, str]]:
+        """(clip name, text) for everything the robot says, for recording the voice clips."""
+        lines = [(f"{k}_{i}", t) for k, i, t in self.all_phrases()]
+        for j in self.jokes:
+            if j.setup:
+                lines.append((f"joke_{j.id}_setup", j.setup))
+            lines.append((f"joke_{j.id}_punch", j.punchline))
+        for q in self.quiz:
+            lines.append((f"quiz_{q.id}_q", q.spoken))
+            if q.explain:
+                lines.append((f"quiz_{q.id}_explain", q.explain))
+        return lines
 
     def locale(self) -> dict:
         return load_locale(self.language)
@@ -59,18 +77,16 @@ def load_team(team_id: str, data_dir: Path | None = None) -> TeamPack:
     folder = dirs.get(team_id) or dirs["trabzonspor"]
     info = _yaml(folder / "team.yaml") or {}
     phrases = _yaml(folder / "phrases.yaml") or {}
-    jokes = _yaml(folder / "jokes.yaml") or []
-    if isinstance(jokes, dict):                   # {"jokes": [{"text": ..., "tags": [...]}, ...]}
-        jokes = jokes.get("jokes") or []
-    joke_tags = [list(j.get("tags") or []) if isinstance(j, dict) else [] for j in jokes]
-    jokes = [j.get("text", "") if isinstance(j, dict) else j for j in jokes]
     lines = {k: [str(x) for x in v] for k, v in phrases.items() if isinstance(v, list)}
-    jokes = [str(j) for j in jokes]
-    if jokes:
-        lines["joke"] = jokes                     # jokes are spoken lines too (recorded with the rest)
+    quiz, problems = parse_questions(_yaml(folder / "quiz.yaml"))
+    knowledge = _yaml(folder / "knowledge.yaml") or []
+    if isinstance(knowledge, dict):
+        knowledge = knowledge.get("facts") or []
+    knowledge = [k for k in knowledge if isinstance(k, dict) and k.get("fact") and k.get("source")]
     return TeamPack(id=folder.name, folder=folder, name=str(info.get("name", folder.name)),
-                    language=str(info.get("language", "en")), info=info, phrases=lines, jokes=jokes,
-                    joke_tags=joke_tags)
+                    language=str(info.get("language", "en")), info=info, phrases=lines,
+                    jokes=parse_jokes(_yaml(folder / "jokes.yaml")), quiz=quiz, quiz_problems=problems,
+                    knowledge=knowledge)
 
 
 def load_locale(language: str) -> dict:

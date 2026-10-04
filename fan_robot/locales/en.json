@@ -35,7 +35,8 @@
     "calm": "Calm",
     "groan": "Ugh!",
     "var_cancel_us": "Our goal disallowed",
-    "var_cancel_them": "Their goal disallowed"
+    "var_cancel_them": "Their goal disallowed",
+    "halftime": "Half time"
   },
   "settings": "Settings",
   "team": "Team",
@@ -109,5 +110,66 @@
       "run"
     ]
   },
-  "vosk_model_url": "https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip"
+  "vosk_model_url": "https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip",
+  "tabs": {
+    "match": "Match",
+    "fun": "Fun",
+    "quiz": "Quiz",
+    "settings": "Settings"
+  },
+  "fun": {
+    "joke": "Tell a joke",
+    "music": "Play music",
+    "match": "Match recording",
+    "chant": "Chant",
+    "stop": "Stop",
+    "now": "Now",
+    "nothing": "Quiet",
+    "last_joke": "Last joke",
+    "no_clips": "No clips yet. Upload your own recordings in Settings.",
+    "library": "My clips"
+  },
+  "categories": {
+    "music": "Music",
+    "match": "Match recording",
+    "chant": "Chant"
+  },
+  "offer_yes": "Yes",
+  "offer_no": "No",
+  "quiz": {
+    "name": "Your name",
+    "join": "Join",
+    "start": "Start",
+    "stop": "End",
+    "questions": "questions",
+    "reading": "The robot is reading the question…",
+    "seconds": "s",
+    "answered": "answered",
+    "correct": "Correct answer",
+    "leaderboard": "Leaderboard",
+    "source": "Source",
+    "results": "Results",
+    "points": "points",
+    "none": "No questions yet. Add them to the team pack (quiz.yaml).",
+    "paused": "Match moment! Back in a bit.",
+    "waiting": "Press Start. Everyone can join from their own phone.",
+    "you": "You"
+  },
+  "clips": {
+    "title": "My clips",
+    "files": "Audio files",
+    "csv": "Clip list (CSV, optional)",
+    "default_type": "Type for files not in the list",
+    "own": "I have the right to use these recordings (my own, or with permission). Nothing downloaded from YouTube.",
+    "upload": "Upload",
+    "analysing": "listening",
+    "done": "uploaded",
+    "delete": "Delete",
+    "used": "Storage used",
+    "need_own": "Tick the recording-rights box first.",
+    "bpm": "BPM"
+  },
+  "latency": "Speaker delay (dance sync)",
+  "offers": "The robot offers things by itself (jokes, quiz, music)",
+  "counts": "jokes · questions · facts"
 }

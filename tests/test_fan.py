@@ -77,10 +77,17 @@ def test_mood_rises_falls_clamps_and_fades():
 
 class FakeMini:
     def __init__(self):
-        self.moves, self.sounds, self.cancelled, self.tracking = [], [], 0, []
-        self.media = SimpleNamespace(play_sound=self.sounds.append, start_playing=lambda: None)
+        self.moves, self.sounds, self.cancelled, self.tracking, self.stopped = [], [], 0, [], 0
+        self.clip_seconds = 0.02
+        self.media = SimpleNamespace(play_sound=self.sounds.append, start_playing=lambda: None,
+                                     stop_playing=lambda: setattr(self, "stopped", self.stopped + 1))
 
-    def play_move(self, move, initial_goto_duration=0.0):
+    def play_move(self, move, initial_goto_duration=0.0, sound=True):
+        if hasattr(move, "clip"):                     # a clip with its dance / fan move
+            self.sounds.append(str(move.sound_path))
+            self.moves.append(type(move).__name__)
+            time.sleep(self.clip_seconds)
+            return
         self.moves.append(move.name)
         time.sleep(move.seconds)
 
@@ -134,6 +141,9 @@ def test_a_goal_interrupts_a_sulk(tmp_path, monkeypatch):
 
 def test_recorded_voice_line_and_users_chant_are_played_after_the_move(tmp_path, monkeypatch):
     import wave
+    chants = tmp_path / "chants" / "trabzonspor"
+    chants.mkdir(parents=True)
+    (chants / "marş.ogg").write_bytes(b"x")
     brain = make_brain(tmp_path, monkeypatch)
     team = brain.app.team
     for i in range(len(team.phrases["goal_us"])):
@@ -141,32 +151,30 @@ def test_recorded_voice_line_and_users_chant_are_played_after_the_move(tmp_path,
         p.parent.mkdir(parents=True, exist_ok=True)
         with wave.open(str(p), "wb") as w:
             w.setnchannels(1); w.setsampwidth(2); w.setframerate(16000); w.writeframes(b"\0\0" * 160)
+    brain.handle("goal_us")
+    wait_idle(brain)
+    s = brain.mini.sounds
+    assert len(s) == 2 and s[0].endswith(".wav") and "marş" in s[1] and s[1].endswith(".ogg")
+    assert brain.mini.stopped == 1            # a goal plays only the start of a long recording
+
+
+def test_old_chants_move_into_the_clip_library_and_play_after_a_goal(tmp_path, monkeypatch):
     chants = tmp_path / "chants" / "trabzonspor"
     chants.mkdir(parents=True)
     (chants / "marş.ogg").write_bytes(b"x")
+    brain = make_brain(tmp_path, monkeypatch)
+    assert not list(chants.iterdir()) and [i.category for i in brain.media.items()] == ["chant"]
     brain.handle("goal_us")
     wait_idle(brain)
-    assert len(brain.mini.sounds) == 2 and brain.mini.sounds[0].endswith(".wav") and brain.mini.sounds[1].endswith("marş.ogg")
+    assert brain.mini.sounds[-1].endswith(".ogg") and brain.mini.moves[-1] == "FanMove"
 
 
-def test_chant_upload_is_kept_inside_the_chants_folder(tmp_path, monkeypatch):
-    monkeypatch.setattr(app_main, "DATA_DIR", tmp_path)
-    assert app_main.safe_filename("../../.env") is None
-    assert app_main.safe_filename("../Trabzon Marşı.MP3") == "Trabzon Marşı.mp3"
-    owner = SimpleNamespace(team=load_team("trabzonspor"), settings=None, brain=None, mood=Mood(), state={}, job={})
-    app = FastAPI()
-    app_main.register_routes(app, owner)
-    c = TestClient(app)
-    assert c.post("/chants?name=../x.sh", content=b"x").status_code == 400
-    assert c.post("/chants?name=Marş.ogg", content=b"abc").json()["ok"]
-    assert (tmp_path / "chants" / "trabzonspor" / "Marş.ogg").read_bytes() == b"abc"
-    assert c.get("/chants").json() == ["Marş.ogg"]
-
-
-def test_jokes_load_with_tags_and_football_ones_exist():
+def test_jokes_load_with_tags_and_are_split_before_the_punchline():
     t = load_team("trabzonspor")
-    assert len(t.jokes) >= 20 and len(t.joke_tags) == len(t.jokes)
-    assert sum("futbol" in tags for tags in t.joke_tags) >= 8
-    assert all(20 <= len(j.split()) <= 80 for j, tags in zip(t.jokes, t.joke_tags) if "temel" in tags)
-    assert t.phrases["joke"] == t.jokes                                   # recorded like other lines
+    assert len(t.jokes) >= 20 and sum("futbol" in j.tags for j in t.jokes) >= 8
+    assert all(20 <= len(j.text.split()) <= 80 for j in t.jokes if "temel" in j.tags)
+    assert all(j.punchline and (not j.setup or j.setup[-1] in ":.!?…") for j in t.jokes)
+    names = [n for n, _ in t.all_lines()]
+    assert sum(n.startswith("joke_") and n.endswith("_punch") for n in names) == len(t.jokes)   # recorded too
+    assert len(set(names)) == len(names)
     assert load_team("example_en").jokes                                  # plain-list format still works

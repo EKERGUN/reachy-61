@@ -113,9 +113,12 @@ class MatchTracker:
         h, a = goals.get("home") or 0, goals.get("away") or 0
         score = (h, a) if we_are_home else (a, h)
         status = (fx.get("fixture", {}).get("status") or {})
+        before = self.status
         self.status, self.minute = status.get("short", ""), status.get("elapsed")
         first = self.score is None
         events: list[FeedEvent] = []
+        if not first and self.status == "HT" and before != "HT":
+            events.append(FeedEvent("halftime", self.minute))
         if not first:
             us0, them0 = self.score
             us, them = score

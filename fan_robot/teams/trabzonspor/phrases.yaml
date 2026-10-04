@@ -54,3 +54,32 @@ var_cancel_us:
 var_cancel_them:
   - "İptal! Oh be, nefes aldım!"
   - "Gol yok! VAR, seni seviyorum!"
+halftime:
+  - "Devre arası! Çaylar benden."
+  - "İlk yarı bitti. Biraz nefes alalım."
+# Robotun kendiliğinden yaptığı teklifler (telefonda Evet/Hayır çıkar).
+offer_joke:
+  - "Moraller biraz bozuk. Size bir fıkra anlatayım mı?"
+  - "Bir Temel fıkrası iyi gelir. Anlatayım mı?"
+offer_quiz:
+  - "Devre arasında küçük bir bilgi yarışması yapalım mı?"
+offer_music:
+  - "Bu güzel havada biraz müzik açayım mı?"
+music_intro:
+  - "Müzik geliyor, kalkın bakalım!"
+match_intro:
+  - "Şu anı hatırlıyor musunuz? Dinleyin!"
+quiz_intro:
+  - "Bilgi yarışması başlıyor! Telefonlarınızı hazırlayın."
+quiz_right:
+  - "Doğru cevap! Helal olsun!"
+  - "Bildiniz! Gerçek taraftarsınız."
+quiz_wrong:
+  - "Olmadı... Doğru cevap ekranda."
+  - "Yanlış! Ama dert etmeyin, ben de ilk seferde bilememiştim."
+quiz_nobody:
+  - "Kimse cevap vermedi mi? Ben söyleyeyim."
+quiz_results:
+  - "Yarışma bitti! Kazananı alkışlayalım!"
+quiz_empty:
+  - "Henüz sorum yok. Önce soruları yükleyin."

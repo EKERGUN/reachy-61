@@ -7,7 +7,8 @@ user sets or the app generates (keys, recordings, logs) lives here instead:
         .env             written by the setup page; never commit it, never paste keys in chat
         teams/<id>/      your own team packs (win over the bundled ones)
         voice/<id>/      recorded voice lines for a team
-        chants/<id>/     chant recordings you uploaded
+        media/<id>/      your clips (music, match recordings, chants) + their analysis
+        history/         jokes told, quiz questions asked (no repeats)
         vosk/<lang>/     offline fan-word recogniser for a language
         feed_*.json      score feed: team id cache and the daily request count
 """
@@ -23,7 +24,7 @@ DATA_DIR = Path(os.environ.get("FAN_ROBOT_DATA_DIR", Path.home() / "fan_robot"))
 ENV_FILE = DATA_DIR / ".env"
 
 # Keys the setup page may write. Secrets are accepted but never sent back to the browser.
-EDITABLE = ("GEMINI_API_KEY", "TEAM", "API_FOOTBALL_KEY")
+EDITABLE = ("GEMINI_API_KEY", "TEAM", "API_FOOTBALL_KEY", "FAN_ROBOT_AUDIO_LATENCY_S", "FAN_ROBOT_OFFERS")
 SECRETS = ("GEMINI_API_KEY", "API_FOOTBALL_KEY")
 
 
@@ -62,6 +63,8 @@ class Settings:
     gemini_audio_model: str = "gemini-3.8-flash"     # the "what is the room feeling?" check
     room_loud_db: float = 12.0                       # an outburst = this much louder than the room's normal level
     spoiler_guard_s: float = 60.0                    # longest a score-feed fact waits for the room
+    audio_latency_s: float = 0.15                    # speaker delay: dance moves lead the music by this much
+    offers: float = 1.0                              # 1 = the robot offers jokes/quiz/music by itself, 0 = only on request
     gemini_tts_model: str = "gemini-3.8-flash-tts"
     gemini_voice: str = "Kore"
     # Listening (all overridable as FAN_ROBOT_<NAME> in .env, e.g. FAN_ROBOT_VAD_THRESHOLD=0.7)

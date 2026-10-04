@@ -157,6 +157,24 @@ teams/trabzonspor/
 | 3 | Turkish chat (Gemini Live) with history knowledge, jokes, mood-aware persona | 2 days |
 | 4 | Pre-/post-match modes, TV page with score and embedded official clips | 2 days |
 
+## 9b. Phase 3 (built): jokes, clips with motion, quiz
+
+- **Jokes** are told in parts: lean in, setup, a pause (longer in a good mood), punchline, the
+  robot laughs. No repeats within 30 days; thumbs down makes a joke rarer; a referee joke fits
+  after a bad call.
+- **Clips** are the user's own recordings (never shipped, never from YouTube): `music` makes the
+  robot dance on the beat (four styles, a new one every 8 bars, bigger when the song is louder),
+  `match` and `chant` make it move like a fan (excited when the crowd roars, leaning in when it's
+  quiet, a jump when the crowd erupts). The beat and loudness are found once at upload.
+  A clip tagged `when: goal_us` plays after a goal instead of a plain chant (first 25 seconds).
+- **Quiz** on everyone's phone: the robot reads the question and the options, 15 seconds to answer,
+  points for speed, it cheers or groans with the room, explains with the source. A goal pauses
+  it; it asks again afterwards. Not during live play (offered at half time).
+- **Offers**: at half time (quiz, or a joke) and when the mood is down after a loss (a joke),
+  at most every 20 minutes, Yes/No on the phones. Can be switched off in Settings.
+- Hardware checks: the speaker delay slider (dance in sync), whether wobbling and dances combine
+  well, CPU during a long clip (`top`), the robot's own music not counting as the room.
+
 ## 10. Decisions needed
 
 1. Main language: Turkish only, or Turkish + English?

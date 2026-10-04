@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#7B1E3A">
 <title>Fan Robot</title>
 <style>
-  :root { --primary:#7B1E3A; --secondary:#6EB4E6; --bg:#f4f5f8; --card:#fff; --text:#12151c; --muted:#5d6577; --line:#0001; }
+  :root { --primary:#7B1E3A; --secondary:#6EB4E6; --bg:#f4f5f8; --card:#fff; --text:#12151c; --muted:#5d6577; --line:#0001; --ok:#1f9d55; --bad:#c0392b; }
   @media (prefers-color-scheme: dark) { :root { --bg:#0e1015; --card:#171a22; --text:#eef0f5; --muted:#9aa2b4; --line:#fff2; } }
   * { box-sizing: border-box; }
   body { margin:0; font:16px/1.4 system-ui, -apple-system, sans-serif; background:var(--bg); color:var(--text); }
@@ -17,7 +17,11 @@
   .mood { margin-top:12px; }
   .meter { height:10px; border-radius:6px; background:#ffffff40; position:relative; overflow:hidden; }
   .meter i { position:absolute; top:0; bottom:0; left:50%; background:#fff; border-radius:6px; transition:all .4s; }
-  main { max-width:560px; margin:0 auto; padding:12px 16px 40px; }
+  nav { position:sticky; top:0; z-index:5; display:flex; background:var(--card); box-shadow:0 1px 0 var(--line); }
+  nav button { flex:1; border:0; background:none; color:var(--muted); padding:13px 4px; font:600 15px system-ui, sans-serif; border-bottom:3px solid transparent; }
+  nav button.on { color:var(--text); border-bottom-color:var(--primary); }
+  main { max-width:560px; margin:0 auto; padding:12px 16px 110px; }
+  section[hidden] { display:none; }
   h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:18px 2px 8px; }
   .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:10px; }
   .btn { border:0; border-radius:14px; padding:18px 10px; font:600 17px system-ui, sans-serif; color:var(--text);
@@ -26,23 +30,47 @@
   .btn.big { grid-column:1/-1; padding:26px; font-size:26px; background:var(--primary); color:#fff; }
   .btn.us { border-left:6px solid var(--primary); } .btn.them { border-left:6px solid var(--muted); }
   .toast { position:fixed; left:16px; right:16px; bottom:max(16px, env(safe-area-inset-bottom)); margin:auto; max-width:520px;
-           background:#111c; color:#fff; padding:12px 14px; border-radius:12px; opacity:0; transition:opacity .3s; pointer-events:none; }
+           background:#111c; color:#fff; padding:12px 14px; border-radius:12px; opacity:0; transition:opacity .3s; pointer-events:none; z-index:20; }
   .toast.on { opacity:1; }
-  details { background:var(--card); border-radius:14px; padding:4px 14px; margin-top:22px; }
-  summary { padding:12px 0; font-weight:600; cursor:pointer; }
+  .offer { position:fixed; left:16px; right:16px; bottom:max(16px, env(safe-area-inset-bottom)); margin:auto; max-width:520px; z-index:10;
+           background:var(--primary); color:#fff; padding:14px; border-radius:14px; box-shadow:0 8px 30px #0005; }
+  .offer[hidden] { display:none; }
+  .offer .row { margin:10px 0 0; } .offer button { flex:1; border:0; border-radius:10px; padding:12px; font-weight:700; font-size:16px; }
   label { display:block; margin:12px 0 4px; color:var(--muted); font-size:14px; }
+  label.check { display:flex; gap:10px; align-items:flex-start; color:var(--text); }
+  label.check input { width:auto; margin-top:3px; }
   input, select { width:100%; padding:11px; border-radius:10px; border:1px solid var(--line); background:transparent; color:inherit; font-size:16px; }
+  select option { color:#000; }
   .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:12px 0; }
   .small { color:var(--muted); font-size:14px; }
   .act { border:0; border-radius:10px; padding:11px 16px; background:var(--primary); color:#fff; font-weight:600; font-size:15px; }
+  .act.light { background:var(--line); color:var(--text); }
   ul { margin:6px 0 12px; padding-left:20px; }
   .card { background:var(--card); border-radius:14px; padding:14px; margin-top:12px; }
-  .watch { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .watch, .playing { display:flex; align-items:center; justify-content:space-between; gap:12px; }
   .switch { border:0; border-radius:999px; padding:10px 18px; font-weight:700; font-size:15px; background:var(--line); color:var(--text); }
   .switch.on { background:var(--primary); color:#fff; }
-  .score { font-size:22px; font-weight:700; }
   .pill { display:inline-block; padding:3px 10px; border-radius:999px; background:var(--line); font-size:14px; }
   .recent { list-style:none; padding:10px 14px; } .recent li { margin:4px 0; } .recent .small { margin-left:6px; }
+  .thumbs button { border:0; background:var(--line); border-radius:10px; padding:8px 14px; font-size:18px; }
+  .clips { list-style:none; padding:0; margin:0; }
+  .clips li { display:flex; gap:8px; align-items:center; padding:9px 0; border-bottom:1px solid var(--line); }
+  .clips li:last-child { border-bottom:0; }
+  .clips .name { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .clips button { border:0; border-radius:8px; padding:7px 10px; background:var(--line); color:var(--text); }
+  .clips select { width:auto; padding:6px; font-size:14px; }
+  .question { font-size:21px; font-weight:700; margin:4px 0 12px; }
+  .options { display:grid; gap:10px; }
+  .options button { text-align:left; border:2px solid transparent; border-radius:14px; padding:16px; font:600 18px system-ui, sans-serif;
+                    background:var(--card); color:var(--text); box-shadow:0 1px 0 var(--line); }
+  .options button b { display:inline-block; width:28px; color:var(--primary); }
+  .options button.mine { border-color:var(--primary); }
+  .options button.right { background:var(--ok); color:#fff; } .options button.right b { color:#fff; }
+  .options button.wrong { background:var(--bad); color:#fff; } .options button.wrong b { color:#fff; }
+  .timer { height:8px; border-radius:6px; background:var(--line); overflow:hidden; margin:10px 0; }
+  .timer i { display:block; height:100%; background:var(--primary); transition:width .6s linear; }
+  .board { list-style:none; padding:0; margin:0; } .board li { display:flex; justify-content:space-between; padding:6px 0; }
+  a { color:var(--primary); }
 </style>
 </head>
 <body>
@@ -52,95 +80,187 @@
   <div class="mood"><div style="margin:0 0 6px"><span id="moodLabel">Mood</span>: <b id="moodBand">…</b></div>
     <div class="meter"><i id="meter"></i></div></div>
 </header>
+<nav id="tabs">
+  <button data-tab="match" class="on">Match</button><button data-tab="fun">Fun</button>
+  <button data-tab="quiz">Quiz</button><button data-tab="settings">Settings</button>
+</nav>
 <main>
-  <div class="card watch">
-    <div><b id="watchLabel">Match mode</b><div class="small" id="watchState">…</div></div>
-    <button class="switch" id="watchBtn">OFF</button>
-  </div>
-  <div class="card">
-    <div><span id="roomLabel">Room</span>: <span class="pill" id="roomMood">…</span>
-      <span class="small" id="roomLevel"></span></div>
-    <div id="matchBox" class="small" style="margin-top:8px"></div>
-  </div>
-  <div id="groups"></div>
-  <h2 id="recentLabel">Recent</h2>
-  <ul class="recent card" id="recent"></ul>
+  <section id="tab-match">
+    <div class="card watch">
+      <div><b id="watchLabel">Match mode</b><div class="small" id="watchState">…</div></div>
+      <button class="switch" id="watchBtn">OFF</button>
+    </div>
+    <div class="card">
+      <div><span id="roomLabel">Room</span>: <span class="pill" id="roomMood">…</span>
+        <span class="small" id="roomLevel"></span></div>
+      <div id="matchBox" class="small" style="margin-top:8px"></div>
+    </div>
+    <div id="groups"></div>
+    <h2 id="recentLabel">Recent</h2>
+    <ul class="recent card" id="recent"></ul>
+  </section>
 
-  <details id="settings">
-    <summary id="settingsTitle">Settings</summary>
-    <label for="team" id="teamLabel">Team</label>
-    <select id="team"></select>
-    <label for="key"><span id="keyLabel">Gemini API key</span> <span id="keyState"></span></label>
-    <input id="key" type="password" autocomplete="off" placeholder="••••">
-    <label for="apiKey"><span id="apiKeyLabel">API-Football key</span> <span id="apiKeyState"></span></label>
-    <input id="apiKey" type="password" autocomplete="off" placeholder="••••">
-    <div class="row"><button class="act" id="save">Save</button></div>
-    <div class="row"><button class="act" id="listenModel">Download listening model</button> <span class="small" id="modelState"></span></div>
-    <div class="row"><button class="act" id="record">Record voice lines</button> <span class="small" id="voiceState"></span></div>
-    <label id="chantsLabel">Chants</label>
-    <ul id="chants"></ul>
-    <div class="row"><input id="chantFile" type="file" accept=".wav,.ogg,.mp3,.m4a,.flac,audio/*"></div>
-    <div class="row"><button class="act" id="upload">Upload a chant</button></div>
-  </details>
+  <section id="tab-fun" hidden>
+    <div class="card playing">
+      <div><span class="small" id="nowLabel">Now</span><div id="nowTitle"><b>…</b></div></div>
+      <button class="act" id="stopBtn">Stop</button>
+    </div>
+    <div class="grid" style="margin-top:12px">
+      <button class="btn big" id="jokeBtn">Joke</button>
+      <button class="btn" id="musicBtn">Music</button>
+      <button class="btn" id="matchClipBtn">Match</button>
+      <button class="btn" id="chantBtn">Chant</button>
+    </div>
+    <div class="card" id="jokeCard" hidden>
+      <div class="small" id="lastJokeLabel">Last joke</div>
+      <div id="jokeText" style="margin:6px 0 10px"></div>
+      <div class="row thumbs"><button id="jokeUp">👍</button><button id="jokeDown">👎</button></div>
+    </div>
+    <h2 id="libraryLabel">My clips</h2>
+    <div class="card"><ul class="clips" id="funClips"></ul></div>
+  </section>
+
+  <section id="tab-quiz" hidden>
+    <div class="card" id="joinCard">
+      <label for="playerName" id="nameLabel">Your name</label>
+      <div class="row" style="margin-top:0"><input id="playerName" maxlength="20" style="flex:1"><button class="act" id="joinBtn">Join</button></div>
+    </div>
+    <div class="card" id="quizCard">
+      <div class="small" id="quizInfo"></div>
+      <div class="question" id="question"></div>
+      <div class="timer" id="timerBar" hidden><i id="timer"></i></div>
+      <div class="options" id="options"></div>
+      <div id="explain" class="small" style="margin-top:12px"></div>
+      <div class="row" id="quizControls">
+        <select id="quizN" style="width:auto"><option>5</option><option>10</option></select>
+        <button class="act" id="quizStart">Start</button>
+        <button class="act light" id="quizStop">End</button>
+      </div>
+    </div>
+    <h2 id="boardLabel">Leaderboard</h2>
+    <div class="card"><ul class="board" id="board"></ul></div>
+  </section>
+
+  <section id="tab-settings" hidden>
+    <div class="card">
+      <label for="team" id="teamLabel">Team</label>
+      <select id="team"></select>
+      <label for="key"><span id="keyLabel">Gemini API key</span> <span id="keyState"></span></label>
+      <input id="key" type="password" autocomplete="off" placeholder="••••">
+      <label for="apiKey"><span id="apiKeyLabel">API-Football key</span> <span id="apiKeyState"></span></label>
+      <input id="apiKey" type="password" autocomplete="off" placeholder="••••">
+      <label for="latency"><span id="latencyLabel">Speaker delay</span>: <b id="latencyValue"></b></label>
+      <input id="latency" type="range" min="0" max="0.5" step="0.01">
+      <label class="check"><input type="checkbox" id="offers"> <span id="offersLabel">Offers</span></label>
+      <div class="row"><button class="act" id="save">Save</button></div>
+      <div class="row"><button class="act" id="listenModel">Download listening model</button> <span class="small" id="modelState"></span></div>
+      <div class="row"><button class="act" id="record">Record voice lines</button> <span class="small" id="voiceState"></span></div>
+      <div class="small" id="packInfo"></div>
+      <ul class="small" id="packProblems"></ul>
+    </div>
+    <h2 id="clipsTitle">My clips</h2>
+    <div class="card">
+      <label for="clipFiles" id="filesLabel">Audio files</label>
+      <input id="clipFiles" type="file" multiple accept=".wav,.ogg,.mp3,.m4a,.flac,.opus,.aac,audio/*">
+      <label for="clipCsv" id="csvLabel">Clip list (CSV)</label>
+      <input id="clipCsv" type="file" accept=".csv,text/csv">
+      <label for="defaultType" id="defaultTypeLabel">Type</label>
+      <select id="defaultType"></select>
+      <label class="check"><input type="checkbox" id="own"> <span id="ownLabel">I own these</span></label>
+      <div class="row"><button class="act" id="uploadClips">Upload</button> <span class="small" id="uploadState"></span></div>
+      <div class="small" id="usedLabel"></div>
+      <ul class="clips" id="clipList"></ul>
+    </div>
+  </section>
 </main>
+<div class="offer" id="offer" hidden>
+  <div id="offerLine"></div>
+  <div class="row"><button id="offerYes">Yes</button><button id="offerNo">No</button></div>
+</div>
 <div class="toast" id="toast"></div>
 <script>
 const $ = id => document.getElementById(id);
 let L = {};                                         // UI strings in the team's language
-let watchOn = false;
-let lang = "en";                                    // times and dates in the team's language
+let watchOn = false, lang = "en", tab = "match", clips = [], lastJoke = null, quizPhase = "idle";
+let player = localStorage.getItem("fanPlayer") || "", dismissedOffer = "";
 const clock = sec => new Date(sec * 1000).toLocaleTimeString(lang, {hour: "2-digit", minute: "2-digit"});
+const sub = (o, k, d) => (o || {})[k] ?? d ?? k;
 
-function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 2500); }
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 2800); }
 function text(el, s) { el.textContent = s ?? ""; }   // never innerHTML with data
+function el(tag, cls, s) { const e = document.createElement(tag); if (cls) e.className = cls; if (s != null) e.textContent = s; return e; }
+async function api(path, body, method) {
+  const r = await fetch(path, body === undefined && !method ? {cache: "no-store"} :
+    {method: method || "POST", headers: {"Content-Type": "application/json"}, body: body === undefined ? undefined : JSON.stringify(body)});
+  return r.json();
+}
 
+// ---- tabs ----
+function showTab(name) {
+  tab = name;
+  for (const b of $("tabs").children) b.classList.toggle("on", b.dataset.tab === name);
+  for (const s of document.querySelectorAll("main > section")) s.hidden = s.id !== "tab-" + name;
+  if (name === "quiz") pollQuiz();
+  if (name === "fun" || name === "settings") loadClips();
+}
+for (const b of $("tabs").children) b.onclick = () => showTab(b.dataset.tab);
+
+// ---- team and strings ----
 async function loadTeam() {
-  const t = await (await fetch("team", {cache: "no-store"})).json();
+  const t = await api("team");
   L = t.locale;
   document.documentElement.lang = lang = t.language;
   const c = t.colors || {};
   if (c.primary) { document.documentElement.style.setProperty("--primary", c.primary); document.querySelector("meta[name=theme-color]").content = c.primary; }
   if (c.secondary) document.documentElement.style.setProperty("--secondary", c.secondary);
   text($("title"), L.title); document.title = `${L.title} · ${t.name}`; text($("sub"), t.name);
-  text($("moodLabel"), L.mood); text($("settingsTitle"), L.settings); text($("teamLabel"), L.team);
-  text($("keyLabel"), L.gemini_key); text($("save"), L.save); text($("record"), L.record_voice);
-  text($("chantsLabel"), L.chants); text($("upload"), L.upload_chant);
-  text($("watchLabel"), L.watch); text($("roomLabel"), L.room); text($("recentLabel"), L.recent);
-  text($("apiKeyLabel"), L.api_key); text($("listenModel"), L.listen_model);
+  for (const b of $("tabs").children) text(b, sub(L.tabs, b.dataset.tab));
+  const strings = {moodLabel: L.mood, teamLabel: L.team, keyLabel: L.gemini_key, save: L.save, record: L.record_voice,
+    watchLabel: L.watch, roomLabel: L.room, recentLabel: L.recent, apiKeyLabel: L.api_key, listenModel: L.listen_model,
+    latencyLabel: L.latency, offersLabel: L.offers, offerYes: L.offer_yes, offerNo: L.offer_no,
+    nowLabel: sub(L.fun, "now"), stopBtn: sub(L.fun, "stop"), jokeBtn: sub(L.fun, "joke"), musicBtn: sub(L.fun, "music"),
+    matchClipBtn: sub(L.fun, "match"), chantBtn: sub(L.fun, "chant"), lastJokeLabel: sub(L.fun, "last_joke"),
+    libraryLabel: sub(L.fun, "library"), nameLabel: sub(L.quiz, "name"), joinBtn: sub(L.quiz, "join"),
+    quizStart: sub(L.quiz, "start"), quizStop: sub(L.quiz, "stop"), boardLabel: sub(L.quiz, "leaderboard"),
+    clipsTitle: sub(L.clips, "title"), filesLabel: sub(L.clips, "files"), csvLabel: sub(L.clips, "csv"),
+    defaultTypeLabel: sub(L.clips, "default_type"), ownLabel: sub(L.clips, "own"), uploadClips: sub(L.clips, "upload")};
+  for (const [id, s] of Object.entries(strings)) text($(id), s);
   const groups = $("groups"); groups.replaceChildren();
   for (const [group, moments] of Object.entries(t.groups)) {
-    const h = document.createElement("h2"); text(h, L.groups[group]); groups.append(h);
-    const grid = document.createElement("div"); grid.className = "grid";
+    groups.append(el("h2", "", L.groups[group]));
+    const grid = el("div", "grid");
     for (const m of moments) {
-      const b = document.createElement("button");
-      b.className = "btn" + (m === "goal_us" ? " big" : group === "us" ? " us" : group === "them" ? " them" : "");
-      text(b, L.moments[m] || m);
+      const b = el("button", "btn" + (m === "goal_us" ? " big" : group === "us" ? " us" : group === "them" ? " them" : ""), L.moments[m] || m);
       b.onclick = () => send(m);
       grid.append(b);
     }
     groups.append(grid);
   }
   const sel = $("team"); sel.replaceChildren();
-  for (const [id, name] of Object.entries(t.teams)) { const o = new Option(name, id, false, id === t.id); sel.append(o); }
-  const list = $("chants"); list.replaceChildren();
-  if (!t.chants.length) { const li = document.createElement("li"); text(li, L.no_chants); list.append(li); }
-  for (const c of t.chants) { const li = document.createElement("li"); text(li, c); list.append(li); }
+  for (const [id, name] of Object.entries(t.teams)) sel.append(new Option(name, id, false, id === t.id));
+  const dt = $("defaultType"); dt.replaceChildren();
+  for (const k of ["chant", "music", "match"]) dt.append(new Option(sub(L.categories, k), k));
   text($("voiceState"), `${t.voice_clips}/${t.voice_lines}`);
+  text($("packInfo"), `${t.jokes} · ${t.quiz} · ${t.knowledge}  (${L.counts || ""})`);
+  const pp = $("packProblems"); pp.replaceChildren();
+  for (const p of t.quiz_problems || []) pp.append(el("li", "", p));
+  $("playerName").value = localStorage.getItem("fanPlayerName") || "";
 }
 
 async function send(moment) {
   if (navigator.vibrate) navigator.vibrate(30);
   try {
-    const r = await fetch("moment", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({moment})});
-    const j = await r.json();
-    toast(j.ok ? (j.line || L.moments[moment]) : (j.error || "…"));
+    const j = await api("moment", {moment});
+    if (moment === "joke" && j.text) showJoke(j);
+    toast(j.ok ? (j.line || j.text || L.moments[moment]) : (j.error || "…"));
   } catch { toast(L.offline); }
 }
 
+// ---- status (all tabs) ----
 async function poll() {
   try {
-    const s = await (await fetch("status", {cache: "no-store"})).json();
-    text($("moodBand"), (L.moods || {})[s.band] || s.band);
+    const s = await api("status");
+    text($("moodBand"), sub(L.moods, s.band));
     const v = Math.max(-1, Math.min(1, s.mood)), m = $("meter");
     m.style.left = v >= 0 ? "50%" : `${50 + v * 50}%`; m.style.width = `${Math.abs(v) * 50}%`;
     const jobEl = s.job && s.job.name === "listen-model" ? $("modelState") : $("voiceState");
@@ -149,53 +269,206 @@ async function poll() {
     watchOn = !!s.watch;
     const b = $("watchBtn"); b.classList.toggle("on", s.listening); text(b, s.listening ? "ON" : "OFF");
     text($("watchState"), s.listening ? L.watch_on : L.watch_off);
-    text($("roomMood"), (L.room_moods || {})[s.room_mood] || s.room_mood);
+    text($("roomMood"), sub(L.room_moods, s.room_mood));
     text($("roomLevel"), s.listening && s.room_level != null ? `${s.room_level > 0 ? "+" : ""}${s.room_level} dB` : "");
     const match = s.match, box = $("matchBox");
     if (match && match.kickoff) {
-      const ko = clock(match.kickoff);
-      const sc = match.score ? `${match.score[0]} - ${match.score[1]}` : ko;
+      const sc = match.score ? `${match.score[0]} - ${match.score[1]}` : clock(match.kickoff);
       text(box, `${L.match}: ${match.opponent || "?"} · ${sc}${match.minute ? ` · ${match.minute}'` : ""} · ${match.requests_today} ${L.requests}${match.error ? " · " + match.error : ""}`);
     } else text(box, match ? `${L.no_match}${match.error ? " · " + match.error : ""}` : "");
     const ul = $("recent"); ul.replaceChildren();
     for (const r of s.recent || []) {
-      const li = document.createElement("li");
-      const t = clock(r.at);
-      text(li, `${t}  ${(L.moments || {})[r.moment] || r.moment}`);
-      const src = document.createElement("span"); src.className = "small"; text(src, (L.sources || {})[r.source] || r.source);
-      li.append(src); ul.append(li);
+      const li = el("li", "", `${clock(r.at)}  ${sub(L.moments, r.moment)}`);
+      li.append(el("span", "small", sub(L.sources, r.source))); ul.append(li);
     }
+    const now = s.now_playing;
+    text($("nowTitle"), now ? (now.title || sub(L.moments, now.moment)) : sub(L.fun, "nothing"));
+    const o = s.offer, key = o ? `${o.kind}${o.at}` : "";
+    $("offer").hidden = !o || key === dismissedOffer;
+    if (o) text($("offerLine"), o.line);
+    $("offer").dataset.key = key;
+    if (s.quiz !== quizPhase) { quizPhase = s.quiz; if (s.quiz !== "idle" && tab !== "quiz" && player) showTab("quiz"); }
   } catch { text($("moodBand"), L.offline || "offline"); }
   setTimeout(poll, 1500);                            // sequential: never two requests in flight
 }
 
-async function loadSettings() {
-  const s = await (await fetch("settings")).json();
-  text($("keyState"), s.GEMINI_API_KEY ? L.key_saved : L.key_missing);
-  text($("apiKeyState"), s.API_FOOTBALL_KEY ? L.key_saved : L.key_missing);
+async function replyOffer(yes) {
+  dismissedOffer = $("offer").dataset.key; $("offer").hidden = true;
+  const r = await api("offer/reply", {yes});
+  if (r.text) showJoke(r);
+  if (yes && !r.ok && r.error) toast(r.error);
+}
+$("offerYes").onclick = () => replyOffer(true);
+$("offerNo").onclick = () => replyOffer(false);
+
+// ---- fun ----
+function showJoke(j) { lastJoke = j.id; $("jokeCard").hidden = false; text($("jokeText"), j.text); }
+$("jokeBtn").onclick = async () => { const j = await api("joke", {}); if (j.ok || j.text) showJoke(j); else toast(j.error); };
+for (const [id, cat] of [["musicBtn", "music"], ["matchClipBtn", "match"], ["chantBtn", "chant"]])
+  $(id).onclick = async () => { const r = await api("play", {category: cat}); toast(r.ok ? r.title : (r.error === "no clips" ? sub(L.fun, "no_clips") : r.error)); };
+$("stopBtn").onclick = () => api("stop", {});
+$("jokeUp").onclick = () => { api("joke/rate", {up: true, id: lastJoke}); toast("👍"); };
+$("jokeDown").onclick = () => { api("joke/rate", {up: false, id: lastJoke}); toast("👎"); };
+
+async function loadClips() {
+  try { const r = await api("media"); clips = r.items; text($("usedLabel"), `${sub(L.clips, "used")}: ${r.used_mb} MB`); } catch { return; }
+  const fun = $("funClips"); fun.replaceChildren();
+  if (!clips.length) fun.append(el("li", "small", sub(L.fun, "no_clips")));
+  for (const c of clips) {
+    const li = el("li"); li.append(el("span", "name", c.title));
+    li.append(el("span", "small", sub(L.categories, c.category)));
+    const play = el("button", "", "▶"); play.onclick = async () => { const r = await api("play", {id: c.id}); if (!r.ok) toast(r.error); };
+    const up = el("button", "", "👍"); up.onclick = () => { api(`media/${c.id}/rate`, {up: true}); toast("👍"); };
+    li.append(play, up); fun.append(li);
+  }
+  const list = $("clipList"); list.replaceChildren();
+  for (const c of clips) {
+    const li = el("li"); li.append(el("span", "name", c.title));
+    const a = c.analysis;
+    li.append(el("span", "small", a ? (a.bpm ? `${Math.round(a.bpm)} ${sub(L.clips, "bpm")}` : `${Math.round(a.duration_s || 0)}s`) : "…"));
+    const sel = el("select");
+    for (const k of ["chant", "music", "match"]) sel.append(new Option(sub(L.categories, k), k, false, k === c.category));
+    sel.onchange = () => api(`media/${c.id}`, {category: sel.value}, "PATCH");
+    const del = el("button", "", "✕"); del.title = sub(L.clips, "delete");
+    del.onclick = async () => { if (confirm(`${sub(L.clips, "delete")}: ${c.title}?`)) { await api(`media/${c.id}`, undefined, "DELETE"); loadClips(); } };
+    li.append(sel, del); list.append(li);
+  }
 }
 
+// ---- clip upload: the browser decodes each file to 16 kHz mono WAV so the robot can find the beat ----
+function parseCsv(textIn) {
+  const rows = []; let row = [], cell = "", q = false;
+  for (let i = 0; i < textIn.length; i++) {
+    const ch = textIn[i];
+    if (q) { if (ch === '"' && textIn[i + 1] === '"') { cell += '"'; i++; } else if (ch === '"') q = false; else cell += ch; }
+    else if (ch === '"') q = true;
+    else if (ch === "," || ch === ";") { row.push(cell); cell = ""; }
+    else if (ch === "\n" || ch === "\r") { if (ch === "\r" && textIn[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; }
+    else cell += ch;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  const head = (rows.shift() || []).map(h => h.trim().toLowerCase());
+  return rows.filter(r => r.some(c => c.trim())).map(r => Object.fromEntries(head.map((h, i) => [h, (r[i] || "").trim()])));
+}
+const TYPE_WORDS = {music: "music", "müzik": "music", muzik: "music", match: "match", "maç": "match", mac: "match", chant: "chant", "tezahürat": "chant", tezahurat: "chant"};
+
+async function decodeTo16k(file) {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  const ctx = new AC();
+  try {
+    const audio = await ctx.decodeAudioData(await file.arrayBuffer());
+    const seconds = Math.min(audio.duration, 600);
+    const off = new OfflineAudioContext(1, Math.ceil(seconds * 16000), 16000);
+    const src = off.createBufferSource(); src.buffer = audio; src.connect(off.destination); src.start();
+    const pcm = (await off.startRendering()).getChannelData(0);
+    const buf = new ArrayBuffer(44 + pcm.length * 2), v = new DataView(buf);
+    const w = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+    w(0, "RIFF"); v.setUint32(4, 36 + pcm.length * 2, true); w(8, "WAVEfmt "); v.setUint32(16, 16, true);
+    v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, 16000, true); v.setUint32(28, 32000, true);
+    v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, "data"); v.setUint32(40, pcm.length * 2, true);
+    for (let i = 0; i < pcm.length; i++) v.setInt16(44 + i * 2, Math.max(-1, Math.min(1, pcm[i])) * 32767, true);
+    return new Blob([buf], {type: "audio/wav"});
+  } finally { ctx.close(); }
+}
+
+$("uploadClips").onclick = async () => {
+  const files = [...$("clipFiles").files];
+  if (!files.length) return;
+  if (!$("own").checked) { toast(sub(L.clips, "need_own")); return; }
+  let meta = {};
+  if ($("clipCsv").files[0]) for (const r of parseCsv(await $("clipCsv").files[0].text())) if (r.file) meta[r.file.toLowerCase()] = r;
+  const btn = $("uploadClips"); btn.disabled = true;
+  let done = 0;
+  for (const f of files) {
+    const m = meta[f.name.toLowerCase()] || {};
+    const params = new URLSearchParams({name: f.name, own: "1", category: TYPE_WORDS[(m.type || "").toLowerCase()] || $("defaultType").value,
+      title: m.title || f.name.replace(/\.[^.]+$/, ""), mood: m.mood || "", when: m.when || "", tags: m.tags || ""});
+    text($("uploadState"), `${done + 1}/${files.length} ${f.name}`);
+    try {
+      const r = await (await fetch("media?" + params, {method: "POST", body: f})).json();
+      if (!r.ok) { toast(`${f.name}: ${r.error}`); continue; }
+      if (!r.item.analysis) {
+        text($("uploadState"), `${done + 1}/${files.length} ${sub(L.clips, "analysing")}…`);
+        try { await fetch(`media/${r.item.id}/analysis`, {method: "POST", body: await decodeTo16k(f)}); }
+        catch (e) { console.warn("no analysis for", f.name, e); }   // still plays, just without the beat
+      }
+      done++;
+    } catch { toast(L.offline); }
+  }
+  text($("uploadState"), `${done}/${files.length} ${sub(L.clips, "done")}`);
+  btn.disabled = false; $("clipFiles").value = ""; loadClips();
+};
+
+// ---- quiz ----
+let quizTimer = null;
+$("joinBtn").onclick = async () => {
+  const name = $("playerName").value.trim(); if (!name) return;
+  const r = await api("quiz/join", {name});
+  if (r.ok) { player = r.player; localStorage.setItem("fanPlayer", player); localStorage.setItem("fanPlayerName", name); pollQuiz(); }
+  else toast(r.error);
+};
+$("quizStart").onclick = async () => { const r = await api("quiz/start", {n: +$("quizN").value}); if (!r.ok) toast(r.error); pollQuiz(); };
+$("quizStop").onclick = async () => { await api("quiz/stop", {}); pollQuiz(); };
+
+async function pollQuiz() {
+  clearTimeout(quizTimer);
+  let s;
+  try { s = await api("quiz/state?player=" + encodeURIComponent(player)); } catch { s = null; }
+  if (s) renderQuiz(s);
+  if (tab === "quiz" || (s && s.phase !== "idle")) quizTimer = setTimeout(pollQuiz, s && s.phase !== "idle" ? 700 : 3000);
+}
+
+function renderQuiz(s) {
+  const Q = L.quiz || {};
+  $("joinCard").hidden = !!s.you;
+  const active = s.phase !== "idle" && s.phase !== "results";
+  $("quizStart").hidden = $("quizN").hidden = active; $("quizStop").hidden = !active;
+  text($("quizInfo"), active ? `${s.index + 1}/${s.total} · ${s.answered}/${s.players} ${Q.answered || ""}${s.you ? ` · ${Q.you}: ${s.you}` : ""}`
+                             : s.available ? `${s.available} ${Q.questions || ""}` : (Q.none || ""));
+  text($("question"), s.paused ? Q.paused : s.question || (s.phase === "results" ? Q.results : active ? "" : Q.waiting));
+  const opts = $("options"); opts.replaceChildren();
+  if (s.options) s.options.forEach((o, i) => {
+    const b = el("button"); b.append(el("b", "", "ABCD"[i]), document.createTextNode(o));
+    if (s.your_answer === i) b.classList.add("mine");
+    if (s.phase === "reveal") { if (i === s.correct) b.classList.add("right"); else if (s.your_answer === i) b.classList.add("wrong"); }
+    b.disabled = s.phase !== "answering" && s.phase !== "asking" || s.your_answer != null || !s.you;
+    b.onclick = async () => { if (navigator.vibrate) navigator.vibrate(20); await api("quiz/answer", {player, choice: i}); pollQuiz(); };
+    opts.append(b);
+  });
+  $("timerBar").hidden = s.phase !== "answering";
+  if (s.time_left != null) $("timer").style.width = `${Math.min(100, s.time_left / 15 * 100)}%`;
+  const ex = $("explain"); ex.replaceChildren();
+  if (s.phase === "reveal") {
+    if (s.explain) ex.append(el("div", "", s.explain));
+    if (s.source) {
+      const line = el("div", "", `${Q.source}: `);
+      if (/^https?:\/\//.test(s.source)) { const a = el("a", "", s.source_title || s.source); a.href = s.source; a.target = "_blank"; a.rel = "noopener"; line.append(a); }
+      else line.append(document.createTextNode(s.source));
+      ex.append(line);
+    }
+  }
+  const board = $("board"); board.replaceChildren();
+  for (const p of s.leaderboard || []) { const li = el("li"); li.append(el("span", "", p.name), el("b", "", `${p.score} ${Q.points || ""}`)); board.append(li); }
+}
+
+// ---- settings ----
+async function loadSettings() {
+  const s = await api("settings");
+  text($("keyState"), s.GEMINI_API_KEY ? L.key_saved : L.key_missing);
+  text($("apiKeyState"), s.API_FOOTBALL_KEY ? L.key_saved : L.key_missing);
+  $("latency").value = s.latency; text($("latencyValue"), `${Math.round(s.latency * 1000)} ms`);
+  $("offers").checked = !!s.offers;
+}
+$("latency").oninput = () => text($("latencyValue"), `${Math.round($("latency").value * 1000)} ms`);
 $("save").onclick = async () => {
-  const body = {TEAM: $("team").value, GEMINI_API_KEY: $("key").value, API_FOOTBALL_KEY: $("apiKey").value};
-  const r = await (await fetch("settings", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)})).json();
+  const body = {TEAM: $("team").value, GEMINI_API_KEY: $("key").value, API_FOOTBALL_KEY: $("apiKey").value,
+                FAN_ROBOT_AUDIO_LATENCY_S: String($("latency").value), FAN_ROBOT_OFFERS: $("offers").checked ? "1" : "0.0"};
+  const r = await api("settings", body);
   $("key").value = ""; $("apiKey").value = ""; toast(r.ok ? L.saved : r.error); await loadTeam(); await loadSettings();
 };
-$("record").onclick = async () => {
-  const r = await (await fetch("voice/record", {method: "POST"})).json();
-  if (!r.ok) toast(r.error);
-};
-$("watchBtn").onclick = async () => {
-  await fetch("watch", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({on: !watchOn})});
-};
-$("listenModel").onclick = async () => {
-  const r = await (await fetch("listen-model", {method: "POST"})).json();
-  if (!r.ok) toast(r.error);
-};
-$("upload").onclick = async () => {
-  const f = $("chantFile").files[0]; if (!f) return;
-  const r = await (await fetch("chants?name=" + encodeURIComponent(f.name), {method: "POST", body: f})).json();
-  toast(r.ok ? r.name : r.error); loadTeam();
-};
+$("record").onclick = async () => { const r = await api("voice/record", {}); if (!r.ok) toast(r.error); };
+$("watchBtn").onclick = () => api("watch", {on: !watchOn});
+$("listenModel").onclick = async () => { const r = await api("listen-model", {}); if (!r.ok) toast(r.error); };
 
 loadTeam().then(loadSettings); poll();
 </script>

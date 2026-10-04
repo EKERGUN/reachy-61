@@ -35,7 +35,8 @@
     "calm": "Sakin",
     "groan": "Of!",
     "var_cancel_us": "Golümüz iptal",
-    "var_cancel_them": "Golleri iptal"
+    "var_cancel_them": "Golleri iptal",
+    "halftime": "Devre arası"
   },
   "settings": "Ayarlar",
   "team": "Takım",
@@ -110,5 +111,66 @@
       "at"
     ]
   },
-  "vosk_model_url": "https://alphacephei.com/vosk/models/vosk-model-small-tr-0.3.zip"
+  "vosk_model_url": "https://alphacephei.com/vosk/models/vosk-model-small-tr-0.3.zip",
+  "tabs": {
+    "match": "Maç",
+    "fun": "Eğlence",
+    "quiz": "Yarışma",
+    "settings": "Ayarlar"
+  },
+  "fun": {
+    "joke": "Fıkra anlat",
+    "music": "Müzik çal",
+    "match": "Maç kaydı",
+    "chant": "Tezahürat",
+    "stop": "Durdur",
+    "now": "Şimdi",
+    "nothing": "Sessiz",
+    "last_joke": "Son fıkra",
+    "no_clips": "Henüz klip yok. Ayarlar'dan kendi kayıtlarınızı yükleyin.",
+    "library": "Kliplerim"
+  },
+  "categories": {
+    "music": "Müzik",
+    "match": "Maç kaydı",
+    "chant": "Tezahürat"
+  },
+  "offer_yes": "Evet",
+  "offer_no": "Hayır",
+  "quiz": {
+    "name": "Adın",
+    "join": "Katıl",
+    "start": "Başlat",
+    "stop": "Bitir",
+    "questions": "soru",
+    "reading": "Robot soruyu okuyor…",
+    "seconds": "sn",
+    "answered": "cevap verdi",
+    "correct": "Doğru cevap",
+    "leaderboard": "Puan tablosu",
+    "source": "Kaynak",
+    "results": "Sonuçlar",
+    "points": "puan",
+    "none": "Henüz soru yok. Soruları takım paketine ekleyin (quiz.yaml).",
+    "paused": "Maç anı! Biraz sonra devam.",
+    "waiting": "Başlatmak için Başlat'a basın. Herkes kendi telefonundan katılabilir.",
+    "you": "Sen"
+  },
+  "clips": {
+    "title": "Kliplerim",
+    "files": "Ses dosyaları",
+    "csv": "Klip listesi (CSV, isteğe bağlı)",
+    "default_type": "Listede olmayanların türü",
+    "own": "Bu kayıtları kullanma hakkım var (kendi kaydım ya da izinli). YouTube'dan indirilmiş içerik yok.",
+    "upload": "Yükle",
+    "analysing": "dinleniyor",
+    "done": "yüklendi",
+    "delete": "Sil",
+    "used": "Kullanılan alan",
+    "need_own": "Önce kayıt hakkı kutusunu işaretleyin.",
+    "bpm": "BPM"
+  },
+  "latency": "Ses gecikmesi (dans senkronu)",
+  "offers": "Robot kendiliğinden teklif etsin (fıkra, yarışma, müzik)",
+  "counts": "fıkra · soru · bilgi"
 }

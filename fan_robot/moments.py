@@ -40,7 +40,8 @@ REACTIONS: dict[str, Reaction] = {
     "draw":          Reaction(("thoughtful1", "indifferent1"), 0.0, 8),
     "loss":          Reaction(("resigned1", "sad2", "exhausted1"), -0.6, 8),
     "chant":         Reaction(("dance3", "electric1"), +0.05, 4, chant=True),   # says a chant_intro line
-    "joke":          Reaction(("laughing1", "laughing2"), +0.02, 2),
+    "halftime":      Reaction(("thoughtful1", "attentive1"), 0.0, 4),          # then offers a joke or the quiz
+    "joke":          Reaction(("laughing1", "laughing2"), +0.02, 4, speak=False),   # told by jokes.py
     "calm":          Reaction(("serenity1", "calming1"), 0.0, 1, speak=False),
 }
 
@@ -49,7 +50,7 @@ GROUPS: dict[str, tuple[str, ...]] = {
     "us": ("goal_us", "chance_us", "penalty_us"),
     "them": ("goal_them", "chance_them", "penalty_them", "groan"),
     "referee": ("referee", "var", "var_cancel_us", "var_cancel_them", "red_card_us", "red_card_them"),
-    "full_time": ("win", "draw", "loss"),
+    "full_time": ("halftime", "win", "draw", "loss"),
     "extra": ("tension", "chant", "joke", "calm"),
 }
 

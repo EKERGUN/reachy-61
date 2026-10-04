@@ -17,6 +17,13 @@ A Reachy Mini football fan (first team: Trabzonspor, Turkish). Plan and decision
   unclear outbursts (budgeted). `feed.py`: API-Football (goals from SCORE changes, not goal events;
   daily request budget). `judge.py`: combines room + feed; feed facts wait for the room (no spoilers),
   and one goal is never celebrated twice.
+- Phase 3 (fun): `performer.py` plays scripts of steps (Gesture, Say, Pause, Clip); a goal interrupts
+  any step. `jokes.py` (setup, pause, punchline, laugh; no repeats), `media.py` (the user's clips +
+  sidecar JSON), `beats.py` (beat + loudness, computed once at upload, numpy only), `dance.py`
+  (`BeatMove` dances on the beat to music, `FanMove` moves like a fan to match recordings; the clip is
+  the move's sound so `cancel_move` stops both), `quiz.py` (sourced questions, state machine, phones
+  answer). The browser decodes uploads to 16 kHz WAV for the analysis (no ffmpeg on the robot).
+  Offers (joke/quiz/music) at half time or when the mood is down, at most every 20 min.
 - Rules for this app: never download YouTube videos (embed official clips instead); chants are the
   user's own uploads; banter stays friendly (no insults, violence, betting); team facts need sources.
 

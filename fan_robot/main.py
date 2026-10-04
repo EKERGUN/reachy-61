@@ -1,8 +1,8 @@
 """Fan Robot: a Reachy Mini that watches football with you and shares the room's mood.
 
-Phase 1: you tell it what happened with the phone remote (big buttons on http://<robot>:8042);
-it reacts like a fan (emotion move + sound + a spoken line + your chants) and keeps a mood that
-lasts. Phase 2 will fill in the same moments automatically from the room and the score feed.
+It reacts like a fan to what happens (phone remote, the room's mood, the live score), keeps a mood
+that lasts, tells jokes, plays your music (dancing on the beat) and match recordings (moving like a
+fan in the stands), and hosts a quiz on everyone's phone. Remote: http://<robot>:8042
 
 Start it from Reachy Mini Control (after publishing), or during development:
     python -m fan_robot.main                      # app on this computer, robot over WiFi
@@ -14,7 +14,6 @@ from __future__ import annotations
 import logging
 import os
 import random
-import re
 import threading
 import time
 from pathlib import Path
@@ -23,25 +22,35 @@ from fastapi import Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from reachy_mini import ReachyMini, ReachyMiniApp
+from starlette.concurrency import run_in_threadpool
 
 from fan_robot.audio import Microphone
+from fan_robot.beats import analyze, read_wav
 from fan_robot.cloud_check import CloudCheck
 from fan_robot.config import DATA_DIR, SECRETS, Settings, read_env_file, write_env_file
+from fan_robot.dance import clip_move
 from fan_robot.feed import ApiFootball, Budget, MatchPoller
+from fan_robot.jokes import CONTEXT_TAGS, LAUGHS, LEAN_IN, JokeTeller, pause_before_punchline
 from fan_robot.judge import Judge
+from fan_robot.media import CATEGORIES, MediaItem, MediaLibrary
 from fan_robot.moments import GROUPS, IDLE_MOVES, REACTIONS
 from fan_robot.mood import Mood
-from fan_robot.performer import Performer, Plan
+from fan_robot.performer import Clip, Gesture, Pause, Performer, Plan, Say, reaction
+from fan_robot.quiz import QuizGame
 from fan_robot.room import RoomEvent, RoomListener, try_spotter
 from fan_robot.team import TeamPack, load_team, team_dirs
-from fan_robot.voice import clip_path, record_all
+from fan_robot.voice import clip_path, line_path, record_all
 
 log = logging.getLogger(__name__)
 
 # Which phrases.yaml list a moment speaks from, when it isn't the moment's own name.
 LINE_KEYS = {"chant": "chant_intro"}
-CHANT_TYPES = (".wav", ".ogg", ".mp3", ".m4a", ".flac")
-MAX_CHANT_BYTES = 25_000_000
+# During these match moments a reaction plays only the start of a long recording.
+REACTION_CLIP_S = 25.0
+PLAYING = {"1H", "2H", "ET", "P", "LIVE", "BT"}        # the ball is rolling: no quiz, no offers
+OFFER_GAP_S = 20 * 60
+OFFER_TTL_S = 45
+PRIORITY_FUN = 4                                       # jokes, clips, quiz: a goal interrupts them
 
 
 class FanRobot(ReachyMiniApp):
@@ -77,9 +86,15 @@ class FanRobot(ReachyMiniApp):
             self.brain.reload()
 
 
+def media_library(team: TeamPack) -> MediaLibrary:
+    lib = MediaLibrary(DATA_DIR / "media" / team.id)
+    lib.import_folder(DATA_DIR / "chants" / team.id)   # chants uploaded before the library existed
+    return lib
+
+
 class FanBrain:
     """Turns fan moments into reactions, listens to the room in match mode, follows the score feed,
-    and lets the mood show when nothing is happening."""
+    tells jokes, plays clips, runs the quiz, and lets the mood show when nothing is happening."""
 
     def __init__(self, mini: ReachyMini, app: FanRobot, rng=random):
         self.mini, self.app, self.rng = mini, app, rng
@@ -89,6 +104,13 @@ class FanBrain:
         self.room: RoomListener | None = None
         self.cloud: CloudCheck | None = None
         self.poller: MatchPoller | None = None
+        self.quiz: QuizGame | None = None
+        self.offer: dict | None = None
+        self.last_joke = None
+        self._offer_due: tuple[float, str] | None = None
+        self._last_offer = -1e9
+        self._last_activity = time.monotonic()
+        self._last_bad = -1e9                    # last loss / conceded goal (for cheering up)
         self._next_idle = time.monotonic() + 60
         self._running = False
         self.reload()
@@ -114,6 +136,11 @@ class FanBrain:
                                       self.judge.on_feed, DATA_DIR / "feed_teams.json")
             if self._running:
                 self.poller.start()                  # key or team changed while running
+        self.media = media_library(team)
+        self.jokes = JokeTeller(team.jokes, DATA_DIR / "history" / f"jokes_{team.id}.json")
+        if self.quiz is not None:
+            self.quiz.stop()
+        self.quiz = QuizGame(team.quiz, self._quiz_act, DATA_DIR / "history" / f"quiz_{team.id}.json", self.rng)
 
     def run(self, stop_event: threading.Event) -> None:
         m = self.mini
@@ -130,11 +157,18 @@ class FanBrain:
             self.poller.start()
         self.app.state["state"] = "running"
         log.info("Fan Robot running for %s. Remote: http://<robot>:8042", self.app.team.name)
+        tick = 0
         while not stop_event.is_set():
-            self._update_watch()
-            self.judge.tick()
-            self._maybe_idle()
-            stop_event.wait(1.0)
+            self.quiz.tick()                 # the quiz timer wants finer steps than a second
+            if self.quiz.paused and not self.performer.busy:
+                self.quiz.resume()
+            if tick % 4 == 0:
+                self._update_watch()
+                self.judge.tick()
+                self._maybe_offer()
+                self._maybe_idle()
+            tick += 1
+            stop_event.wait(0.25)
 
     def shutdown(self) -> None:
         self.performer.stop()
@@ -146,6 +180,11 @@ class FanBrain:
                 fn()
             except Exception:
                 log.exception("shutdown step failed")
+
+    # ---- the match ------------------------------------------------------------------
+
+    def ball_rolling(self) -> bool:
+        return bool(self.poller and self.poller.tracker and self.poller.tracker.status in PLAYING)
 
     def _update_watch(self) -> None:
         """Match mode = switched on by hand, or today's match is on (score feed)."""
@@ -169,40 +208,184 @@ class FanBrain:
         self.judge.on_room(ev)
 
     def handle(self, moment: str, source: str = "remote") -> dict:
-        """One fan moment from any source (remote now; room listener and score feed later)."""
-        reaction = REACTIONS[moment]
+        """One fan moment from any source (remote, room listener, score feed)."""
+        if moment == "joke":
+            return self.tell_joke(source=source)
+        reaction_ = REACTIONS[moment]
         team = self.app.team
-        mood = self.app.mood.add(reaction.mood)
+        mood = self.app.mood.add(reaction_.mood)
         line_key = LINE_KEYS.get(moment, moment)
-        line_idx, line = self._pick_line(team, line_key, reaction.speak)
-        plan = Plan(moment=moment, move=self.rng.choice(reaction.moves), priority=reaction.priority,
-                    voice=clip_path(team, line_key, line_idx) if line_idx is not None else None,
-                    chant=self._pick_chant(team) if reaction.chant else None)
+        line_idx, line = self._pick_line(team, line_key, reaction_.speak)
+        plan = reaction(moment, self.rng.choice(reaction_.moves), reaction_.priority,
+                        voice=clip_path(team, line_key, line_idx) if line_idx is not None else None,
+                        chant=self._reaction_clip(moment) if reaction_.chant else None)
         accepted = self.performer.perform(plan)
         self.app.state.update(last_moment=moment, last_line=line or "")
         self._next_idle = time.monotonic() + self.rng.uniform(60, 120)
+        self._last_activity = time.monotonic()
+        if moment in ("loss", "goal_them"):
+            self._last_bad = time.monotonic()
+        if moment == "halftime" and self.app.settings.offers:
+            self._offer_due = (time.monotonic() + 8, "quiz" if self.app.team.quiz else "joke")
         log.info("%s (%s): %s, mood %.2f%s", moment, source, plan.move, mood, "" if accepted else " (dropped)")
         return {"ok": accepted, "move": plan.move, "line": line, "mood": round(mood, 2)}
 
-    def _pick_line(self, team: TeamPack, key: str, speak: bool) -> tuple[int | None, str | None]:
+    def _pick_line(self, team: TeamPack, key: str, speak: bool = True) -> tuple[int | None, str | None]:
         lines = team.phrases.get(key) or []
         if not speak or not lines:
             return None, None
         i = self.rng.randrange(len(lines))
         return i, lines[i].replace("{team}", team.name)
 
-    def _pick_chant(self, team: TeamPack) -> Path | None:
-        chants = list_chants(team)
-        return chants_dir(team) / self.rng.choice(chants) if chants else None
+    def _line(self, key: str) -> Say | None:
+        i, _ = self._pick_line(self.app.team, key)
+        return Say(clip_path(self.app.team, key, i)) if i is not None else None
+
+    def _clip(self, item: MediaItem, max_s: float | None = None) -> Clip:
+        move = clip_move(item.category, self.media.path(item), item.analysis, self.app.mood.band,
+                         self.app.settings.audio_latency_s, max_s=max_s)
+        self.media.mark_played(item.id)
+        return Clip(move, item.title)
+
+    def _reaction_clip(self, moment: str) -> Clip | None:
+        """A goal or a win: a recording tagged for this moment, else one of the chants."""
+        band = self.app.mood.band
+        item = (self.media.choose(self.rng, moment=moment, band=band, auto=True)
+                or self.media.choose(self.rng, category="chant", band=band))
+        if item is None:
+            return None
+        return self._clip(item, max_s=REACTION_CLIP_S if moment not in ("chant", "win") else None)
+
+    # ---- fun: jokes, clips, offers ---------------------------------------------------
+
+    def tell_joke(self, tags: list[str] | None = None, source: str = "remote") -> dict:
+        team = self.app.team
+        prefer = CONTEXT_TAGS.get(self.app.state.get("last_moment", ""))
+        joke = self.jokes.pick(self.rng, tags=tags, prefer=prefer)
+        if joke is None:
+            return {"ok": False, "error": "no jokes in this team pack"}
+        steps: list = [Gesture(self.rng.choice(LEAN_IN), sound=False)]
+        if joke.setup:
+            steps += [Say(line_path(team, f"joke_{joke.id}_setup")), Pause(pause_before_punchline(self.app.mood.value))]
+        steps += [Say(line_path(team, f"joke_{joke.id}_punch")), Pause(0.4), Gesture(self.rng.choice(LAUGHS))]
+        accepted = self.performer.perform(Plan("joke", PRIORITY_FUN, steps, title=joke.setup[:60] or joke.punchline[:60]))
+        if accepted:
+            self.jokes.told(joke)
+            self.last_joke = joke
+            self.app.mood.add(REACTIONS["joke"].mood)
+            self._last_activity = time.monotonic()
+        log.info("joke %s (%s)%s", joke.id, source, "" if accepted else " (dropped)")
+        return {"ok": accepted, "id": joke.id, "text": joke.text}
+
+    def play_clip(self, category: str | None = None, item_id: str | None = None, source: str = "remote") -> dict:
+        item = self.media.get(item_id) if item_id else self.media.choose(self.rng, category=category,
+                                                                          band=self.app.mood.band)
+        if item is None:
+            return {"ok": False, "error": "no clips"}
+        steps: list = []
+        if source == "offer" and (intro := self._line("music_intro" if item.category == "music" else "match_intro")):
+            steps.append(intro)
+        steps.append(self._clip(item))
+        accepted = self.performer.perform(Plan(f"clip:{item.category}", PRIORITY_FUN, steps, title=item.title))
+        self._last_activity = time.monotonic()
+        log.info("clip %s (%s)%s", item.id, source, "" if accepted else " (dropped)")
+        return {"ok": accepted, "id": item.id, "title": item.title, "category": item.category}
+
+    def stop(self) -> None:
+        self.performer.stop_current()
+
+    def make_offer(self, kind: str) -> None:
+        self._last_offer = time.monotonic()
+        steps = [Gesture("inquiring2", sound=False)]
+        if say := self._line(f"offer_{kind}"):
+            steps.append(say)
+        self.performer.perform(Plan(f"offer:{kind}", 3, steps))
+        _, text = self._pick_line(self.app.team, f"offer_{kind}")
+        self.offer = {"kind": kind, "at": time.time(), "line": text or kind}
+        log.info("offering %s", kind)
+
+    def reply_offer(self, yes: bool) -> dict:
+        offer, self.offer = self.offer, None
+        if not offer or time.time() - offer["at"] > OFFER_TTL_S:
+            return {"ok": False, "error": "no offer"}
+        if not yes:
+            return {"ok": True}
+        if offer["kind"] == "joke":
+            return self.tell_joke(tags=["temel"] if self.app.mood.value < -0.2 else None, source="offer")
+        if offer["kind"] == "quiz":
+            return self.start_quiz(5, force=True)
+        return self.play_clip("music", source="offer")
+
+    def _maybe_offer(self) -> None:
+        now = time.monotonic()
+        if self.offer and time.time() - self.offer["at"] > OFFER_TTL_S:
+            self.offer = None
+        if not self.app.settings.offers or self.offer or self.quiz.phase != "idle" or self.performer.busy:
+            return
+        if self._offer_due and now >= self._offer_due[0]:
+            kind = self._offer_due[1]
+            self._offer_due = None
+            self.make_offer(kind)
+            return
+        if self.ball_rolling() or self.app.state["watch"] or now - self._last_offer < OFFER_GAP_S:
+            return
+        band = self.app.mood.band
+        if band in ("down", "gutted") and self.app.team.jokes and 10 * 60 <= now - self._last_bad <= 3 * 3600:
+            self.make_offer("joke")                  # cheer the room up after a loss
+        elif (band in ("happy", "euphoric") and now - self._last_activity > 30 * 60
+              and any(i.category == "music" for i in self.media.items())):
+            self.make_offer("music")
+
+    # ---- the quiz -------------------------------------------------------------------
+
+    def start_quiz(self, n: int = 5, force: bool = False) -> dict:
+        if not self.app.team.quiz:
+            if say := self._line("quiz_empty"):
+                self.performer.perform(Plan("quiz:empty", PRIORITY_FUN, [say]))
+            return {"ok": False, "error": "no quiz questions in this team pack yet"}
+        if self.ball_rolling() and not force:
+            return {"ok": False, "error": "the match is on"}
+        self.offer = None
+        self._last_activity = time.monotonic()
+        return {"ok": self.quiz.start(n)}
+
+    def _quiz_act(self, kind: str, game: QuizGame) -> None:
+        """The quiz asks the robot to ask, react to the answers, or announce the winner."""
+        team, q = self.app.team, game.current
+        steps: list = []
+        if kind == "ask":
+            if game.index == 0 and (intro := self._line("quiz_intro")):
+                steps.append(intro)
+            steps += [Gesture("inquiring1", sound=False), Say(line_path(team, f"quiz_{q.id}_q"))]
+        elif kind == "reveal":
+            outcome = game.outcome()
+            move = {"right": self.rng.choice(("success1", "proud1")), "wrong": self.rng.choice(("no_sad1", "oops1")),
+                    "nobody": "uncertain1"}[outcome]
+            steps += [Pause(1.5), Gesture(move)]
+            if say := self._line(f"quiz_{outcome}"):
+                steps.append(say)
+            if q.explain:
+                steps.append(Say(line_path(team, f"quiz_{q.id}_explain")))
+            steps.append(Pause(2.5))                  # time to read the answer on the phones
+            self.app.mood.add(0.03 if outcome == "right" else 0.0)
+        else:
+            steps.append(Gesture("proud1"))
+            if say := self._line("quiz_results"):
+                steps.append(say)
+            steps.append(Gesture("dance1"))
+        self.performer.perform(Plan(f"quiz:{kind}", PRIORITY_FUN, steps, title=q.q[:60] if q else "",
+                                    on_done=lambda interrupted: game.done(kind, interrupted)))
+
+    # ---- idle -----------------------------------------------------------------------
 
     def _maybe_idle(self) -> None:
-        if time.monotonic() < self._next_idle or self.performer.busy:
+        if time.monotonic() < self._next_idle or self.performer.busy or self.quiz.phase != "idle":
             return
         self._next_idle = time.monotonic() + self.rng.uniform(60, 150)
         band = self.app.mood.band
         if band == "calm" and self.rng.random() < 0.7:
             return                                   # a calm fan mostly just watches
-        self.performer.perform(Plan(moment=f"idle:{band}", move=self.rng.choice(IDLE_MOVES[band]), priority=1))
+        self.performer.perform(Plan(f"idle:{band}", 1, [Gesture(self.rng.choice(IDLE_MOVES[band]))]))
 
 
 def listen_model_dir(language: str) -> Path:
@@ -235,22 +418,10 @@ def download_model(url: str, target: Path, progress=lambda done, total: None, ti
         shutil.move(str(unpacked), target)
 
 
-# ---- chants (the user's own recordings) ---------------------------------------------
-
-def chants_dir(team: TeamPack) -> Path:
-    return DATA_DIR / "chants" / team.id
-
-
-def list_chants(team: TeamPack) -> list[str]:
-    d = chants_dir(team)
-    return sorted(p.name for p in d.iterdir() if p.suffix.lower() in CHANT_TYPES) if d.is_dir() else []
-
-
-def safe_filename(name: str) -> str | None:
-    name = Path(name).name                                  # no folders, no ../
-    stem, ext = os.path.splitext(name)
-    stem = re.sub(r"[^\w\- ]", "", stem).strip()[:60]
-    return f"{stem}{ext.lower()}" if stem and ext.lower() in CHANT_TYPES else None
+def analyze_wav_bytes(data: bytes) -> dict:
+    """Beat and loudness of a 16-bit WAV (what the browser decodes an upload to)."""
+    import io
+    return analyze(read_wav(io.BytesIO(data)))
 
 
 # ---- web endpoints --------------------------------------------------------------------
@@ -260,6 +431,8 @@ class SettingsForm(BaseModel):
     GEMINI_API_KEY: str | None = None      # empty = keep the saved key
     API_FOOTBALL_KEY: str | None = None    # empty = keep the saved key
     TEAM: str | None = None
+    FAN_ROBOT_AUDIO_LATENCY_S: str | None = None
+    FAN_ROBOT_OFFERS: str | None = None
 
 
 class MomentForm(BaseModel):
@@ -270,6 +443,46 @@ class WatchForm(BaseModel):
     on: bool
 
 
+class MediaForm(BaseModel):
+    title: str | None = None
+    category: str | None = None
+    mood: list[str] | str | None = None
+    when: list[str] | str | None = None
+    tags: list[str] | str | None = None
+
+
+class PlayForm(BaseModel):
+    category: str | None = None
+    id: str | None = None
+
+
+class JokeForm(BaseModel):
+    tags: list[str] | None = None
+
+
+class RateForm(BaseModel):
+    up: bool
+    id: str | None = None
+
+
+class ReplyForm(BaseModel):
+    yes: bool
+
+
+class JoinForm(BaseModel):
+    name: str
+
+
+class QuizStartForm(BaseModel):
+    n: int = 5
+    force: bool = False
+
+
+class AnswerForm(BaseModel):
+    player: str
+    choice: int
+
+
 def setup_logging() -> None:
     level = os.environ.get("LOG_LEVEL", "INFO").upper()
     logging.basicConfig(level=level, format="%(asctime)s %(levelname)s %(name)s: %(message)s", force=True)
@@ -278,15 +491,25 @@ def setup_logging() -> None:
 def register_routes(app, owner: FanRobot) -> None:
     """The SDK serves fan_robot/static/ (the remote, index.html at "/"); these are its endpoints."""
 
+    def no_robot():
+        return JSONResponse({"ok": False, "error": "robot not connected yet"}, status_code=409)
+
+    def library() -> MediaLibrary:
+        return owner.brain.media if owner.brain is not None else media_library(owner.team)
+
     @app.get("/status")
     def status():
         mood = owner.mood
-        perf = owner.brain.performer if owner.brain else None
         brain = owner.brain
+        perf = brain.performer if brain else None
         room = brain.room if brain else None
         state = dict(owner.state)
         if time.time() - state.get("room_mood_at", 0) > 20:
             state["room_mood"] = "calm"                   # an outburst's mood fades from the remote
+        now = perf.now if perf else None
+        offer = brain.offer if brain else None
+        if offer and time.time() - offer["at"] > OFFER_TTL_S:
+            offer = None
         return {**state, "mood": round(mood.value, 2), "band": mood.band, "team": owner.team.id,
                 "library_ready": bool(perf and perf.library is not None),
                 "library_error": perf.library_error if perf else "", "job": owner.job,
@@ -294,6 +517,9 @@ def register_routes(app, owner: FanRobot) -> None:
                 "keywords": bool(room and room.spotter is not None),
                 "room_level": round(room.level_db - room.baseline_db, 1) if room else None,
                 "match": brain.poller.info() if brain and brain.poller else None,
+                "now_playing": ({"moment": now.moment, "title": now.title} if now else None),
+                "offer": ({"kind": offer["kind"], "line": offer["line"], "at": offer["at"]} if offer else None),
+                "quiz": brain.quiz.phase if brain else "idle",
                 "recent": [{"at": round(time.time() - (time.monotonic() - t)), "moment": m, "source": src}
                            for t, m, src in (brain.judge.recent[-8:] if brain else [])][::-1]}
 
@@ -301,17 +527,19 @@ def register_routes(app, owner: FanRobot) -> None:
     def team():
         t = owner.team
         teams = {tid: load_team(tid).name for tid in team_dirs()}
+        lines = t.all_lines()
         return {"id": t.id, "name": t.name, "language": t.language, "colors": t.info.get("colors", {}),
-                "locale": t.locale(), "groups": GROUPS, "teams": teams, "chants": list_chants(t),
-                "voice_clips": sum(clip_path(t, k, i).exists() for k, i, _ in t.all_phrases()),
-                "voice_lines": len(t.all_phrases())}
+                "locale": t.locale(), "groups": GROUPS, "teams": teams,
+                "voice_clips": sum(line_path(t, name).exists() for name, _ in lines), "voice_lines": len(lines),
+                "jokes": len(t.jokes), "quiz": len(t.quiz), "quiz_problems": t.quiz_problems[:20],
+                "knowledge": len(t.knowledge)}
 
     @app.post("/moment")
     def moment(form: MomentForm):
         if form.moment not in REACTIONS:
             return JSONResponse({"ok": False, "error": "unknown moment"}, status_code=400)
         if owner.brain is None:
-            return JSONResponse({"ok": False, "error": "robot not connected yet"}, status_code=409)
+            return no_robot()
         brain = owner.brain
         brain.judge.recent.append((time.monotonic(), form.moment, "remote"))
         return brain.handle(form.moment, source="remote")
@@ -324,18 +552,26 @@ def register_routes(app, owner: FanRobot) -> None:
     @app.get("/settings")
     def get_settings():
         saved = read_env_file()
-        return {k: (bool(v) if k in SECRETS else v) for k, v in saved.items()}
+        return {**{k: (bool(v) if k in SECRETS else v) for k, v in saved.items()},
+                "latency": owner.settings.audio_latency_s, "offers": bool(owner.settings.offers)}
 
     @app.post("/settings")
     def save_settings(form: SettingsForm):
         updates = {k: v for k, v in form.model_dump().items() if v}
         if "TEAM" in updates and updates["TEAM"] not in team_dirs():
             return JSONResponse({"ok": False, "error": "unknown team"}, status_code=400)
+        for key in ("FAN_ROBOT_AUDIO_LATENCY_S", "FAN_ROBOT_OFFERS"):
+            if key in updates:
+                try:
+                    v = float(updates[key])
+                except ValueError:
+                    return JSONResponse({"ok": False, "error": f"{key} must be a number"}, status_code=400)
+                updates[key] = str(max(0.0, min(1.0, v)))
         write_env_file(updates)
         owner.settings.apply(updates)
         if "TEAM" in updates:
             owner.set_team(updates["TEAM"])           # also reloads the brain
-        elif owner.brain is not None and updates:
+        elif owner.brain is not None and set(updates) & {"GEMINI_API_KEY", "API_FOOTBALL_KEY"}:
             owner.brain.reload()                       # a new key: restart the feed / cloud check
         return {"ok": True}
 
@@ -373,22 +609,131 @@ def register_routes(app, owner: FanRobot) -> None:
             return "ok"
         return start_job("listen-model", work)
 
-    @app.get("/chants")
-    def chants():
-        return list_chants(owner.team)
+    # ---- clips (the user's own recordings) ---------------------------------------------
 
-    @app.post("/chants")
-    async def upload_chant(request: Request, name: str):
-        filename = safe_filename(name)
-        if filename is None:
-            return JSONResponse({"ok": False, "error": f"use one of {', '.join(CHANT_TYPES)}"}, status_code=400)
+    @app.get("/media")
+    def media_list():
+        lib = library()
+        return {"items": [i.public() for i in lib.items()], "used_mb": round(lib.used_bytes() / 1e6, 1),
+                "categories": CATEGORIES}
+
+    @app.post("/media")
+    async def media_add(request: Request, name: str, own: bool = False, category: str = "chant", title: str = "",
+                        mood: str = "", when: str = "", tags: str = ""):
+        if not own:
+            return JSONResponse({"ok": False, "error": "only upload recordings you own or may use"}, status_code=400)
         body = await request.body()
-        if not body or len(body) > MAX_CHANT_BYTES:
-            return JSONResponse({"ok": False, "error": "empty or too large (max 25 MB)"}, status_code=400)
-        d = chants_dir(owner.team)
-        d.mkdir(parents=True, exist_ok=True)
-        (d / filename).write_bytes(body)
-        return {"ok": True, "name": filename}
+        lib = library()
+        try:
+            item = await run_in_threadpool(lib.add, name, body, {"category": category, "title": title, "mood": mood,
+                                                                 "when": when, "tags": tags})
+        except ValueError as e:
+            return JSONResponse({"ok": False, "error": str(e)}, status_code=400)
+        if item.file.endswith(".wav"):
+            try:
+                lib.set_analysis(item.id, await run_in_threadpool(analyze_wav_bytes, body))
+            except Exception as e:                    # not 16-bit PCM: the browser's copy will do
+                log.info("server-side analysis skipped for %s: %s", item.id, e)
+        return {"ok": True, "item": (lib.get(item.id) or item).public()}
+
+    @app.post("/media/{item_id}/analysis")
+    async def media_analysis(item_id: str, request: Request):
+        lib = library()
+        if lib.get(item_id) is None:
+            return JSONResponse({"ok": False, "error": "unknown clip"}, status_code=404)
+        body = await request.body()
+        if not body or len(body) > 40_000_000:
+            return JSONResponse({"ok": False, "error": "empty or too large"}, status_code=400)
+        try:
+            analysis = await run_in_threadpool(analyze_wav_bytes, body)
+        except Exception as e:
+            return JSONResponse({"ok": False, "error": f"could not analyse: {e}"}, status_code=400)
+        lib.set_analysis(item_id, analysis)
+        return {"ok": True, "bpm": analysis["bpm"], "duration_s": analysis["duration_s"]}
+
+    @app.patch("/media/{item_id}")
+    def media_update(item_id: str, form: MediaForm):
+        item = library().update(item_id, form.model_dump(exclude_none=True))
+        return {"ok": True, "item": item.public()} if item else JSONResponse({"ok": False}, status_code=404)
+
+    @app.delete("/media/{item_id}")
+    def media_delete(item_id: str):
+        return {"ok": library().delete(item_id)}
+
+    @app.post("/media/{item_id}/rate")
+    def media_rate(item_id: str, form: RateForm):
+        library().rate(item_id, 1 if form.up else -1)
+        return {"ok": True}
+
+    @app.post("/play")
+    def play(form: PlayForm):
+        if owner.brain is None:
+            return no_robot()
+        if form.category and form.category not in CATEGORIES:
+            return JSONResponse({"ok": False, "error": "unknown category"}, status_code=400)
+        return owner.brain.play_clip(form.category, form.id)
+
+    @app.post("/stop")
+    def stop():
+        if owner.brain is None:
+            return no_robot()
+        owner.brain.stop()
+        return {"ok": True}
+
+    # ---- jokes and offers ---------------------------------------------------------------
+
+    @app.post("/joke")
+    def joke(form: JokeForm):
+        if owner.brain is None:
+            return no_robot()
+        return owner.brain.tell_joke(tags=form.tags)
+
+    @app.post("/joke/rate")
+    def joke_rate(form: RateForm):
+        brain = owner.brain
+        joke_id = form.id or (brain.last_joke.id if brain and brain.last_joke else None)
+        if brain is None or not joke_id:
+            return {"ok": False}
+        brain.jokes.rate(joke_id, 1 if form.up else -1)
+        return {"ok": True}
+
+    @app.post("/offer/reply")
+    def offer_reply(form: ReplyForm):
+        if owner.brain is None:
+            return no_robot()
+        return owner.brain.reply_offer(form.yes)
+
+    # ---- quiz -------------------------------------------------------------------------
+
+    @app.post("/quiz/join")
+    def quiz_join(form: JoinForm):
+        if owner.brain is None:
+            return no_robot()
+        return {"ok": True, "player": owner.brain.quiz.join(form.name)}
+
+    @app.post("/quiz/start")
+    def quiz_start(form: QuizStartForm):
+        if owner.brain is None:
+            return no_robot()
+        return owner.brain.start_quiz(form.n, form.force)
+
+    @app.get("/quiz/state")
+    def quiz_state(player: str = ""):
+        if owner.brain is None:
+            return {"phase": "idle", "available": len(owner.team.quiz), "leaderboard": []}
+        return owner.brain.quiz.state(player.casefold())
+
+    @app.post("/quiz/answer")
+    def quiz_answer(form: AnswerForm):
+        if owner.brain is None:
+            return no_robot()
+        return {"ok": owner.brain.quiz.answer(form.player.casefold(), form.choice)}
+
+    @app.post("/quiz/stop")
+    def quiz_stop():
+        if owner.brain is not None:
+            owner.brain.quiz.stop()
+        return {"ok": True}
 
 
 if __name__ == "__main__":
