@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My App</title>
+<style>
+  :root { --bg:#f5f6fa; --card:#fff; --text:#141824; --muted:#5b6275; --ok:#17803d; --accent:#1657e8; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f1218; --card:#181c25; --text:#eef0f5; --muted:#9aa1b2; --ok:#4ade80; --accent:#6b9bff; } }
+  body { margin:0; font:16px/1.5 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  main { max-width:640px; margin:0 auto; padding:24px 16px; }
+  .card { background:var(--card); border-radius:14px; padding:20px; margin-bottom:16px; }
+  dl { display:grid; grid-template-columns:max-content 1fr; gap:6px 16px; margin:0; }
+  dt { color:var(--muted); } .ok { color:var(--ok); font-weight:600; }
+  label { display:block; margin:10px 0 4px; color:var(--muted); }
+  input { width:100%; box-sizing:border-box; padding:10px; border-radius:8px; border:1px solid #8884; background:transparent; color:inherit; }
+  button { margin-top:14px; padding:10px 18px; border:0; border-radius:8px; background:var(--accent); color:#fff; font-weight:600; }
+</style>
+</head>
+<body>
+<main>
+  <h1>My App</h1>
+  <div class="card">
+    <h2>Right now</h2>
+    <dl>
+      <dt>State</dt><dd id="state">…</dd>
+      <dt>Face in front</dt><dd id="face">…</dd>
+      <dt>Speech detected</dt><dd id="speech">…</dd>
+      <dt>Microphone</dt><dd id="mic">…</dd>
+      <dt>Visitors</dt><dd id="visitors">…</dd>
+      <dt>Last event</dt><dd id="last">…</dd>
+    </dl>
+  </div>
+  <form class="card" id="settings">
+    <h2>Settings</h2>
+    <label for="key">Gemini API key <span id="keyset"></span></label>
+    <input id="key" name="GEMINI_API_KEY" type="password" autocomplete="off" placeholder="leave empty to keep the saved key">
+    <label for="name">Greeting name</label>
+    <input id="name" name="GREETING_NAME">
+    <button>Save</button> <span id="saved"></span>
+  </form>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+async function poll() {
+  try {
+    const s = await (await fetch("status", {cache: "no-store"})).json();
+    $("state").textContent = s.state;
+    $("face").textContent = s.face ? "yes" : "no";
+    $("speech").textContent = s.speech ? "yes" : "no";
+    $("speech").className = s.speech ? "ok" : "";
+    $("mic").textContent = s.mic_db + " dB";
+    $("visitors").textContent = s.visitors;
+    $("last").textContent = s.last_event || "–";
+  } catch (e) { $("state").textContent = "not reachable"; }
+  setTimeout(poll, 500);                     // sequential: never two requests in flight
+}
+async function loadSettings() {
+  const s = await (await fetch("settings")).json();
+  $("keyset").textContent = s.GEMINI_API_KEY ? "(saved)" : "(not set)";
+  $("name").value = s.GREETING_NAME || "";
+}
+$("settings").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const body = Object.fromEntries(new FormData(ev.target));
+  const r = await fetch("settings", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+  $("saved").textContent = r.ok ? "Saved." : "Could not save: " + r.status;
+  $("key").value = ""; loadSettings();
+});
+poll(); loadSettings();
+</script>
+</body>
+</html>
