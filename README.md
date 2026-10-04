@@ -21,5 +21,8 @@ suffers through penalties and sulks after a defeat, with a mood that lasts. It s
 Trabzonspor fan speaking Turkish; any club and language can be added as a "team pack"
 (see `fan_robot/teams/README.md`).
 
-Phase 1: a phone remote at `http://<robot>:8042` with big buttons for each match moment.
+- Phone remote at `http://<robot>:8042` with big buttons for each match moment (phase 1).
+- Match mode: the robot senses the room's mood (celebrating, angry at the referee, tense,
+  disappointed) and joins in; the API-Football score feed confirms goals, cards, VAR and the
+  result without spoiling anything before your TV shows it (phase 2).
 Plan for the next phases (sensing the room's mood, live scores, chat): `docs/fan-robot-plan.md`.

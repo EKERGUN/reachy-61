@@ -12,6 +12,11 @@ A Reachy Mini football fan (first team: Trabzonspor, Turkish). Plan and decision
 - `fan_robot/performer.py`: plays reactions on one worker thread; higher priority interrupts
   (`cancel_move` also stops the audio player, so it is restarted).
 - `fan_robot/mood.py`: lasting mood with a half-life. `fan_robot/voice.py`: records the lines (Gemini TTS).
+- `fan_robot/room.py`: senses the room's mood (loudness outbursts + offline fan words per language from
+  `locales/<lang>.json` "room_words"; Vosk only runs during outbursts). `cloud_check.py`: Gemini classifies
+  unclear outbursts (budgeted). `feed.py`: API-Football (goals from SCORE changes, not goal events;
+  daily request budget). `judge.py`: combines room + feed; feed facts wait for the room (no spoilers),
+  and one goal is never celebrated twice.
 - Rules for this app: never download YouTube videos (embed official clips instead); chants are the
   user's own uploads; banter stays friendly (no insults, violence, betting); team facts need sources.
 

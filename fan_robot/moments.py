@@ -33,6 +33,9 @@ REACTIONS: dict[str, Reaction] = {
     "referee":       Reaction(("furious1", "reprimand2", "irritated1", "displeased1"), -0.05, 6),
     "var":           Reaction(("anxiety1", "uncertain1"), 0.0, 6),
     "tension":       Reaction(("impatient2", "anxiety1"), 0.0, 3),
+    "groan":         Reaction(("downcast1", "no_sad1", "frustrated1"), -0.05, 5),
+    "var_cancel_us":   Reaction(("frustrated1", "sad2", "rage1"), -0.3, 8),
+    "var_cancel_them": Reaction(("relief2", "success1", "proud3"), +0.25, 8),
     "win":           Reaction(("proud1", "dance2", "success2"), +0.6, 9, chant=True),
     "draw":          Reaction(("thoughtful1", "indifferent1"), 0.0, 8),
     "loss":          Reaction(("resigned1", "sad2", "exhausted1"), -0.6, 8),
@@ -44,8 +47,8 @@ REACTIONS: dict[str, Reaction] = {
 # Buttons on the phone remote, grouped (labels come from locales/<lang>.json).
 GROUPS: dict[str, tuple[str, ...]] = {
     "us": ("goal_us", "chance_us", "penalty_us"),
-    "them": ("goal_them", "chance_them", "penalty_them"),
-    "referee": ("referee", "var", "red_card_us", "red_card_them"),
+    "them": ("goal_them", "chance_them", "penalty_them", "groan"),
+    "referee": ("referee", "var", "var_cancel_us", "var_cancel_them", "red_card_us", "red_card_them"),
     "full_time": ("win", "draw", "loss"),
     "extra": ("tension", "chant", "joke", "calm"),
 }

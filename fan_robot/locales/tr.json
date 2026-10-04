@@ -1,18 +1,114 @@
 {
   "title": "Taraftar Robot",
   "mood": "Ruh hali",
-  "moods": {"euphoric": "Coşkulu", "happy": "Mutlu", "calm": "Sakin", "down": "Üzgün", "gutted": "Yıkılmış"},
-  "groups": {"us": "Biz", "them": "Onlar", "referee": "Hakem", "full_time": "Maç sonu", "extra": "Ekstra"},
-  "moments": {
-    "goal_us": "GOL!", "chance_us": "Pozisyon", "penalty_us": "Penaltı bizim",
-    "goal_them": "Gol yedik", "chance_them": "Tehlike", "penalty_them": "Penaltı onlara",
-    "referee": "Hakeme kızgın", "var": "VAR", "red_card_us": "Kırmızı: bize", "red_card_them": "Kırmızı: onlara",
-    "win": "Kazandık", "draw": "Berabere", "loss": "Kaybettik",
-    "tension": "Gergin", "chant": "Tezahürat", "joke": "Fıkra", "calm": "Sakin"
+  "moods": {
+    "euphoric": "Coşkulu",
+    "happy": "Mutlu",
+    "calm": "Sakin",
+    "down": "Üzgün",
+    "gutted": "Yıkılmış"
   },
-  "settings": "Ayarlar", "team": "Takım", "save": "Kaydet", "saved": "Kaydedildi.",
-  "gemini_key": "Gemini API anahtarı", "key_saved": "(kayıtlı)", "key_missing": "(yok)",
-  "record_voice": "Sesleri kaydet", "chants": "Tezahüratlar", "upload_chant": "Tezahürat yükle",
+  "groups": {
+    "us": "Biz",
+    "them": "Onlar",
+    "referee": "Hakem",
+    "full_time": "Maç sonu",
+    "extra": "Ekstra"
+  },
+  "moments": {
+    "goal_us": "GOL!",
+    "chance_us": "Pozisyon",
+    "penalty_us": "Penaltı bizim",
+    "goal_them": "Gol yedik",
+    "chance_them": "Tehlike",
+    "penalty_them": "Penaltı onlara",
+    "referee": "Hakeme kızgın",
+    "var": "VAR",
+    "red_card_us": "Kırmızı: bize",
+    "red_card_them": "Kırmızı: onlara",
+    "win": "Kazandık",
+    "draw": "Berabere",
+    "loss": "Kaybettik",
+    "tension": "Gergin",
+    "chant": "Tezahürat",
+    "joke": "Fıkra",
+    "calm": "Sakin",
+    "groan": "Of!",
+    "var_cancel_us": "Golümüz iptal",
+    "var_cancel_them": "Golleri iptal"
+  },
+  "settings": "Ayarlar",
+  "team": "Takım",
+  "save": "Kaydet",
+  "saved": "Kaydedildi.",
+  "gemini_key": "Gemini API anahtarı",
+  "key_saved": "(kayıtlı)",
+  "key_missing": "(yok)",
+  "record_voice": "Sesleri kaydet",
+  "chants": "Tezahüratlar",
+  "upload_chant": "Tezahürat yükle",
   "no_chants": "Henüz tezahürat yok. Kendi kayıtlarınızı yükleyin.",
-  "offline": "Robota ulaşılamıyor"
+  "offline": "Robota ulaşılamıyor",
+  "watch": "Maç modu",
+  "watch_on": "Açık: odayı dinliyor",
+  "watch_off": "Kapalı",
+  "room": "Oda",
+  "room_moods": {
+    "celebrating": "Coşku",
+    "angry": "Kızgın",
+    "disappointed": "Hayal kırıklığı",
+    "tense": "Gergin",
+    "calm": "Sakin",
+    "unclear": "Belirsiz"
+  },
+  "match": "Maç",
+  "no_match": "Bugün maç yok (veya skor servisi ayarlı değil)",
+  "requests": "bugünkü istek",
+  "recent": "Son tepkiler",
+  "sources": {
+    "remote": "kumanda",
+    "room": "oda",
+    "cloud": "oda (bulut)",
+    "feed": "skor",
+    "room+feed": "oda+skor",
+    "feed+room": "skor+oda",
+    "feed+cloud": "skor+oda"
+  },
+  "api_key": "API-Football anahtarı",
+  "listen_model": "Dinleme modelini indir",
+  "room_words": {
+    "celebrating": [
+      "gol",
+      "evet",
+      "harika",
+      "süper",
+      "bravo",
+      "yaşasın"
+    ],
+    "angry": [
+      "hakem",
+      "penaltı",
+      "faul",
+      "ofsayt",
+      "kart",
+      "kırmızı",
+      "sarı",
+      "var"
+    ],
+    "disappointed": [
+      "olamaz",
+      "hayır",
+      "yazık",
+      "eyvah",
+      "yok"
+    ],
+    "tense": [
+      "hadi",
+      "vur",
+      "bas",
+      "koş",
+      "at"
+    ]
+  },
+  "vosk_model_url": "https://alphacephei.com/vosk/models/vosk-model-small-tr-0.3.zip"
 }

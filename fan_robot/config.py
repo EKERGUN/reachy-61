@@ -8,6 +8,8 @@ user sets or the app generates (keys, recordings, logs) lives here instead:
         teams/<id>/      your own team packs (win over the bundled ones)
         voice/<id>/      recorded voice lines for a team
         chants/<id>/     chant recordings you uploaded
+        vosk/<lang>/     offline fan-word recogniser for a language
+        feed_*.json      score feed: team id cache and the daily request count
 """
 
 from __future__ import annotations
@@ -21,8 +23,8 @@ DATA_DIR = Path(os.environ.get("FAN_ROBOT_DATA_DIR", Path.home() / "fan_robot"))
 ENV_FILE = DATA_DIR / ".env"
 
 # Keys the setup page may write. Secrets are accepted but never sent back to the browser.
-EDITABLE = ("GEMINI_API_KEY", "TEAM")
-SECRETS = ("GEMINI_API_KEY",)
+EDITABLE = ("GEMINI_API_KEY", "TEAM", "API_FOOTBALL_KEY")
+SECRETS = ("GEMINI_API_KEY", "API_FOOTBALL_KEY")
 
 
 def read_env_file(path: Path | None = None) -> dict[str, str]:
@@ -56,6 +58,10 @@ def write_env_file(updates: dict[str, str], path: Path | None = None) -> None:
 class Settings:
     gemini_api_key: str = ""
     team: str = "trabzonspor"
+    api_football_key: str = ""
+    gemini_audio_model: str = "gemini-3.8-flash"     # the "what is the room feeling?" check
+    room_loud_db: float = 12.0                       # an outburst = this much louder than the room's normal level
+    spoiler_guard_s: float = 60.0                    # longest a score-feed fact waits for the room
     gemini_tts_model: str = "gemini-3.8-flash-tts"
     gemini_voice: str = "Kore"
     # Listening (all overridable as FAN_ROBOT_<NAME> in .env, e.g. FAN_ROBOT_VAD_THRESHOLD=0.7)
@@ -76,7 +82,9 @@ class Settings:
             self.gemini_api_key = env["GEMINI_API_KEY"]
         if env.get("TEAM"):
             self.team = env["TEAM"]
-        for key in ("GEMINI_TTS_MODEL", "GEMINI_VOICE"):
+        if "API_FOOTBALL_KEY" in env:
+            self.api_football_key = env["API_FOOTBALL_KEY"]
+        for key in ("GEMINI_TTS_MODEL", "GEMINI_VOICE", "GEMINI_AUDIO_MODEL"):
             if env.get(key):
                 setattr(self, key.lower(), env[key])
         for f in fields(self):

@@ -36,17 +36,35 @@
   .small { color:var(--muted); font-size:14px; }
   .act { border:0; border-radius:10px; padding:11px 16px; background:var(--primary); color:#fff; font-weight:600; font-size:15px; }
   ul { margin:6px 0 12px; padding-left:20px; }
+  .card { background:var(--card); border-radius:14px; padding:14px; margin-top:12px; }
+  .watch { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .switch { border:0; border-radius:999px; padding:10px 18px; font-weight:700; font-size:15px; background:var(--line); color:var(--text); }
+  .switch.on { background:var(--primary); color:#fff; }
+  .score { font-size:22px; font-weight:700; }
+  .pill { display:inline-block; padding:3px 10px; border-radius:999px; background:var(--line); font-size:14px; }
+  .recent { list-style:none; padding:10px 14px; } .recent li { margin:4px 0; } .recent .small { margin-left:6px; }
 </style>
 </head>
 <body>
 <header>
   <h1 id="title">Fan Robot</h1>
   <div class="sub" id="sub">…</div>
-  <div class="mood"><div class="row" style="margin:0 0 6px"><span id="moodLabel">Mood</span>: <b id="moodBand">…</b></div>
+  <div class="mood"><div style="margin:0 0 6px"><span id="moodLabel">Mood</span>: <b id="moodBand">…</b></div>
     <div class="meter"><i id="meter"></i></div></div>
 </header>
 <main>
+  <div class="card watch">
+    <div><b id="watchLabel">Match mode</b><div class="small" id="watchState">…</div></div>
+    <button class="switch" id="watchBtn">OFF</button>
+  </div>
+  <div class="card">
+    <div><span id="roomLabel">Room</span>: <span class="pill" id="roomMood">…</span>
+      <span class="small" id="roomLevel"></span></div>
+    <div id="matchBox" class="small" style="margin-top:8px"></div>
+  </div>
   <div id="groups"></div>
+  <h2 id="recentLabel">Recent</h2>
+  <ul class="recent card" id="recent"></ul>
 
   <details id="settings">
     <summary id="settingsTitle">Settings</summary>
@@ -54,7 +72,10 @@
     <select id="team"></select>
     <label for="key"><span id="keyLabel">Gemini API key</span> <span id="keyState"></span></label>
     <input id="key" type="password" autocomplete="off" placeholder="••••">
+    <label for="apiKey"><span id="apiKeyLabel">API-Football key</span> <span id="apiKeyState"></span></label>
+    <input id="apiKey" type="password" autocomplete="off" placeholder="••••">
     <div class="row"><button class="act" id="save">Save</button></div>
+    <div class="row"><button class="act" id="listenModel">Download listening model</button> <span class="small" id="modelState"></span></div>
     <div class="row"><button class="act" id="record">Record voice lines</button> <span class="small" id="voiceState"></span></div>
     <label id="chantsLabel">Chants</label>
     <ul id="chants"></ul>
@@ -66,6 +87,9 @@
 <script>
 const $ = id => document.getElementById(id);
 let L = {};                                         // UI strings in the team's language
+let watchOn = false;
+let lang = "en";                                    // times and dates in the team's language
+const clock = sec => new Date(sec * 1000).toLocaleTimeString(lang, {hour: "2-digit", minute: "2-digit"});
 
 function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 2500); }
 function text(el, s) { el.textContent = s ?? ""; }   // never innerHTML with data
@@ -73,7 +97,7 @@ function text(el, s) { el.textContent = s ?? ""; }   // never innerHTML with dat
 async function loadTeam() {
   const t = await (await fetch("team", {cache: "no-store"})).json();
   L = t.locale;
-  document.documentElement.lang = t.language;
+  document.documentElement.lang = lang = t.language;
   const c = t.colors || {};
   if (c.primary) { document.documentElement.style.setProperty("--primary", c.primary); document.querySelector("meta[name=theme-color]").content = c.primary; }
   if (c.secondary) document.documentElement.style.setProperty("--secondary", c.secondary);
@@ -81,6 +105,8 @@ async function loadTeam() {
   text($("moodLabel"), L.mood); text($("settingsTitle"), L.settings); text($("teamLabel"), L.team);
   text($("keyLabel"), L.gemini_key); text($("save"), L.save); text($("record"), L.record_voice);
   text($("chantsLabel"), L.chants); text($("upload"), L.upload_chant);
+  text($("watchLabel"), L.watch); text($("roomLabel"), L.room); text($("recentLabel"), L.recent);
+  text($("apiKeyLabel"), L.api_key); text($("listenModel"), L.listen_model);
   const groups = $("groups"); groups.replaceChildren();
   for (const [group, moments] of Object.entries(t.groups)) {
     const h = document.createElement("h2"); text(h, L.groups[group]); groups.append(h);
@@ -117,8 +143,28 @@ async function poll() {
     text($("moodBand"), (L.moods || {})[s.band] || s.band);
     const v = Math.max(-1, Math.min(1, s.mood)), m = $("meter");
     m.style.left = v >= 0 ? "50%" : `${50 + v * 50}%`; m.style.width = `${Math.abs(v) * 50}%`;
-    if (s.job && s.job.state === "running") text($("voiceState"), `${s.job.done}/${s.job.total}…`);
-    else if (s.job && s.job.state !== "idle") text($("voiceState"), s.job.message);
+    const jobEl = s.job && s.job.name === "listen-model" ? $("modelState") : $("voiceState");
+    if (s.job && s.job.state === "running") text(jobEl, s.job.total ? `${Math.round(100 * s.job.done / s.job.total)}%` : "…");
+    else if (s.job && s.job.state !== "idle") text(jobEl, s.job.message);
+    watchOn = !!s.watch;
+    const b = $("watchBtn"); b.classList.toggle("on", s.listening); text(b, s.listening ? "ON" : "OFF");
+    text($("watchState"), s.listening ? L.watch_on : L.watch_off);
+    text($("roomMood"), (L.room_moods || {})[s.room_mood] || s.room_mood);
+    text($("roomLevel"), s.listening && s.room_level != null ? `${s.room_level > 0 ? "+" : ""}${s.room_level} dB` : "");
+    const match = s.match, box = $("matchBox");
+    if (match && match.kickoff) {
+      const ko = clock(match.kickoff);
+      const sc = match.score ? `${match.score[0]} - ${match.score[1]}` : ko;
+      text(box, `${L.match}: ${match.opponent || "?"} · ${sc}${match.minute ? ` · ${match.minute}'` : ""} · ${match.requests_today} ${L.requests}${match.error ? " · " + match.error : ""}`);
+    } else text(box, match ? `${L.no_match}${match.error ? " · " + match.error : ""}` : "");
+    const ul = $("recent"); ul.replaceChildren();
+    for (const r of s.recent || []) {
+      const li = document.createElement("li");
+      const t = clock(r.at);
+      text(li, `${t}  ${(L.moments || {})[r.moment] || r.moment}`);
+      const src = document.createElement("span"); src.className = "small"; text(src, (L.sources || {})[r.source] || r.source);
+      li.append(src); ul.append(li);
+    }
   } catch { text($("moodBand"), L.offline || "offline"); }
   setTimeout(poll, 1500);                            // sequential: never two requests in flight
 }
@@ -126,15 +172,23 @@ async function poll() {
 async function loadSettings() {
   const s = await (await fetch("settings")).json();
   text($("keyState"), s.GEMINI_API_KEY ? L.key_saved : L.key_missing);
+  text($("apiKeyState"), s.API_FOOTBALL_KEY ? L.key_saved : L.key_missing);
 }
 
 $("save").onclick = async () => {
-  const body = {TEAM: $("team").value, GEMINI_API_KEY: $("key").value};
+  const body = {TEAM: $("team").value, GEMINI_API_KEY: $("key").value, API_FOOTBALL_KEY: $("apiKey").value};
   const r = await (await fetch("settings", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)})).json();
-  $("key").value = ""; toast(r.ok ? L.saved : r.error); await loadTeam(); await loadSettings();
+  $("key").value = ""; $("apiKey").value = ""; toast(r.ok ? L.saved : r.error); await loadTeam(); await loadSettings();
 };
 $("record").onclick = async () => {
   const r = await (await fetch("voice/record", {method: "POST"})).json();
+  if (!r.ok) toast(r.error);
+};
+$("watchBtn").onclick = async () => {
+  await fetch("watch", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({on: !watchOn})});
+};
+$("listenModel").onclick = async () => {
+  const r = await (await fetch("listen-model", {method: "POST"})).json();
   if (!r.ok) toast(r.error);
 };
 $("upload").onclick = async () => {

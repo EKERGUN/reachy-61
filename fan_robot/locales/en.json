@@ -1,18 +1,113 @@
 {
   "title": "Fan Robot",
   "mood": "Mood",
-  "moods": {"euphoric": "Euphoric", "happy": "Happy", "calm": "Calm", "down": "Down", "gutted": "Gutted"},
-  "groups": {"us": "Us", "them": "Them", "referee": "Referee", "full_time": "Full time", "extra": "Extra"},
-  "moments": {
-    "goal_us": "GOAL!", "chance_us": "Chance", "penalty_us": "Penalty for us",
-    "goal_them": "Conceded", "chance_them": "Danger", "penalty_them": "Penalty against",
-    "referee": "Angry at ref", "var": "VAR", "red_card_us": "Red card: us", "red_card_them": "Red card: them",
-    "win": "Won", "draw": "Draw", "loss": "Lost",
-    "tension": "Tense", "chant": "Chant", "joke": "Joke", "calm": "Calm"
+  "moods": {
+    "euphoric": "Euphoric",
+    "happy": "Happy",
+    "calm": "Calm",
+    "down": "Down",
+    "gutted": "Gutted"
   },
-  "settings": "Settings", "team": "Team", "save": "Save", "saved": "Saved.",
-  "gemini_key": "Gemini API key", "key_saved": "(saved)", "key_missing": "(not set)",
-  "record_voice": "Record voice lines", "chants": "Chants", "upload_chant": "Upload a chant",
+  "groups": {
+    "us": "Us",
+    "them": "Them",
+    "referee": "Referee",
+    "full_time": "Full time",
+    "extra": "Extra"
+  },
+  "moments": {
+    "goal_us": "GOAL!",
+    "chance_us": "Chance",
+    "penalty_us": "Penalty for us",
+    "goal_them": "Conceded",
+    "chance_them": "Danger",
+    "penalty_them": "Penalty against",
+    "referee": "Angry at ref",
+    "var": "VAR",
+    "red_card_us": "Red card: us",
+    "red_card_them": "Red card: them",
+    "win": "Won",
+    "draw": "Draw",
+    "loss": "Lost",
+    "tension": "Tense",
+    "chant": "Chant",
+    "joke": "Joke",
+    "calm": "Calm",
+    "groan": "Ugh!",
+    "var_cancel_us": "Our goal disallowed",
+    "var_cancel_them": "Their goal disallowed"
+  },
+  "settings": "Settings",
+  "team": "Team",
+  "save": "Save",
+  "saved": "Saved.",
+  "gemini_key": "Gemini API key",
+  "key_saved": "(saved)",
+  "key_missing": "(not set)",
+  "record_voice": "Record voice lines",
+  "chants": "Chants",
+  "upload_chant": "Upload a chant",
   "no_chants": "No chants yet. Upload your own recordings.",
-  "offline": "Robot not reachable"
+  "offline": "Robot not reachable",
+  "watch": "Match mode",
+  "watch_on": "On: listening to the room",
+  "watch_off": "Off",
+  "room": "Room",
+  "room_moods": {
+    "celebrating": "Celebrating",
+    "angry": "Angry",
+    "disappointed": "Disappointed",
+    "tense": "Tense",
+    "calm": "Calm",
+    "unclear": "Unclear"
+  },
+  "match": "Match",
+  "no_match": "No match today (or the score feed isn't set up)",
+  "requests": "requests today",
+  "recent": "Recent reactions",
+  "sources": {
+    "remote": "remote",
+    "room": "room",
+    "cloud": "room (cloud)",
+    "feed": "score",
+    "room+feed": "room+score",
+    "feed+room": "score+room",
+    "feed+cloud": "score+room"
+  },
+  "api_key": "API-Football key",
+  "listen_model": "Download listening model",
+  "room_words": {
+    "celebrating": [
+      "goal",
+      "yes",
+      "brilliant",
+      "beautiful",
+      "get"
+    ],
+    "angry": [
+      "referee",
+      "ref",
+      "penalty",
+      "foul",
+      "offside",
+      "card",
+      "red",
+      "yellow",
+      "var"
+    ],
+    "disappointed": [
+      "no",
+      "noo",
+      "unbelievable",
+      "terrible",
+      "miss"
+    ],
+    "tense": [
+      "come",
+      "go",
+      "shoot",
+      "run"
+    ]
+  },
+  "vosk_model_url": "https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip"
 }

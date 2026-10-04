@@ -45,3 +45,12 @@ loss:
 chant_intro:
   - "Hep beraber!"
   - "Tribünler, sesinizi duyalım!"
+groan:
+  - "Of ya..."
+  - "Hayır ya, olmadı..."
+var_cancel_us:
+  - "Golümüzü iptal ettiler! Olamaz!"
+  - "VAR yine bizi buldu..."
+var_cancel_them:
+  - "İptal! Oh be, nefes aldım!"
+  - "Gol yok! VAR, seni seviyorum!"

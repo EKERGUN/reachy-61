@@ -16,3 +16,4 @@ feed:
   provider: api-football
   team_id: null
   league_id: null
+  timezone: Europe/Istanbul

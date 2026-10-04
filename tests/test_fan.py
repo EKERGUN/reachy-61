@@ -98,7 +98,8 @@ def make_brain(tmp_path, monkeypatch, team="trabzonspor"):
     from fan_robot import voice
     monkeypatch.setattr(app_main, "DATA_DIR", tmp_path)
     monkeypatch.setattr(voice, "DATA_DIR", tmp_path)
-    app = SimpleNamespace(team=load_team(team), mood=Mood(), state={})
+    from fan_robot.config import Settings
+    app = SimpleNamespace(team=load_team(team), mood=Mood(), state={"watch": False}, settings=Settings())
     brain = app_main.FanBrain(FakeMini(), app, rng=random.Random(1))
     brain.performer._load_library = lambda: setattr(brain.performer, "library", FakeLibrary())
     brain.performer.start()
@@ -123,7 +124,9 @@ def test_goal_plays_a_joyful_move_says_a_turkish_line_and_raises_the_mood(tmp_pa
 def test_a_goal_interrupts_a_sulk(tmp_path, monkeypatch):
     brain = make_brain(tmp_path, monkeypatch)
     brain.handle("loss")                     # long sad move (0.3 s in the fake)
-    time.sleep(0.05)
+    end = time.monotonic() + 2
+    while not brain.mini.moves and time.monotonic() < end:
+        time.sleep(0.005)                    # wait until the sulk is actually playing
     brain.handle("goal_us")                  # more important: cancels it
     wait_idle(brain)
     assert brain.mini.cancelled == 1 and brain.mini.moves[-1] in REACTIONS["goal_us"].moves
