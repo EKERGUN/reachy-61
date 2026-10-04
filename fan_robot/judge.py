@@ -80,8 +80,8 @@ class Judge:
             last = self._last_room.get(ev.mood, -1e9)
             if moment != "goal_us" and now - last < gap:
                 return
-            if moment == "goal_us" and now - last < self.same_goal_s and self._did_recently("goal_us", now):
-                return                               # still the same celebration
+            if moment == "goal_us" and self._did_recently("goal_us", now):
+                return                               # still the same goal (from the remote, the feed or the room)
             self._last_room[ev.mood] = now
             self._do(moment, ev.source)
 

@@ -228,13 +228,15 @@ def test_music_makes_the_robot_dance_and_stop_ends_it(tmp_path, monkeypatch):
     brain = make_brain(tmp_path, monkeypatch)
     brain.mini.clip_seconds = 1.0
     item = brain.media.add("song.ogg", b"x", {"category": "music"})
+    brain.media.set_analysis(item.id, analyze(clicks(120, secs=10)))
     r = brain.play_clip("music")
     end = time.monotonic() + 2
     while not brain.mini.moves and time.monotonic() < end:
         time.sleep(0.005)
     assert r["ok"] and r["id"] == item.id and brain.mini.moves == ["BeatMove"]
     brain.stop()
-    assert brain.mini.cancelled == 1
+    wait_idle(brain)                                      # the worker stops the robot within ~20 ms
+    assert brain.mini.cancelled == 1 and brain.mini.sounds[-1].endswith("silence.wav")
 
 
 # ---- quiz ------------------------------------------------------------------------------------
@@ -353,6 +355,8 @@ def test_halftime_from_the_feed_and_an_offer_that_can_be_accepted(tmp_path, monk
     assert tr.update(fx("HT")) == []
 
     brain = make_brain(tmp_path, monkeypatch)
+    for j in brain.app.team.jokes:
+        make_voice(brain.app.team, f"joke_{j.id}_punch", tmp_path)
     brain.handle("halftime")
     wait_idle(brain)
     brain._offer_due = (0, brain._offer_due[1])            # don't wait the 8 seconds
@@ -362,3 +366,71 @@ def test_halftime_from_the_feed_and_an_offer_that_can_be_accepted(tmp_path, monk
     r = brain.reply_offer(True)
     assert r["ok"] and r["text"] and brain.offer is None
     assert not brain.reply_offer(True)["ok"]                 # only once
+
+
+# ---- from the review --------------------------------------------------------------------------
+
+def test_a_goal_right_as_a_clip_starts_still_stops_it(tmp_path, monkeypatch):
+    """The SDK forgets a cancel sent just before a move starts: the worker must cancel after that."""
+    brain = make_brain(tmp_path, monkeypatch)
+    brain.mini.clip_seconds = 5.0
+    item = brain.media.add("song.ogg", b"x", {"category": "music"})
+    brain.media.set_analysis(item.id, analyze(clicks(120, secs=10)))
+    brain.play_clip(item_id=item.id)
+    end = time.monotonic() + 2
+    while not brain.performer.busy and time.monotonic() < end:
+        time.sleep(0.001)
+    t0 = time.monotonic()
+    brain.handle("goal_us")                               # as early as possible: before or as the clip starts
+    wait_idle(brain, timeout=6)
+    assert time.monotonic() - t0 < 2.0                    # the 5 s song did not play to the end
+    assert brain.mini.moves[-1] in app_main.REACTIONS["goal_us"].moves and brain.mini.stopped == 0
+
+
+def test_a_joke_without_recorded_lines_is_shown_not_mimed(tmp_path, monkeypatch):
+    brain = make_brain(tmp_path, monkeypatch)
+    r = brain.tell_joke()
+    assert not r["ok"] and r["text"] and "record" in r["error"] and not brain.performer.busy
+
+
+def test_match_mode_keeps_the_robot_listening(tmp_path, monkeypatch):
+    brain = make_brain(tmp_path, monkeypatch)
+    brain.room.enabled = True
+    brain.media.add("song.ogg", b"x", {"category": "music"})
+    assert not brain.play_clip("music")["ok"]             # no songs while it listens to the room...
+    assert brain.play_clip("music", force=True)["ok"]     # ...unless asked for on purpose
+    wait_idle(brain)
+    brain._next_idle = 0
+    brain.app.mood.add(0.9)
+    brain._maybe_idle()
+    assert not brain.performer.busy                       # no idle moves either
+    brain.app.team.quiz, _ = parse_questions(QUESTIONS)
+    brain.reload()
+    assert brain.start_quiz()["error"] == "the match is on"
+
+
+def test_room_events_are_queued_for_the_main_loop(tmp_path, monkeypatch):
+    brain = make_brain(tmp_path, monkeypatch)
+    brain.judge.on_feed(SimpleNamespace(moment="halftime", minute=45, detail=""))
+    assert not brain.mini.moves and not brain.performer.busy     # nothing done on the caller's thread
+    brain.react_queued()
+    wait_idle(brain)
+    assert brain.mini.moves and brain.mini.moves[0] in app_main.REACTIONS["halftime"].moves
+
+
+def test_a_second_quiz_start_is_refused(tmp_path):
+    qs, _ = parse_questions(QUESTIONS)
+    robot = Robot()
+    robot.auto = False
+    g = QuizGame(qs, robot, tmp_path / "h.json", random.Random(1), clock=lambda: 0.0)
+    assert g.start(2) and not g.start(2)
+
+
+def test_huge_uploads_are_refused_before_reading(tmp_path, monkeypatch):
+    monkeypatch.setattr(app_main, "DATA_DIR", tmp_path)
+    owner = SimpleNamespace(team=load_team("trabzonspor"), settings=None, brain=None, mood=Mood(), state={}, job={})
+    app = FastAPI()
+    app_main.register_routes(app, owner)
+    c = TestClient(app)
+    r = c.post("/media?name=big.mp3&own=1", content=b"x" * 10, headers={"content-length": str(10**9)})
+    assert r.status_code in (400, 413)

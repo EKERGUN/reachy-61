@@ -24,6 +24,10 @@ A Reachy Mini football fan (first team: Trabzonspor, Turkish). Plan and decision
   the move's sound so `cancel_move` stops both), `quiz.py` (sourced questions, state machine, phones
   answer). The browser decodes uploads to 16 kHz WAV for the analysis (no ffmpeg on the robot).
   Offers (joke/quiz/music) at half time or when the mood is down, at most every 20 min.
+- Stopping the robot: only the performer's worker cancels (the SDK resets its cancel flag when a
+  move starts, so a cancel from another thread can be lost), and a sound is stopped by playing
+  `silence.wav`, not `cancel_move` (that restarts the audio pipeline, microphone included).
+  The judge only queues moments; the main loop reacts (no disk or robot work on the mic thread).
 - Rules for this app: never download YouTube videos (embed official clips instead); chants are the
   user's own uploads; banter stays friendly (no insults, violence, betting); team facts need sources.
 

@@ -76,22 +76,43 @@ def test_mood_rises_falls_clamps_and_fades():
 
 
 class FakeMini:
+    """Behaves like the SDK where it matters: a move resets the "cancelled" flag when it starts, then
+    stops early once the flag is set; a new sound replaces the playing one."""
+
     def __init__(self):
         self.moves, self.sounds, self.cancelled, self.tracking, self.stopped = [], [], 0, [], 0
         self.clip_seconds = 0.02
+        self._cancel_flag = False
         self.media = SimpleNamespace(play_sound=self.sounds.append, start_playing=lambda: None,
                                      stop_playing=lambda: setattr(self, "stopped", self.stopped + 1))
 
-    def play_move(self, move, initial_goto_duration=0.0, sound=True):
+    @property
+    def _move_cancelled(self):
+        return self._cancel_flag
+
+    @_move_cancelled.setter
+    def _move_cancelled(self, value):
+        self.cancelled += bool(value)
+        self._cancel_flag = value
+
+    def cancel_move(self):
+        self._move_cancelled = True
+        self.media.stop_playing()
+
+    async def async_play_move(self, move, initial_goto_duration=0.0, sound=True):
+        import asyncio
+        self._cancel_flag = False                     # like the SDK: a cancel sent before this is lost
         if hasattr(move, "clip"):                     # a clip with its dance / fan move
             self.sounds.append(str(move.sound_path))
             self.moves.append(type(move).__name__)
-            time.sleep(self.clip_seconds)
-            return
-        self.moves.append(move.name)
-        time.sleep(move.seconds)
+            seconds = self.clip_seconds
+        else:
+            self.moves.append(move.name)
+            seconds = move.seconds
+        end = time.monotonic() + seconds
+        while time.monotonic() < end and not self._cancel_flag:
+            await asyncio.sleep(0.005)
 
-    def cancel_move(self): self.cancelled += 1
     def start_head_tracking(self, w): self.tracking.append(w)
     def __getattr__(self, name): return lambda *a, **k: None
 
@@ -154,8 +175,10 @@ def test_recorded_voice_line_and_users_chant_are_played_after_the_move(tmp_path,
     brain.handle("goal_us")
     wait_idle(brain)
     s = brain.mini.sounds
-    assert len(s) == 2 and s[0].endswith(".wav") and "marş" in s[1] and s[1].endswith(".ogg")
-    assert brain.mini.stopped == 1            # a goal plays only the start of a long recording
+    assert len(s) == 3 and "goal_us_" in s[0] and s[0].endswith(".wav")
+    assert "marş" in s[1] and s[1].endswith(".ogg")
+    assert s[2].endswith("silence.wav")       # a goal plays only the start of a long recording...
+    assert brain.mini.stopped == 0            # ...and stops it without restarting the audio (and the mic)
 
 
 def test_old_chants_move_into_the_clip_library_and_play_after_a_goal(tmp_path, monkeypatch):
@@ -166,7 +189,7 @@ def test_old_chants_move_into_the_clip_library_and_play_after_a_goal(tmp_path, m
     assert not list(chants.iterdir()) and [i.category for i in brain.media.items()] == ["chant"]
     brain.handle("goal_us")
     wait_idle(brain)
-    assert brain.mini.sounds[-1].endswith(".ogg") and brain.mini.moves[-1] == "FanMove"
+    assert brain.mini.sounds[-2].endswith(".ogg") and brain.mini.moves[-1] == "FanMove"
 
 
 def test_jokes_load_with_tags_and_are_split_before_the_punchline():

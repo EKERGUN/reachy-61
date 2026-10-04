@@ -303,7 +303,7 @@ $("offerNo").onclick = () => replyOffer(false);
 
 // ---- fun ----
 function showJoke(j) { lastJoke = j.id; $("jokeCard").hidden = false; text($("jokeText"), j.text); }
-$("jokeBtn").onclick = async () => { const j = await api("joke", {}); if (j.ok || j.text) showJoke(j); else toast(j.error); };
+$("jokeBtn").onclick = async () => { const j = await api("joke", {}); if (j.text) showJoke(j); if (!j.ok) toast(j.error); };
 for (const [id, cat] of [["musicBtn", "music"], ["matchClipBtn", "match"], ["chantBtn", "chant"]])
   $(id).onclick = async () => { const r = await api("play", {category: cat}); toast(r.ok ? r.title : (r.error === "no clips" ? sub(L.fun, "no_clips") : r.error)); };
 $("stopBtn").onclick = () => api("stop", {});

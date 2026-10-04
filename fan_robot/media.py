@@ -72,6 +72,7 @@ class MediaLibrary:
     def __init__(self, root: Path, clock=time.time):
         self.root, self.clock = root, clock
         self._lock = threading.Lock()
+        self._cache: dict[Path, tuple[int, MediaItem]] = {}    # parsed clip info, re-read only when changed
 
     # ---- storage -----------------------------------------------------------------
 
@@ -81,13 +82,21 @@ class MediaLibrary:
     def items(self) -> list[MediaItem]:
         if not self.root.is_dir():
             return []
-        out = []
+        out, seen = [], set()
         for p in sorted(self.root.glob("*.json")):
+            seen.add(p)
             try:
-                d = json.loads(p.read_text(encoding="utf-8"))
-                out.append(MediaItem(**{k: v for k, v in d.items() if k in MediaItem.__dataclass_fields__}))
+                mtime = p.stat().st_mtime_ns
+                hit = self._cache.get(p)
+                if hit is None or hit[0] != mtime:
+                    d = json.loads(p.read_text(encoding="utf-8"))
+                    hit = (mtime, MediaItem(**{k: v for k, v in d.items() if k in MediaItem.__dataclass_fields__}))
+                    self._cache[p] = hit
+                out.append(hit[1])
             except Exception:
                 log.warning("unreadable clip info %s", p)
+        for gone in set(self._cache) - seen:
+            del self._cache[gone]
         return out
 
     def get(self, item_id: str) -> MediaItem | None:

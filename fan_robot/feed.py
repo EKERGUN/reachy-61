@@ -42,6 +42,7 @@ class Budget:
 
     def __init__(self, path: Path, per_day: int = 95, today=lambda: dt.date.today().isoformat()):
         self.path, self.per_day, self.today = path, per_day, today
+        self._used: tuple[str, int] | None = None     # (day, count): no disk read per status poll
 
     def _load(self) -> dict:
         try:
@@ -51,7 +52,10 @@ class Budget:
 
     @property
     def used(self) -> int:
-        return int(self._load().get(self.today(), 0))
+        day = self.today()
+        if self._used is None or self._used[0] != day:
+            self._used = (day, int(self._load().get(day, 0)))
+        return self._used[1]
 
     def take(self) -> bool:
         data = self._load()
@@ -60,6 +64,7 @@ class Budget:
             return False
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.path.write_text(json.dumps({self.today(): n + 1}))
+        self._used = (self.today(), n + 1)
         return True
 
 
@@ -176,7 +181,10 @@ class MatchPoller:
 
     def live_window(self) -> bool:
         k = self.kickoff
-        return k is not None and k - 10 * 60 <= self.clock() <= k + 150 * 60 and not (self.tracker and self.tracker.finished)
+        if k is None or (self.tracker and self.tracker.finished):
+            return False
+        still_playing = bool(self.tracker and self.tracker.status in LIVE and self.clock() <= k + 240 * 60)
+        return k - 10 * 60 <= self.clock() <= k + 150 * 60 or still_playing
 
     def info(self) -> dict:
         t = self.tracker

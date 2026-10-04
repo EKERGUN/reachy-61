@@ -192,6 +192,6 @@ class FanMove(ClipMove):
 
 def clip_move(kind: str, clip: Path, analysis: dict | None, mood_band: str, latency_s: float,
               max_s: float | None = None) -> ClipMove:
-    """music -> dance on the beat; match and chant recordings -> move like a fan."""
-    cls = BeatMove if kind == "music" else FanMove
+    """music -> dance on the beat; match and chant recordings (and music without a clear beat) -> move like a fan."""
+    cls = BeatMove if kind == "music" and (analysis or {}).get("bpm") else FanMove
     return cls(clip, analysis, mood_band=mood_band, latency_s=latency_s, max_s=max_s)

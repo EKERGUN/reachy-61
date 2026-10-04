@@ -243,3 +243,18 @@ def test_listening_model_download_unpacks_into_place(tmp_path):
     download_model("https://x/m.zip", tmp_path / "vosk" / "tr", opener=lambda url, timeout: R())
     assert (tmp_path / "vosk" / "tr" / "am" / "final.mdl").exists()
     assert not [p for p in (tmp_path / "vosk").iterdir() if p.name.startswith(".download")]
+
+
+def test_one_goal_is_celebrated_once_whoever_reports_it_first():
+    j, acts, clock = judge()
+    j.recent.append((clock.t, "goal_us", "remote"))      # the GOL! button
+    clock.t += 35
+    j.on_room(RoomEvent("celebrating", 0.9, 4.0))          # the room is still singing
+    assert acts == []
+    j2, acts2, clock2 = judge()
+    j2.on_feed(FeedEvent("goal_us", 50))                  # feed first, muted TV: released after the guard
+    clock2.t += 61
+    j2.tick()
+    clock2.t += 20
+    j2.on_room(RoomEvent("celebrating", 0.9, 4.0))        # the replay on TV
+    assert [m for m, _ in acts2] == ["goal_us"]

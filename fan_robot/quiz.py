@@ -134,7 +134,7 @@ class QuizGame:
 
     def start(self, n: int = 5) -> bool:
         with self._lock:
-            if not self.questions:
+            if not self.questions or self.phase != "idle":
                 return False
             self.round = self._pick(max(1, min(n, 20)))
             self.index = 0

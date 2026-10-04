@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import logging
 import os
+import queue
 import random
 import threading
 import time
@@ -32,10 +33,10 @@ from fan_robot.dance import clip_move
 from fan_robot.feed import ApiFootball, Budget, MatchPoller
 from fan_robot.jokes import CONTEXT_TAGS, LAUGHS, LEAN_IN, JokeTeller, pause_before_punchline
 from fan_robot.judge import Judge
-from fan_robot.media import CATEGORIES, MediaItem, MediaLibrary
+from fan_robot.media import CATEGORIES, MAX_BYTES, MediaItem, MediaLibrary
 from fan_robot.moments import GROUPS, IDLE_MOVES, REACTIONS
 from fan_robot.mood import Mood
-from fan_robot.performer import Clip, Gesture, Pause, Performer, Plan, Say, reaction
+from fan_robot.performer import Clip, Gesture, Pause, Performer, Plan, Say, reaction, write_silence
 from fan_robot.quiz import QuizGame
 from fan_robot.room import RoomEvent, RoomListener, try_spotter
 from fan_robot.team import TeamPack, load_team, team_dirs
@@ -98,8 +99,15 @@ class FanBrain:
 
     def __init__(self, mini: ReachyMini, app: FanRobot, rng=random):
         self.mini, self.app, self.rng = mini, app, rng
-        self.performer = Performer(mini)
-        self.judge = Judge(act=self.handle, guard_s=app.settings.spoiler_guard_s)
+        try:
+            silence = write_silence(DATA_DIR / "silence.wav")
+        except OSError:
+            silence = None
+        self.performer = Performer(mini, silence=silence)
+        # The judge runs on the mic and feed threads: it only queues; the main loop reacts.
+        self.moments: queue.SimpleQueue = queue.SimpleQueue()
+        self.judge = Judge(act=lambda moment, source: self.moments.put((moment, source)),
+                           guard_s=app.settings.spoiler_guard_s)
         self.mic = Microphone(mini.media)
         self.room: RoomListener | None = None
         self.cloud: CloudCheck | None = None
@@ -157,18 +165,31 @@ class FanBrain:
             self.poller.start()
         self.app.state["state"] = "running"
         log.info("Fan Robot running for %s. Remote: http://<robot>:8042", self.app.team.name)
-        tick = 0
+        next_slow = 0.0
         while not stop_event.is_set():
+            self.react_queued(wait_s=0.25)   # returns at once when the judge queues a moment
             self.quiz.tick()                 # the quiz timer wants finer steps than a second
             if self.quiz.paused and not self.performer.busy:
                 self.quiz.resume()
-            if tick % 4 == 0:
+            if time.monotonic() >= next_slow:
+                next_slow = time.monotonic() + 1.0
                 self._update_watch()
                 self.judge.tick()
                 self._maybe_offer()
                 self._maybe_idle()
-            tick += 1
-            stop_event.wait(0.25)
+
+    def react_queued(self, wait_s: float = 0.0) -> None:
+        """Main loop: react to what the judge decided (from the room or the score feed)."""
+        try:
+            item = self.moments.get(timeout=wait_s) if wait_s else self.moments.get_nowait()
+        except queue.Empty:
+            return
+        while item is not None:
+            self.handle(*item)
+            try:
+                item = self.moments.get_nowait()
+            except queue.Empty:
+                item = None
 
     def shutdown(self) -> None:
         self.performer.stop()
@@ -192,6 +213,8 @@ class FanBrain:
         on = self.app.state["watch"] or live
         if self.room is not None and self.room.enabled != on:
             self.room.enabled = on
+            if on and self.cloud is not None:
+                self.cloud.new_match()               # the cloud check budget is per match
             log.info("match mode %s", "on" if on else "off")
 
     def _on_room(self, ev: RoomEvent) -> None:
@@ -264,6 +287,9 @@ class FanBrain:
         joke = self.jokes.pick(self.rng, tags=tags, prefer=prefer)
         if joke is None:
             return {"ok": False, "error": "no jokes in this team pack"}
+        if not line_path(team, f"joke_{joke.id}_punch").is_file():
+            # Leaning in, pausing and laughing at nothing would be odd: the phone shows it instead.
+            return {"ok": False, "id": joke.id, "text": joke.text, "error": "voice lines not recorded yet (Settings)"}
         steps: list = [Gesture(self.rng.choice(LEAN_IN), sound=False)]
         if joke.setup:
             steps += [Say(line_path(team, f"joke_{joke.id}_setup")), Pause(pause_before_punchline(self.app.mood.value))]
@@ -277,7 +303,10 @@ class FanBrain:
         log.info("joke %s (%s)%s", joke.id, source, "" if accepted else " (dropped)")
         return {"ok": accepted, "id": joke.id, "text": joke.text}
 
-    def play_clip(self, category: str | None = None, item_id: str | None = None, source: str = "remote") -> dict:
+    def play_clip(self, category: str | None = None, item_id: str | None = None, source: str = "remote",
+                  force: bool = False) -> dict:
+        if self.room.enabled and not force:
+            return {"ok": False, "error": "match mode is on (the robot is listening to the room)"}
         item = self.media.get(item_id) if item_id else self.media.choose(self.rng, category=category,
                                                                           band=self.app.mood.band)
         if item is None:
@@ -343,8 +372,10 @@ class FanBrain:
             if say := self._line("quiz_empty"):
                 self.performer.perform(Plan("quiz:empty", PRIORITY_FUN, [say]))
             return {"ok": False, "error": "no quiz questions in this team pack yet"}
-        if self.ball_rolling() and not force:
+        if (self.ball_rolling() or self.room.enabled) and not force:
             return {"ok": False, "error": "the match is on"}
+        if self.quiz.phase != "idle":
+            return {"ok": False, "error": "a quiz is already running"}
         self.offer = None
         self._last_activity = time.monotonic()
         return {"ok": self.quiz.start(n)}
@@ -381,6 +412,8 @@ class FanBrain:
     def _maybe_idle(self) -> None:
         if time.monotonic() < self._next_idle or self.performer.busy or self.quiz.phase != "idle":
             return
+        if self.room.enabled:
+            return                                   # a move (and its sound) would make it deaf to the room
         self._next_idle = time.monotonic() + self.rng.uniform(60, 150)
         band = self.app.mood.band
         if band == "calm" and self.rng.random() < 0.7:
@@ -454,6 +487,7 @@ class MediaForm(BaseModel):
 class PlayForm(BaseModel):
     category: str | None = None
     id: str | None = None
+    force: bool = False
 
 
 class JokeForm(BaseModel):
@@ -486,6 +520,26 @@ class AnswerForm(BaseModel):
 def setup_logging() -> None:
     level = os.environ.get("LOG_LEVEL", "INFO").upper()
     logging.basicConfig(level=level, format="%(asctime)s %(levelname)s %(name)s: %(message)s", force=True)
+
+
+class TooLarge(Exception):
+    pass
+
+
+async def read_capped(request: Request, limit: int) -> bytes:
+    """The request body, refusing anything over `limit` before it fills the robot's memory."""
+    try:
+        if int(request.headers.get("content-length") or 0) > limit:
+            raise TooLarge
+    except ValueError:
+        pass
+    chunks, size = [], 0
+    async for chunk in request.stream():
+        size += len(chunk)
+        if size > limit:
+            raise TooLarge
+        chunks.append(chunk)
+    return b"".join(chunks)
 
 
 def register_routes(app, owner: FanRobot) -> None:
@@ -622,7 +676,10 @@ def register_routes(app, owner: FanRobot) -> None:
                         mood: str = "", when: str = "", tags: str = ""):
         if not own:
             return JSONResponse({"ok": False, "error": "only upload recordings you own or may use"}, status_code=400)
-        body = await request.body()
+        try:
+            body = await read_capped(request, MAX_BYTES)
+        except TooLarge:
+            return JSONResponse({"ok": False, "error": f"too large (max {MAX_BYTES // 1_000_000} MB)"}, status_code=413)
         lib = library()
         try:
             item = await run_in_threadpool(lib.add, name, body, {"category": category, "title": title, "mood": mood,
@@ -641,8 +698,11 @@ def register_routes(app, owner: FanRobot) -> None:
         lib = library()
         if lib.get(item_id) is None:
             return JSONResponse({"ok": False, "error": "unknown clip"}, status_code=404)
-        body = await request.body()
-        if not body or len(body) > 40_000_000:
+        try:
+            body = await read_capped(request, 40_000_000)
+        except TooLarge:
+            body = b""
+        if not body:
             return JSONResponse({"ok": False, "error": "empty or too large"}, status_code=400)
         try:
             analysis = await run_in_threadpool(analyze_wav_bytes, body)
@@ -671,7 +731,7 @@ def register_routes(app, owner: FanRobot) -> None:
             return no_robot()
         if form.category and form.category not in CATEGORIES:
             return JSONResponse({"ok": False, "error": "unknown category"}, status_code=400)
-        return owner.brain.play_clip(form.category, form.id)
+        return owner.brain.play_clip(form.category, form.id, force=form.force)
 
     @app.post("/stop")
     def stop():

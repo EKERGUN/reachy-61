@@ -32,6 +32,10 @@ class CloudCheck:
         self.api_key, self.model, self.team, self.language = api_key, model, team, language
         self.max_calls, self.calls = max_calls, 0
 
+    def new_match(self) -> None:
+        """The budget is per match: called when match mode switches on."""
+        self.calls = 0
+
     @property
     def available(self) -> bool:
         return bool(self.api_key) and self.calls < self.max_calls
