@@ -161,3 +161,12 @@ def test_chant_upload_is_kept_inside_the_chants_folder(tmp_path, monkeypatch):
     assert c.post("/chants?name=Marş.ogg", content=b"abc").json()["ok"]
     assert (tmp_path / "chants" / "trabzonspor" / "Marş.ogg").read_bytes() == b"abc"
     assert c.get("/chants").json() == ["Marş.ogg"]
+
+
+def test_jokes_load_with_tags_and_football_ones_exist():
+    t = load_team("trabzonspor")
+    assert len(t.jokes) >= 20 and len(t.joke_tags) == len(t.jokes)
+    assert sum("futbol" in tags for tags in t.joke_tags) >= 8
+    assert all(20 <= len(j.split()) <= 80 for j, tags in zip(t.jokes, t.joke_tags) if "temel" in tags)
+    assert t.phrases["joke"] == t.jokes                                   # recorded like other lines
+    assert load_team("example_en").jokes                                  # plain-list format still works

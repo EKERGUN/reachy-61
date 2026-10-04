@@ -1,6 +1,65 @@
-# Friendly football jokes (Turkish). Banter yes, insults no.
-- "Hakeme sordum, maç kaç kaç? 'Bilmem, ben bakmıyordum' dedi."
-- "Doktor dedi ki: heyecandan uzak dur. Ben de derbi biletini arkadaşa verdim... Sonra maçı radyodan dinledim, daha kötü oldu."
-- "Bizim kaleci o kadar iyi ki, rüyasında bile top kurtarıyor. Yorgan hep yerde."
-- "Robotum ama maç günü benim de pilim çabuk bitiyor."
-- "VAR'ı icat eden kişi kesin taraftar değilmiş. Gol sevincini üç dakika bekletmek ne demek?"
+# Fıkralar: Temel fıkraları (halk fıkraları, kendi sözlerimizle yeniden anlatıldı) ve robotun kendi esprileri.
+# Etiketler: temel, futbol, trabzonspor, hakem, derbi, klasik, robot. Maç sırasında futbol etiketliler tercih edilir.
+# Kural: takılma evet, hakaret hayır (kişi, şehir, etnik köken, din, şiddet, bahis yok).
+jokes:
+  - text: "Temel ilk kez maça gitmiş. Yanındaki Dursun'a sormuş: Bu adamlar neden tek bir topun peşinden koşuyor? Dursun da demiş ki: Top tek ya, ondan. Temel düşünmüş, düşünmüş: O zaman bir kulübe on tane top alsınlar da kavga etmesinler."
+    tags: [temel, futbol]
+  - text: "Temel kaleci olarak maça çıkmış. Maç boyunca hiç gol yememiş. Herkes şaşırmış. Dursun sormuş: Temel, nasıl yaptın bunu? Temel gülmüş: Fadime tribündeydi. Eve eli boş dönersem ne olacağını biliyorum."
+    tags: [temel, futbol]
+  - text: "Temel penaltı atacakmış. Kalecinin yanına gidip kulağına fısıldamış: Ben sol köşeye vuracağım. Kaleci kandırmaca sanmış, sağa atlamış. Top da sol köşeye girmiş. Temel omuz silkmiş: Ben size doğrusunu söylemiştim, inanmayan siz oldunuz."
+    tags: [temel, futbol]
+  - text: "Dursun hakem olmuş. Maçta her dakika düdük çalıyor. Oyuncular dayanamamış: Hocam, neden bu kadar çok düdük çalıyorsunuz? Dursun yüzünü ciddi tutmuş: Çok koşuyorsunuz, biraz dinlensin diye çalıyorum."
+    tags: [dursun, temel, futbol, hakem]
+  - text: "Maçta top tribüne düşmüş. Temel hemen kapıp cebine koymuş. Güvenlik sormuş: Neden topu vermiyorsun? Temel cevap vermiş: Doksan dakikadır herkes bunun peşinden koşuyor. Bir de ben tutayım, ne var bunda?"
+    tags: [temel, futbol]
+  - text: "Temel stadyuma gidiyormuş. Dursun sormuş: Bilet kaç lira? Temel söylemiş. Dursun şaşırmış: O parayla evde televizyondan izlerdin. Temel kafasını sallamış: Haklısın ama televizyonda hakeme bağıramıyorum. Bağıramayan taraftar, taraftar mıdır?"
+    tags: [temel, futbol, hakem]
+  - text: "Trabzonspor maçı daha başlamadan Temel kahvede kutlama yapıyormuş. Dursun sormuş: Daha maç oynanmadı, neyi kutluyorsun? Temel ciddi ciddi cevaplamış: Sonuçta kazanacağız. Kutlamayı sonraya bırakırsam çay soğur."
+    tags: [temel, futbol, trabzonspor]
+  - text: "Temel'in komşusu rakip takım taraftarı. Derbi günü Temel çay demleyip kapısına gitmiş. Komşu sormuş: Bu çay neyin nesi? Temel gülümsemiş: Kim kazanırsa kazansın, çay benden. Komşu: Peki biz kazanırsak? Temel: O zaman çay yine benden. Maçı da biz kazanırız."
+    tags: [temel, futbol, derbi]
+  - text: "Temel maçtan çıkmış, Dursun'a sormuş: Skor kaç kaç bitti? Dursun: Sıfır sıfır. Temel hayal kırıklığıyla başını sallamış: Hiç olmazsa biri gol atsaydı da, bilet parasını çıkarsaydık. Dursun: Gol atsalardı sana ne? Temel: Bağırırdım, sesim açılırdı."
+    tags: [temel, futbol]
+  - text: "Temel ile Dursun, Amerika'ya kadar yüzmeye karar vermişler. Saatlerce yüzmüşler. Tam yarı yola gelince Temel durmuş: Dursun, ben çok yoruldum, geri dönüyorum. Ve dönüp sahile kadar yüzmüş."
+    tags: [temel, klasik]
+  - text: "Temel çatıda kiremit tamir ederken düşmüş, hastaneye kaldırmışlar. Doktor sormuş: Kaçıncı kattan düştün? Temel düşünmüş, düşünmüş: Sayamadım doktor bey. Düşerken o kadar çok işim vardı ki, kat saymaya vakit kalmadı."
+    tags: [temel, klasik]
+  - text: "Temel balık tutmak için göle gitmiş. Dursun yoldan geçerken sormuş: Temel, balık var mı? Temel cevap vermiş: Bilmiyorum, sabahtan beri sormaya çalışıyorum ama kimse cevap vermiyor."
+    tags: [temel, klasik]
+  - text: "Fadime, Temel'e demiş ki: Pazardan hamsi al. Temel sormuş: Kaç kilo? Fadime: Ailemiz kalabalık, beş kilo al. Temel hamsiyi almış, eve gelmiş. Fadime sormuş: Neden hepsi bir poşette? Temel: Birbirlerini tanısınlar diye."
+    tags: [temel, klasik]
+  - text: "Temel gazeteyi ters tutup okuyormuş. Dursun görmüş: Temel, gazeteyi ters tutuyorsun! Temel hiç oralı olmamış: Olsun, ben okumayı iyi bilirim. Düz yazıyı herkes okur, ters okumak ayrı marifet."
+    tags: [temel, klasik]
+  - text: "Temel yeni araba almış. Dursun sormuş: Kaç beygir? Temel övünmüş: Yüz elli. Dursun: O kadar beygiri nereye koyuyorsun? Temel kaşlarını çatmış: Garaj küçük, kimini bahçede tutuyorum."
+    tags: [temel, klasik]
+  - text: "Temel akşam telefonla Dursun'u aramış. Dursun açmış: Alo? Temel: Alo, ben Temel. Dursun: Aaa, Temel, sen misin? Temel bir an susmuş, sonra şüphelenmiş: Dur bakalım, sen kimsin de benim adımı biliyorsun?"
+    tags: [temel, klasik]
+  - text: "Doktor Temel'e sormuş: Günde kaç saat uyuyorsun? Temel: Sekiz saat. Doktor: Yeterli. Peki rüya görüyor musun? Temel: Her gün. Doktor: Ne görüyorsun? Temel: Fadime'yi. Doktor: Güzel. Temel: Hayır doktor, rüyada da kızıyor."
+    tags: [temel, klasik]
+  - text: "Temel pazarda domates almak istemiş. Satıcıya sormuş: Domatesin kilosu kaç? Satıcı: Elli lira. Temel: Çok pahalı. Satıcı: Ucuzu da var, otuz lira. Temel gülmüş: Ucuz olanı ver, ama pahalı gibi tart."
+    tags: [temel, klasik]
+  - text: "Fadime, Temel'e demiş ki: Bugün çarşıdan ekmek al, ama sıcak olsun. Temel çarşıya gitmiş, ekmeği almış. Dönerken ekmek soğumasın diye dolaşmadan koşmuş, eve nefes nefese gelmiş. Fadime: Ekmek sıcak mı? Temel: Ekmek sıcak, ben pişmiş gibiyim."
+    tags: [temel, klasik]
+  - text: "Temel bir gün Dursun'a şunu sormuş: Dünya yuvarlak mı, düz mü? Dursun: Yuvarlak. Temel: Peki neden kimse düşmüyor? Dursun: Yerçekimi var. Temel başını sallamış: Güzel, bizim kahvehanede de yerçekimi var, çünkü kimse kalkmıyor."
+    tags: [temel, klasik]
+  - text: "Temel gece yarısı kalkıp mutfağa gitmiş. Fadime sormuş: Ne arıyorsun? Temel: Su içeceğim. Fadime: Lambayı yak. Temel: Gerek yok, su zaten şeffaf, karanlıkta da görürüm."
+    tags: [temel, klasik]
+  - text: "Hakeme sordum, maç kaç kaç? 'Bilmem, ben bakmıyordum' dedi."
+    tags: [robot, futbol]
+  - text: "Doktor dedi ki: heyecandan uzak dur. Ben de derbi biletini arkadaşa verdim... Sonra maçı radyodan dinledim, daha kötü oldu."
+    tags: [robot, futbol]
+  - text: "Bizim kaleci o kadar iyi ki, rüyasında bile top kurtarıyor. Yorgan hep yerde."
+    tags: [robot, futbol]
+  - text: "Robotum ama maç günü benim de pilim çabuk bitiyor."
+    tags: [robot, futbol]
+  - text: "VAR'ı icat eden kişi kesin taraftar değilmiş. Gol sevincini üç dakika bekletmek ne demek?"
+    tags: [robot, futbol]
+# Fikir kaynakları (metinler kopyalanmadı):
+#   https://www.hurriyet.com.tr/egitim/temel-fikralari-en-guzel-komik-eglenceli-uzun-ve-kisa-temel-dursun-fikralari-41834954
+#   https://www.aksam.com.tr/bilgi/temel-fikralari-kisa-guzel-ve-en-komik-temel-ile-dursun-fikralari/haber-1498373
+#   https://www.sabah.com.tr/yasam/temel-ile-dursun-fikralari-kisa-uzun-gulduren-temel-ve-dursunun-en-komik-fikralari-5327853
+#   https://www.haber7.com/egitim-ogretim/haber/3150818-kisa-ve-komik-temel-fikralari-temel-ile-dursunun-fikralari
+#   https://forum.bordomavi.net/archive/index.php/t-7548.html
+#   https://eksisozluk.com/temel-fikralari--37820
+#   https://www.oybil.com/fikralar/karadeniz-fikralari-23/
+#   https://www.frmtr.com/komik-seyler/910211-temel-fikralari-serisi-tam-76-adet-temel-fikrasi.html

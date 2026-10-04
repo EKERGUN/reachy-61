@@ -29,6 +29,7 @@ class TeamPack:
     info: dict
     phrases: dict[str, list[str]] = field(default_factory=dict)
     jokes: list[str] = field(default_factory=list)
+    joke_tags: list[list[str]] = field(default_factory=list)   # same order as jokes
 
     def phrase(self, key: str, rng=random) -> str | None:
         lines = self.phrases.get(key) or []
@@ -59,12 +60,17 @@ def load_team(team_id: str, data_dir: Path | None = None) -> TeamPack:
     info = _yaml(folder / "team.yaml") or {}
     phrases = _yaml(folder / "phrases.yaml") or {}
     jokes = _yaml(folder / "jokes.yaml") or []
+    if isinstance(jokes, dict):                   # {"jokes": [{"text": ..., "tags": [...]}, ...]}
+        jokes = jokes.get("jokes") or []
+    joke_tags = [list(j.get("tags") or []) if isinstance(j, dict) else [] for j in jokes]
+    jokes = [j.get("text", "") if isinstance(j, dict) else j for j in jokes]
     lines = {k: [str(x) for x in v] for k, v in phrases.items() if isinstance(v, list)}
     jokes = [str(j) for j in jokes]
     if jokes:
         lines["joke"] = jokes                     # jokes are spoken lines too (recorded with the rest)
     return TeamPack(id=folder.name, folder=folder, name=str(info.get("name", folder.name)),
-                    language=str(info.get("language", "en")), info=info, phrases=lines, jokes=jokes)
+                    language=str(info.get("language", "en")), info=info, phrases=lines, jokes=jokes,
+                    joke_tags=joke_tags)
 
 
 def load_locale(language: str) -> dict:
