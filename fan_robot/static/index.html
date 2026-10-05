@@ -325,7 +325,12 @@ async function loadClips() {
   for (const c of clips) {
     const li = el("li"); li.append(el("span", "name", c.title));
     const a = c.analysis;
-    li.append(el("span", "small", a ? (a.bpm ? `${Math.round(a.bpm)} ${sub(L.clips, "bpm")}` : `${Math.round(a.duration_s || 0)}s`) : "…"));
+    const info = el("button", "", a ? (a.bpm ? `${Math.round(a.bpm)} ${sub(L.clips, "bpm")}` : `${Math.round(a.duration_s || 0)}s`) : "…");
+    if (a && a.bpm) info.onclick = async () => {        // fix the tempo by ear (e.g. 124 -> 83)
+      const v = parseFloat(prompt(sub(L.clips, "fix_bpm"), Math.round(a.bpm)));
+      if (v > 0) { await api(`media/${c.id}`, {bpm: v}, "PATCH"); loadClips(); }
+    };
+    li.append(info);
     const sel = el("select");
     for (const k of ["chant", "music", "match"]) sel.append(new Option(sub(L.categories, k), k, false, k === c.category));
     sel.onchange = () => api(`media/${c.id}`, {category: sel.value}, "PATCH");

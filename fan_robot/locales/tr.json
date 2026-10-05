@@ -168,7 +168,8 @@
     "delete": "Sil",
     "used": "Kullanılan alan",
     "need_own": "Önce kayıt hakkı kutusunu işaretleyin.",
-    "bpm": "BPM"
+    "bpm": "BPM",
+    "fix_bpm": "Doğru tempo (BPM)? Dans robotu ritmi kaçırıyorsa düzeltin; örn. 124 yerine 83."
   },
   "latency": "Ses gecikmesi (dans senkronu)",
   "offers": "Robot kendiliğinden teklif etsin (fıkra, yarışma, müzik)",

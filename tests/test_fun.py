@@ -436,3 +436,12 @@ def test_huge_uploads_are_refused_before_reading(tmp_path, monkeypatch):
     c = TestClient(app)
     r = c.post("/media?name=big.mp3&own=1", content=b"x" * 10, headers={"content-length": str(10**9)})
     assert r.status_code in (400, 413)
+
+
+def test_the_tempo_can_be_corrected_by_ear(tmp_path):
+    lib = MediaLibrary(tmp_path)
+    item = lib.add("hayde.ogg", b"x", {"category": "music"})
+    lib.set_analysis(item.id, {"bpm": 124.0, "beat_offset_s": 0.4, "duration_s": 60.0, "energy": [0.5] * 1200})
+    lib.update(item.id, {"bpm": 82.7})
+    a = lib.get(item.id).analysis
+    assert a["bpm"] == 82.7 and a["bpm_detected"] == 124.0 and a["beat_offset_s"] == 0.4

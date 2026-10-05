@@ -478,6 +478,7 @@ class WatchForm(BaseModel):
 
 class MediaForm(BaseModel):
     title: str | None = None
+    bpm: float | None = None
     category: str | None = None
     mood: list[str] | str | None = None
     when: list[str] | str | None = None

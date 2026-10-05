@@ -167,7 +167,8 @@
     "delete": "Delete",
     "used": "Storage used",
     "need_own": "Tick the recording-rights box first.",
-    "bpm": "BPM"
+    "bpm": "BPM",
+    "fix_bpm": "Correct tempo (BPM)? Fix it if the dance misses the beat, e.g. 83 instead of 124."
   },
   "latency": "Speaker delay (dance sync)",
   "offers": "The robot offers things by itself (jokes, quiz, music)",

@@ -145,6 +145,11 @@ class MediaLibrary:
             return None
         if meta.get("title"):
             item.title = str(meta["title"])[:80]
+        if meta.get("bpm") and item.analysis:
+            # A correction by ear (Karadeniz rhythms can fool any beat finder: 124 or 82?).
+            # The first beat found stays a beat at the new tempo, so the dance stays on it.
+            item.analysis.setdefault("bpm_detected", item.analysis.get("bpm"))
+            item.analysis["bpm"] = max(40.0, min(220.0, float(meta["bpm"])))
         self._apply(item, meta)
         self.save(item)
         return item
