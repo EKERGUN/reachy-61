@@ -28,6 +28,14 @@ A Reachy Mini football fan (first team: Trabzonspor, Turkish). Plan and decision
   move starts, so a cancel from another thread can be lost), and a sound is stopped by playing
   `silence.wav`, not `cancel_move` (that restarts the audio pipeline, microphone included).
   The judge only queues moments; the main loop reacts (no disk or robot work on the mic thread).
+- Talking (Otto): `talk.py` (wake words, sleep, "Otto dur" = quiet until called, starts a chat when it
+  sees a face, the chat's tools), `chat.py` (turn-taking on Gemini Live: local VAD with preroll,
+  barge-in only by sustained speech + a face, muted after a performance tool, ends after silence),
+  `live.py` (Gemini Live client), `persona.py` (Turkish fan persona + tool list), `wake.py` (Vosk on
+  its own thread, only during speech: "Otto", "Otto bordo" -> "Mavi!", "Otto dur"), `knowledge.py`
+  (BM25 over knowledge.yaml with Turkish letter folding + 6-letter stems), `football.py` (recent
+  results, table, next match; cached). Facts only from tools, never from the model's memory.
+  Voice: one man's voice (Fenrir) for recorded lines and chat; changing it re-records the lines.
 - Rules for this app: never download YouTube videos (embed official clips instead); chants are the
   user's own uploads; banter stays friendly (no insults, violence, betting); team facts need sources.
 

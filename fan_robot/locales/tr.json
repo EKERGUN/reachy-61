@@ -173,5 +173,19 @@
   },
   "latency": "Ses gecikmesi (dans senkronu)",
   "offers": "Robot kendiliğinden teklif etsin (fıkra, yarışma, müzik)",
-  "counts": "fıkra · soru · bilgi"
+  "counts": "fıkra · soru · bilgi",
+  "talk": {
+    "talk": "Konuş",
+    "end": "Bitir",
+    "sleep": "Uyut",
+    "wake": "Uyandır",
+    "asleep": "Uyuyor",
+    "talking": "Sohbette",
+    "quiet": "Sessiz (\"Otto\" deyin)",
+    "awake": "Uyanık",
+    "voice": "Ses (erkek)",
+    "self_start": "Beni görünce sohbet açsın",
+    "sleep_after": "Kaç dakika sonra uyusun (0 = hiç)",
+    "no_wake": "Dinleme modeli yok: \"Otto\" duyulmaz. Ayarlar'dan indirin."
+  }
 }

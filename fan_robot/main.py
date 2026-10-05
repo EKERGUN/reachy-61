@@ -31,6 +31,7 @@ from fan_robot.cloud_check import CloudCheck
 from fan_robot.config import DATA_DIR, SECRETS, Settings, read_env_file, write_env_file
 from fan_robot.dance import clip_move
 from fan_robot.feed import ApiFootball, Budget, MatchPoller
+from fan_robot.football import LiveFootball
 from fan_robot.jokes import CONTEXT_TAGS, LAUGHS, LEAN_IN, JokeTeller, pause_before_punchline
 from fan_robot.judge import Judge
 from fan_robot.media import CATEGORIES, MAX_BYTES, MediaItem, MediaLibrary
@@ -39,6 +40,7 @@ from fan_robot.mood import Mood
 from fan_robot.performer import Clip, Gesture, Pause, Performer, Plan, Say, reaction, write_silence
 from fan_robot.quiz import QuizGame
 from fan_robot.room import RoomEvent, RoomListener, try_spotter
+from fan_robot.talk import Talker
 from fan_robot.team import TeamPack, load_team, team_dirs
 from fan_robot.voice import clip_path, line_path, record_all
 
@@ -52,6 +54,10 @@ PLAYING = {"1H", "2H", "ET", "P", "LIVE", "BT"}        # the ball is rolling: no
 OFFER_GAP_S = 20 * 60
 OFFER_TTL_S = 45
 PRIORITY_FUN = 4                                       # jokes, clips, quiz: a goal interrupts them
+# Gemini's men's voices (the same voice records the lines and talks in a chat).
+MALE_VOICES = ("Fenrir", "Puck", "Charon", "Orus", "Algenib", "Alnilam", "Iapetus", "Enceladus", "Umbriel")
+NUMBER_RANGES = {"FAN_ROBOT_AUDIO_LATENCY_S": (0.0, 1.0), "FAN_ROBOT_OFFERS": (0.0, 1.0),
+                 "FAN_ROBOT_SELF_START": (0.0, 1.0), "FAN_ROBOT_SLEEP_AFTER_MIN": (0.0, 600.0)}
 
 
 class FanRobot(ReachyMiniApp):
@@ -113,6 +119,7 @@ class FanBrain:
         self.cloud: CloudCheck | None = None
         self.poller: MatchPoller | None = None
         self.quiz: QuizGame | None = None
+        self.live_football: LiveFootball | None = None
         self.offer: dict | None = None
         self.last_joke = None
         self._offer_due: tuple[float, str] | None = None
@@ -121,6 +128,7 @@ class FanBrain:
         self._last_bad = -1e9                    # last loss / conceded goal (for cheering up)
         self._next_idle = time.monotonic() + 60
         self._running = False
+        self.talker = Talker(self)
         self.reload()
 
     def reload(self) -> None:
@@ -130,7 +138,7 @@ class FanBrain:
         words = loc.get("room_words", {})
         old = self.room
         self.room = RoomListener(words, self._on_room, spotter=try_spotter(listen_model_dir(team.language), words),
-                                 loud_db=app.settings.room_loud_db, robot_busy=lambda: self.performer.busy)
+                                 loud_db=app.settings.room_loud_db, robot_busy=self._robot_busy)
         self.room.enabled = old.enabled if old else False
         self.cloud = CloudCheck(app.settings.gemini_api_key, app.settings.gemini_audio_model, team.name,
                                 team.language) if app.settings.gemini_api_key else None
@@ -142,13 +150,25 @@ class FanBrain:
             api = ApiFootball(app.settings.api_football_key, Budget(DATA_DIR / "feed_usage.json"))
             self.poller = MatchPoller(api, team.name, feed.get("team_id"), feed.get("timezone") or "UTC",
                                       self.judge.on_feed, DATA_DIR / "feed_teams.json")
+            poller = self.poller
+            self.live_football = LiveFootball(api, lambda: poller.team_id or poller._cached_team_id(),
+                                              feed.get("timezone") or "UTC")
             if self._running:
                 self.poller.start()                  # key or team changed while running
+        else:
+            self.live_football = None
         self.media = media_library(team)
         self.jokes = JokeTeller(team.jokes, DATA_DIR / "history" / f"jokes_{team.id}.json")
         if self.quiz is not None:
             self.quiz.stop()
         self.quiz = QuizGame(team.quiz, self._quiz_act, DATA_DIR / "history" / f"quiz_{team.id}.json", self.rng)
+        if self._running:
+            self.talker.reload()
+
+    def _robot_busy(self) -> bool:
+        """The robot's own sound (a reaction, a song, its voice in a chat) is not the room."""
+        t = self.talker
+        return self.performer.busy or t.chat.active or t.speaker.speaking
 
     def run(self, stop_event: threading.Event) -> None:
         m = self.mini
@@ -158,7 +178,9 @@ class FanBrain:
         m.media.start_recording()
         m.media.start_playing()
         self.performer.start()
+        self.talker.start()
         self.mic.subscribe(lambda frame: self.room.feed(frame))   # always the current listener
+        self.mic.subscribe(self.talker.on_frame)
         self.mic.start()
         self._running = True
         if self.poller is not None:
@@ -175,6 +197,7 @@ class FanBrain:
                 next_slow = time.monotonic() + 1.0
                 self._update_watch()
                 self.judge.tick()
+                self.talker.tick()
                 self._maybe_offer()
                 self._maybe_idle()
 
@@ -192,6 +215,7 @@ class FanBrain:
                 item = None
 
     def shutdown(self) -> None:
+        self.talker.chat.stop("shutdown")
         self.performer.stop()
         self.mic.stop()
         if self.poller is not None:
@@ -235,6 +259,10 @@ class FanBrain:
         if moment == "joke":
             return self.tell_joke(source=source)
         reaction_ = REACTIONS[moment]
+        if self.talker.asleep:
+            self.talker.wake_up()                    # a goal wakes any fan up
+        if reaction_.priority >= 7:
+            self.talker.chat.interrupt()             # stop talking: celebrate (or suffer)
         team = self.app.team
         mood = self.app.mood.add(reaction_.mood)
         line_key = LINE_KEYS.get(moment, moment)
@@ -351,6 +379,8 @@ class FanBrain:
             self.offer = None
         if not self.app.settings.offers or self.offer or self.quiz.phase != "idle" or self.performer.busy:
             return
+        if self.talker.asleep or self.talker.chat.active or self.talker.quiet:
+            return
         if self._offer_due and now >= self._offer_due[0]:
             kind = self._offer_due[1]
             self._offer_due = None
@@ -414,6 +444,8 @@ class FanBrain:
             return
         if self.room.enabled:
             return                                   # a move (and its sound) would make it deaf to the room
+        if self.talker.asleep or self.talker.chat.active:
+            return
         self._next_idle = time.monotonic() + self.rng.uniform(60, 150)
         band = self.app.mood.band
         if band == "calm" and self.rng.random() < 0.7:
@@ -466,6 +498,9 @@ class SettingsForm(BaseModel):
     TEAM: str | None = None
     FAN_ROBOT_AUDIO_LATENCY_S: str | None = None
     FAN_ROBOT_OFFERS: str | None = None
+    GEMINI_VOICE: str | None = None
+    FAN_ROBOT_SELF_START: str | None = None
+    FAN_ROBOT_SLEEP_AFTER_MIN: str | None = None
 
 
 class MomentForm(BaseModel):
@@ -511,6 +546,10 @@ class JoinForm(BaseModel):
 class QuizStartForm(BaseModel):
     n: int = 5
     force: bool = False
+
+
+class OnForm(BaseModel):
+    on: bool
 
 
 class AnswerForm(BaseModel):
@@ -575,6 +614,7 @@ def register_routes(app, owner: FanRobot) -> None:
                 "now_playing": ({"moment": now.moment, "title": now.title} if now else None),
                 "offer": ({"kind": offer["kind"], "line": offer["line"], "at": offer["at"]} if offer else None),
                 "quiz": brain.quiz.phase if brain else "idle",
+                "talk": brain.talker.status() if brain else None,
                 "recent": [{"at": round(time.time() - (time.monotonic() - t)), "moment": m, "source": src}
                            for t, m, src in (brain.judge.recent[-8:] if brain else [])][::-1]}
 
@@ -608,20 +648,24 @@ def register_routes(app, owner: FanRobot) -> None:
     def get_settings():
         saved = read_env_file()
         return {**{k: (bool(v) if k in SECRETS else v) for k, v in saved.items()},
-                "latency": owner.settings.audio_latency_s, "offers": bool(owner.settings.offers)}
+                "latency": owner.settings.audio_latency_s, "offers": bool(owner.settings.offers),
+                "voice": owner.settings.gemini_voice, "voices": MALE_VOICES,
+                "self_start": bool(owner.settings.self_start), "sleep_after_min": owner.settings.sleep_after_min}
 
     @app.post("/settings")
     def save_settings(form: SettingsForm):
         updates = {k: v for k, v in form.model_dump().items() if v}
         if "TEAM" in updates and updates["TEAM"] not in team_dirs():
             return JSONResponse({"ok": False, "error": "unknown team"}, status_code=400)
-        for key in ("FAN_ROBOT_AUDIO_LATENCY_S", "FAN_ROBOT_OFFERS"):
+        if "GEMINI_VOICE" in updates and updates["GEMINI_VOICE"] not in MALE_VOICES:
+            return JSONResponse({"ok": False, "error": "unknown voice"}, status_code=400)
+        for key, (lo, hi) in NUMBER_RANGES.items():
             if key in updates:
                 try:
                     v = float(updates[key])
                 except ValueError:
                     return JSONResponse({"ok": False, "error": f"{key} must be a number"}, status_code=400)
-                updates[key] = str(max(0.0, min(1.0, v)))
+                updates[key] = str(max(lo, min(hi, v)))
         write_env_file(updates)
         owner.settings.apply(updates)
         if "TEAM" in updates:
@@ -789,6 +833,30 @@ def register_routes(app, owner: FanRobot) -> None:
         if owner.brain is None:
             return no_robot()
         return {"ok": owner.brain.quiz.answer(form.player.casefold(), form.choice)}
+
+    # ---- talking ----------------------------------------------------------------------
+
+    @app.post("/chat")
+    def chat(form: OnForm):
+        if owner.brain is None:
+            return no_robot()
+        t = owner.brain.talker
+        if form.on:
+            if not owner.settings.gemini_api_key:
+                return {"ok": False, "error": "Gemini key missing"}
+            t.quiet = False
+            t.wake_up()
+            t.chat.start("phone")
+        else:
+            t.chat.stop("phone")
+        return {"ok": True}
+
+    @app.post("/sleep")
+    def sleep(form: OnForm):
+        if owner.brain is None:
+            return no_robot()
+        (owner.brain.talker.sleep if form.on else owner.brain.talker.wake_up)()
+        return {"ok": True}
 
     @app.post("/quiz/stop")
     def quiz_stop():

@@ -83,3 +83,10 @@ quiz_results:
   - "Yarışma bitti! Kazananı alkışlayalım!"
 quiz_empty:
   - "Henüz sorum yok. Önce soruları yükleyin."
+# Konuşma: "Otto" ve "Otto bordo" (anında, internetsiz cevaplar)
+mavi:
+  - "Maviii!"
+  - "Mavi! Mavi!"
+name_reply:
+  - "Buyur, dinliyorum!"
+  - "Efendim? Söyle bakalım!"

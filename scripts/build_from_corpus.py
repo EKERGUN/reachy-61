@@ -13,7 +13,9 @@ Left out on purpose:
 - the merged history's "Süper Lig season" lines (they mislabel 1967-74, when the club was in the
   second tier); the season table (matches_landmarks) is used instead;
 - goal counts in questions (the corpus mixes league and all-competition totals);
-- the audio clips (see corpus/README and docs: rights not cleared for the app).
+- the audio clips (see corpus/README and docs: rights not cleared for the app);
+- 1987-2006 transfers (the corpus has no source for them).
+Transfers and squads become one fact per season and direction (searchable by a player's name).
 """
 
 from __future__ import annotations
@@ -46,6 +48,58 @@ def ordinal(pos: str) -> str:
 
 # ---- knowledge -------------------------------------------------------------------------
 
+def season_key(s: str) -> str:
+    """'21/22' or '2021-22' or '1967-68' -> '2021-22'."""
+    m = re.match(r"^(\d{2})/(\d{2})$", s or "")
+    if m:
+        a = int(m.group(1))
+        return f"{1900 + a if a > 50 else 2000 + a}-{m.group(2)}"
+    return s
+
+
+def build_transfers(enriched, early, squad) -> list[dict]:
+    """One fact per season and direction, so a search for a player's name finds the season."""
+    facts = []
+    groups: dict[tuple, list] = {}
+    for r in enriched:                                          # 2007-2026, transfermarkt.com.tr
+        if r.get("source_url") and r.get("player_name"):
+            groups.setdefault((season_key(r["season"]), r["direction"]), []).append(r)
+    for (season, direction), rs in sorted(groups.items()):
+        rs.sort(key=lambda r: -_fee_value(r.get("fee")))
+        parts = [f"{r['player_name']} ({r.get('club_name') or '?'}{', ' + r['fee'] if r.get('fee') else ''})" for r in rs]
+        verb = "gelenler" if direction == "arrival" else "gidenler"
+        facts.append({"id": f"transfer_{season}_{direction}", "topic": "transfer", "date": season,
+                      "fact": f"{season} sezonu transferleri, {verb} (kulüp, bonservis): " + "; ".join(parts) + ".",
+                      "source": rs[0]["source_url"], "source_title": "Transfermarkt"})
+    by_season: dict[str, dict[str, list]] = {}
+    for r in early:                                             # 1967-1986, Vikipedi season pages
+        if r.get("source_url") and r.get("confidence") != "low":
+            by_season.setdefault(r["season"], {}).setdefault(r["transfer_type"], []).append(r)
+    for season, kinds in sorted(by_season.items()):
+        src = next(iter(kinds.values()))[0]
+        bits = []
+        for kind, label in (("Squad", "kadro"), ("Arrival", "gelenler"), ("Departure", "gidenler")):
+            if kinds.get(kind):
+                names = ", ".join(r["player_name"] + (f" ({r['position']})" if r.get("position") and kind == "Squad" else "")
+                                  for r in kinds[kind])
+                bits.append(f"{label}: {names}")
+        facts.append({"id": f"squad_{season}", "topic": "kadro", "date": season,
+                      "fact": f"{season} sezonu " + ". ".join(bits) + ".", "source": src["source_url"],
+                      "source_title": src.get("source_title", "")})
+    if squad:
+        players = [f"{p['player_name']} ({p.get('position') or '?'}" + (f", {p['shirt_number']} numara" if p.get("shirt_number") else "") + ")"
+                   for p in squad if p.get("confidence") != "low"]
+        facts.append({"id": "squad_2026-27", "topic": "kadro", "date": "2026-27",
+                      "fact": "2026-27 kadrosu: " + "; ".join(players) + ".", "source": squad[0]["source_url"],
+                      "source_title": squad[0].get("source_title", "")})
+    return facts
+
+
+def _fee_value(fee) -> float:
+    m = re.match(r"€([\d.]+)(m|k)", str(fee or ""))
+    return float(m.group(1)) * (1e6 if m.group(2) == "m" else 1e3) if m else 0.0
+
+
 def build_knowledge(seasons, titles, people, history) -> list[dict]:
     facts = []
 
@@ -76,6 +130,12 @@ def build_knowledge(seasons, titles, people, history) -> list[dict]:
         add(f"{'pres' if p['role'] == 'President' else 'coach'}_{p['seq']}",
             f"{p['name_normalized']}, Trabzonspor {role} ({p['start_date']} - {end}).",
             "yönetim", p["source_url"], "", p.get("start_date") or "")
+    for role, label, one in (("President", "başkanları", "başkan"), ("Head Coach", "teknik direktörleri", "teknik direktör")):
+        terms = [p for p in people if p["role"] == role and p.get("source_confidence") != "low"]
+        if terms:
+            order = "; ".join(f"{i}. {p['name_normalized']} ({(p.get('start_date') or '?')[:4]})" for i, p in enumerate(terms, 1))
+            add(f"{role}_order", f"Trabzonspor {label} sırasıyla. İlk {one}: {terms[0]['name_normalized']}. "
+                f"Şu anki {one}: {terms[-1]['name_normalized']}. Tüm liste: {order}.", "yönetim", terms[0]["source_url"])
     for h in history:
         if h["confidence"] == "low" or h["status"] != "established" or h["category"] == "domestic_league":
             continue
@@ -211,6 +271,9 @@ def main() -> None:
     people = jsonl(CORPUS / "history" / "presidents_managers_reconciled.jsonl")
     history = jsonl(CORPUS / "history" / "clubs_history_reconciled_tr.jsonl")
     facts = build_knowledge(seasons, titles, people, history)
+    facts += build_transfers(jsonl(CORPUS / "transfers" / "trabzonspor_players_enriched.jsonl"),
+                             jsonl(CORPUS / "transfers" / "trabzonspor_transfers_1967_1986.jsonl"),
+                             jsonl(CORPUS / "history" / "squad_2026_2027.jsonl"))
     quiz = build_quiz(seasons, titles, people, history, rng)
     head = ("# Built by scripts/build_from_corpus.py from corpus/trabzonspor (do not edit by hand; edit the\n"
             "# corpus or the script and rebuild). Every entry keeps its source.\n")

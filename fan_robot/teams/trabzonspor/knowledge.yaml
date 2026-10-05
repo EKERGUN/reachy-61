@@ -885,6 +885,38 @@ facts:
   topic: yönetim
   source: https://www.aksam.com.tr/spor/son-firtina-reis
   date: '2026-09-17'
+- id: President_order
+  fact: 'Trabzonspor başkanları sırasıyla. İlk başkan: Ali Osman Ulusoy. Şu anki başkan: Ertuğrul Doğan. Tüm liste: 1. Ali
+    Osman Ulusoy (1967); 2. Rıfat Dedeoğlu (1968); 3. Ali Osman Ulusoy (1969); 4. Rıfat Dedeoğlu (1970); 5. Bekir Suat Oyman
+    (1971); 6. Ahmet Salih Erdem (1973); 7. Mustafa Şamil Ekinci (1975); 8. Ahmet Celal Ataman (1980); 9. Mustafa Günaydın
+    (1981); 10. Mehmet Ali Yılmaz (1982); 11. Mazhar Afacan (1988); 12. Mehmet Ali Yılmaz (1989); 13. Sadri Şener (1992);
+    14. Faruk Nafız Özak (1995); 15. Mehmet Ali Yılmaz (1996); 16. Özkan Sümer (2000); 17. Atay Aktuğ (2003); 18. Nuri Albayrak
+    (2005); 19. Sadri Şener (2008); 20. İbrahim Hacıosmanoğlu (2013); 21. Muharrem Usta (2015); 22. Ahmet Ali Ağaoğlu (2018);
+    23. Ertuğrul Doğan (2023).'
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+- id: Head Coach_order
+  fact: 'Trabzonspor teknik direktörleri sırasıyla. İlk teknik direktör: Hayri Gür. Şu anki teknik direktör: Thomas Reis.
+    Tüm liste: 1. Hayri Gür (1966); 2. Halil Özyazıcı (1967); 3. Harun Kılman (1968); 4. Erdoğan Gürhan (1968); 5. Ahmet Karlıklı
+    (1969); 6. Altan Santepe (1970); 7. Kamuran Soykıray (1971); 8. Mustafa Ertan (1972); 9. Ahmet Suat Özyazıcı (1973); 10.
+    Şükrü Ersoy (1975); 11. Ahmet Suat Özyazıcı (1976); 12. Özkan Sümer (1978); 13. Ahmet Suat Özyazıcı (1979); 14. Özkan
+    Sümer (1980); 15. Ahmet Suat Özyazıcı (1981); 16. Özkan Sümer (1984); 17. İlyas Akçay (1985); 18. Jürgen Sundermann (1985);
+    19. Şenol Güneş (1986); 20. Ahmet Suat Özyazıcı (1986); 21. Metin Türel (1987); 22. Ahmet Suat Özyazıcı (1988); 23. Werner
+    Biskup (1988); 24. Şenol Güneş (1988); 25. Urbain Braems (1989); 26. Özkan Sümer (1990); 27. Urbain Braems (1991); 28.
+    Georges Leekens (1992); 29. Şenol Güneş (1993); 30. Yılmaz Vural (1997); 31. Özkan Sümer (1997); 32. Ali Kemal Denizci
+    (1998); 33. Gordon Milne (1998); 34. Ahmet Suat Özyazıcı (1999); 35. Jürgen Wähling (1999); 36. Hüsnü Özkara (1999); 37.
+    Giray Bulak (2000); 38. Sadi Tekelioğlu (2001); 39. Hans-Peter Briegel (2001); 40. Samet Aybaba (2002); 41. Turgay Semercioğlu
+    (2003); 42. Ziya Doğan (2004); 43. Şenol Güneş (2005); 44. Orhan Çıkırıkçı (2005); 45. Vahid Halilhodžić (2005); 46. Sebastião
+    Lazaroni (2006); 47. Ziya Doğan (2006); 48. Ersun Yanal (2007); 49. Ahmet Özen (2009); 50. Cemil Canalioğlu (2009); 51.
+    Hugo Broos (2009); 52. Şenol Güneş (2009); 53. Tolunay Kafkas (2013); 54. Mustafa Reşit Akçay (2013); 55. Cemil Canalioğlu
+    (2014); 56. Hami Mandıralı (2014); 57. Vahid Halilhodžić (2014); 58. Ersun Yanal (2014); 59. Shota Arveladze (2015); 60.
+    Sadi Tekelioğlu (2016); 61. Hami Mandıralı (2016); 62. Taner Yılmaz (2016); 63. Ersun Yanal (2016); 64. Rıza Çalımbay
+    (2017); 65. Ünal Karaman (2018); 66. Hüseyin Çimşir (2020); 67. Eddie Newton (2020); 68. İhsan Derelioğlu (2020); 69.
+    Abdullah Avcı (2020); 70. Orhan Ak (2023); 71. İhsan Derelioğlu (2023); 72. Nenad Bjelica (2023); 73. Abdullah Avcı (2023);
+    74. İhsan Derelioğlu (2024); 75. Şenol Güneş (2024); 76. Fatih Tekke (2025); 77. Hüseyin Çimşir (2026); 78. Thomas Reis
+    (2026).'
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
 - id: TS-001
   fact: İdmanocağı SK (having merged with Martıspor and Yıldızspor) is admitted to the Turkish professional leagues, joining
     the Second League under its own name and colors.
@@ -1530,3 +1562,733 @@ facts:
   fact: 'Turkish Super Cup / Presidential Cup - 10 wins: 1976, 1977, 1978, 1979, 1980, 1983, 1995, 2010, 2020, 2022.'
   topic: honours_summary
   source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)
+- id: transfer_2007-08_arrival
+  topic: transfer
+  date: 2007-08
+  fact: '2007-08 sezonu transferleri, gelenler (kulüp, bonservis): Onur Kıvrak (Karsiyaka, €700k); Sayed Moawad (Ismaily,
+    €600k); Serkan Balcı (Fenerbahçe); Daouda Jabi (K. Erciyesspor); Adnan Güngör (Samsunspor); Muhammed Basar (E. Braunschweig);
+    Tolgahan Kilit (Holst. Kiel U19); Selim Akbulut (A.Sebatspor); Tolga Seyhan (Shakhtar D.); Yusuf Kurtuluş (Trabzonspor
+    U21); Barış Memiş (Trabzonspor U21); Tomas Jun (Sparta Praha); Tayfun Cora (Kayserispor); Murat Ocak (Ankaragücü); Ergin
+    Keleş (Sakaryaspor); Eyüp Kadri Ataoğlu (Malatyaspor); Cem Demir (Orduspor); Hasan Sönmez (Kayserispor); Enis Kahraman
+    (A.Sebatspor); Ardijan Djokaj (Ankaraspor); Feridun Sungur (Samsunspor); Hasan Yaranlı (Arsinspor); Ufuk Bayraktar (A.Sebatspor).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2007
+  source_title: Transfermarkt
+- id: transfer_2007-08_departure
+  topic: transfer
+  date: 2007-08
+  fact: '2007-08 sezonu transferleri, gidenler (kulüp, bonservis): Gökdeniz Karadeniz (Rubin Kazan, €8.70m); Milan Stepanov
+    (Porto, €3.50m); Ersen Martin (Recr. Huelva, €1.10m); Eyüp Kadri Ataoğlu (Sariyer); Cem Demir (Orduspor); Enis Kahraman
+    (Altay SK); Yusuf Kurtuluş (Konyaspor); Feridun Sungur (Samsunspor); Ufuk Bayraktar (Diyarbakirspor); Muhammed Basar (Giresunspor);
+    Tolgahan Kilit (1461 Trabzon); Sayed Moawad (Ismaily).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2007
+  source_title: Transfermarkt
+- id: transfer_2008-09_arrival
+  topic: transfer
+  date: 2008-09
+  fact: '2008-09 sezonu transferleri, gelenler (kulüp, bonservis): Gökhan Ünal (Kayserispor, €6.20m); Alanzinho (Stabæk, €4.00m);
+    Gustavo Colman (Beerschot AC, €2.50m); Hrvoje Cale (GNK Dinamo, €2.20m); Selçuk İnan (Manisaspor, €2.00m); Giray Kaçar
+    (Hacettepe, €1.70m); Ceyhun Gülselam (Unterhaching, €1.00m); Tony Sylva (Lille, €600k); İsmail Özeren (C. Dardanel, €326k);
+    Buğra Erdoğan (C. Dardanel, €326k); Yakup Bugun (Altinordu, €262k); Eren Görür (Pazarspor, €105k); Sami Büyüktopaç (NEC
+    U21, €100k); Christian Brüls (KAS Eupen, €50k); Faty Papy (Inter Star, €20k); Rigobert Song (Galatasaray); Egemen Korkmaz
+    (Bursaspor); Isaac Promise (Genclerbirligi); Mustafa Yumlu (Arsinspor); Zafer Aydoğdu (A.Sebatspor); Damir Ibric (Eyüpspor);
+    Selçuk Yıldırım (Arsinspor); Abdulaziz Solmaz (Pazarspor); Göksu Alhas (Trabzonspor U21); Tomas Jun (Teplice); Yusuf Kurtuluş
+    (Konyaspor); Murat Ocak (Basaksehir); Feridun Sungur (Samsunspor); Ufukhan Bayraktar (Gaziantep FK); Ufuk Bayraktar (Diyarbakirspor);
+    Muhammed Basar (Giresunspor); Cem Demir (Adana Demirspor); Enis Kahraman (?); Kadir Keleş (Gaziantep FK); Zeki Ayvaz (1461
+    Trabzon); Erdinç Yavuz (Without Club); Daouda Jabi (Without Club); Tolgahan Kilit (Without Club); Tolga Seyhan (Shakhtar
+    D.).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2008
+  source_title: Transfermarkt
+- id: transfer_2009-10_arrival
+  topic: transfer
+  date: 2009-10
+  fact: '2009-10 sezonu transferleri, gelenler (kulüp, bonservis): Drago Gabric (Hajduk Split, €2.50m); Teófilo Gutiérrez
+    (Junior FC, €2.10m); Sezer Badur (Sivasspor, €330k); Zafer Yelen (Hansa Rostock, €180k); Razundara Tjikuzu (Basaksehir);
+    Engin Baytar (Genclerbirligi); Burak Yılmaz (Fenerbahçe); Murat Tosun (Ankaraspor); Ferhat Öztorun (Manisaspor); Ömer
+    Aysan Barış (Ankaraspor); Christian Brüls (MVV Maastricht); Kadir Keleş (Gaziantep FK); Cem Demir (Kartal); Eren Görür
+    (Giresunspor); Buğra Erdoğan (C. Rizespor); Damir Ibric (Araklispor); İsmail Özeren (1461 Trabzon); Selçuk Yıldırım (1461
+    Trabzon); Sami Büyüktopaç (1461 Trabzon); Yakup Bugun (Altinordu); Mustafa Yumlu (1461 Trabzon).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2009
+  source_title: Transfermarkt
+- id: transfer_2009-10_departure
+  topic: transfer
+  date: 2009-10
+  fact: '2009-10 sezonu transferleri, gidenler (kulüp, bonservis): Gökhan Ünal (Fenerbahçe, €3.20m); Hüseyin Çimşir (Bursaspor);
+    Ferhat Çökmüş (Manisaspor); Christian Brüls (MVV Maastricht); Cem Demir (Kartal); Buğra Erdoğan (Gaziantep FK); Mustafa
+    Yumlu (1461 Trabzon); Eren Görür (Corumspor); İsmail Özeren (C. Dardanel); Selçuk Yıldırım (1461 Trabzon); Sami Büyüktopaç
+    (A.Sebatspor); Yakup Bugun (Alanyaspor); Zeki Ayvaz (1461 Trabzon); Ömer Aysan Barış (Without Club); Muhammed Basar (Without
+    Club); Damir Ibric (Without Club).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2009
+  source_title: Transfermarkt
+- id: transfer_2010-11_arrival
+  topic: transfer
+  date: 2010-11
+  fact: '2010-11 sezonu transferleri, gelenler (kulüp, bonservis): Jajá Coelho (Metalist, €4.20m); Pawel Brozek (Wisla Kraków,
+    €2.00m); Arkadiusz Glowacki (Wisla Kraków, €900k); Piotr Brozek (Wisla Kraków, €800k); Mehmet Çakır (Ankaragücü); Barış
+    Ataş (Diyarbakirspor); Volkan Ünlü (MVV Maastricht); Zeki Yavru (1461 Trabzon); Bora Sevim (Gaziantep FK); Coskun Ekim
+    (Tottenham U21); Mert Ege Özeren (Trabzonspor U21); Isaac Promise (Manisaspor); Kadir Keleş (1461 Trabzon); Göksu Alhas
+    (1461 Trabzon); Faty Papy (MVV Maastricht); İsmail Özeren (C. Dardanel); Mustafa Yumlu (1461 Trabzon); Eren Görür (Corumspor);
+    Selçuk Yıldırım (1461 Trabzon); Sami Büyüktopaç (A.Sebatspor); Yakup Bugun (Alanyaspor); Zeki Ayvaz (1461 Trabzon).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2010
+  source_title: Transfermarkt
+- id: transfer_2010-11_departure
+  topic: transfer
+  date: 2010-11
+  fact: '2010-11 sezonu transferleri, gidenler (kulüp, bonservis): Teófilo Gutiérrez (Racing Club, €1.30m); Isaac Promise
+    (Manisaspor, €500k); Razundara Tjikuzu (Kasimpasa); Faty Papy (APR FC); Kadir Keleş (Diyarbakirspor); Selçuk Yıldırım
+    (A.Sebatspor); Eren Görür (Corumspor); İsmail Özeren (Baskent Safak); Yakup Bugun (Denizlispor); Drago Gabric (Ankaragücü);
+    Murat Tosun (Konyaspor); Barış Memiş (Karsiyaka); Volkan Ünlü (1461 Trabzon); Göksu Alhas (1461 Trabzon); Mert Ege Özeren
+    (1461 Trabzon); Sami Büyüktopaç (KFC Turnhout); Zeki Ayvaz (1461 Trabzon); Coskun Ekim (1461 Trabzon); Rigobert Song (?);
+    Tony Sylva (?).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2010
+  source_title: Transfermarkt
+- id: transfer_2011-12_arrival
+  topic: transfer
+  date: 2011-12
+  fact: '2011-12 sezonu transferleri, gelenler (kulüp, bonservis): Adrian Mierzejewski (Pol. Warsaw, €5.25m); Didier Zokora
+    (Sevilla FC, €5.00m); Paulo Henrique (Desp. Brasil, €3.75m); Volkan Şen (Bursaspor, €3.60m); Olcan Adın (Gaziantepspor,
+    €3.25m); Marek Cech (West Brom, €1.00m); Ondrej Celustka (Slavia Prague, €900k); Aykut Akgün (Karsiyaka, €625k); Róbert
+    Vittek (Ankaragücü, €600k); Marek Sapara (Ankaragücü, €200k); Sefa Akın Başıbüyük (Corumspor, €150k); Sercan Kaya (Buca
+    Gelistirme, €125k); Barış Özbek (Galatasaray); Halil Altıntop (Frankfurt); Torric Jebrin (Buca Gelistirme); Eren Albayrak
+    (Bursaspor U21); Drago Gabric (Ankaragücü); Barış Memiş (Karsiyaka); Murat Tosun (Konyaspor); Volkan Ünlü (1461 Trabzon);
+    Göksu Alhas (1461 Trabzon); Mert Ege Özeren (1461 Trabzon); Sami Büyüktopaç (KFC Turnhout); Zeki Ayvaz (1461 Trabzon);
+    Coskun Ekim (1461 Trabzon).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2011
+  source_title: Transfermarkt
+- id: transfer_2011-12_departure
+  topic: transfer
+  date: 2011-12
+  fact: '2011-12 sezonu transferleri, gidenler (kulüp, bonservis): Jajá Coelho (Al-Ahli (UAE), €4.50m); Umut Bulut (Toulouse,
+    €3.80m); Engin Baytar (Galatasaray, €1.10m); Pawel Brozek (Celtic, €325k); Selçuk İnan (Galatasaray); Egemen Korkmaz (Beşiktaş);
+    Hrvoje Cale (Wolfsburg); İbrahim Yattara (Al-Shabab); Ceyhun Gülselam (Galatasaray); Mehmet Çakır (Karabükspor); Sezer
+    Badur (Gaziantepspor); Zafer Yelen (FSV Frankfurt); Marek Sapara (Gaziantepspor); Barış Ataş (Mersin TY); Murat Tosun
+    (1461 Trabzon); Eren Albayrak (Orduspor); Göksu Alhas (1461 Trabzon); Mert Ege Özeren (1461 Trabzon); Zeki Yavru (1461
+    Trabzon); Sefa Akın Başıbüyük (1461 Trabzon); Drago Gabric (Without Club); Volkan Ünlü (Without Club); Coskun Ekim (Without
+    Club).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2011
+  source_title: Transfermarkt
+- id: transfer_2012-13_arrival
+  topic: transfer
+  date: 2012-13
+  fact: '2012-13 sezonu transferleri, gelenler (kulüp, bonservis): Marc Janko (Porto, €2.34m); Soner Aydoğdu (Genclerbirligi,
+    €2.25m); Émerson Conceição (Benfica, €1.60m); Sol Bamba (Leicester, €900k); Emre Güral (Buca Gelistirme, €600k); Oğulcan
+    Gökce (Altay SK, €215k); Alim Öztürk (SC Cambuur, €125k); Uğur Dündar (FC 08 Homburg, €30k); Yasin Öztekin (Genclerbirligi);
+    Abdullah Karmil (1461 Trabzon); Marek Sapara (Gaziantepspor); Pawel Brozek (Celtic); Sercan Kaya (1461 Trabzon); Barış
+    Ataş (Mersin TY); Zeki Yavru (1461 Trabzon); Murat Tosun (1461 Trabzon); Eren Albayrak (1461 Trabzon); Sefa Akın Başıbüyük
+    (1461 Trabzon); Göksu Alhas (1461 Trabzon).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2012
+  source_title: Transfermarkt
+- id: transfer_2012-13_departure
+  topic: transfer
+  date: 2012-13
+  fact: '2012-13 sezonu transferleri, gidenler (kulüp, bonservis): Burak Yılmaz (Galatasaray, €7.00m); Sercan Kaya (C. Rizespor,
+    €1.00m); Eren Albayrak (C. Rizespor, €1.00m); Ferhat Öztorun (Orduspor, €260k); Róbert Vittek (Basaksehir, €240k); Pawel
+    Brozek (Recr. Huelva); Piotr Brozek (Lechia Gdansk); Arkadiusz Glowacki (Wisla Kraków); Barış Özbek (Union Berlin); Tayfun
+    Cora (Karsiyaka); Murat Tosun (Manisaspor); Sami Büyüktopaç (Menemen FK); Torric Jebrin (1461 Trabzon); Sefa Akın Başıbüyük
+    (Giresunspor); Göksu Alhas (1461 Trabzon); Bora Sevim (Gaziantep FK); Barış Memiş (1461 Trabzon); Oğulcan Gökce (1461
+    Trabzon); Barış Ataş (Without Club).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2012
+  source_title: Transfermarkt
+- id: transfer_2013-14_arrival
+  topic: transfer
+  date: 2013-14
+  fact: '2013-14 sezonu transferleri, gelenler (kulüp, bonservis): Aykut Demir (Genclerbirligi, €2.90m); Alexandru Bourceanu
+    (FCSB, €1.30m); Özer Hurmacı (Kasimpasa, €500k); Bosingwa (QPR); Florent Malouda (Chelsea); Batuhan Karadeniz (Eskisehirspor);
+    Gökhan Alsan (1461 Trabzon); Abdulkadir Özdemir (1461 Trabzon); Fatih Öztürk (1461 Trabzon); Mustafa Akbaş (1461 Trabzon);
+    Şahin Aygüneş (Kasimpasa); Caner Osmanpaşa (1461 Trabzon); Abdullah Karmil (1461 Trabzon); Kadir Keleş (1461 Trabzon);
+    Yusuf Erdoğan (1461 Trabzon); İbrahim Demir (Trabzonspor U21); Göksu Alhas (1461 Trabzon); Oğulcan Gökce (1461 Trabzon);
+    Sefa Akın Başıbüyük (Giresunspor); Barış Memiş (1461 Trabzon); Bora Sevim (Gaziantep FK); Uğur Dündar (1461 Trabzon).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2013
+  source_title: Transfermarkt
+- id: transfer_2013-14_departure
+  topic: transfer
+  date: 2013-14
+  fact: '2013-14 sezonu transferleri, gidenler (kulüp, bonservis): Tolga Zengin (Beşiktaş, €2.75m); Volkan Şen (Bursaspor,
+    €1.25m); Yasin Öztekin (K. Erciyesspor, €450k); Giray Kaçar (Antalyaspor, €200k); Ondrej Celustka (Sunderland, €150k);
+    Abdullah Karmil (Ankaraspor, €70k); Halil Altıntop (Augsburg); Serkan Balcı (Antalyaspor); Émerson Conceição (Rennes);
+    Marek Cech (Bologna); Sefa Akın Başıbüyük (Giresunspor); Uğur Dündar (FC 08 Homburg); Aykut Akgün (C. Rizespor); Batuhan
+    Karadeniz (Elazigspor); Göksu Alhas (1461 Trabzon); Oğulcan Gökce (1461 Trabzon); Alim Öztürk (1461 Trabzon); Bora Sevim
+    (1461 Trabzon); Barış Memiş (1461 Trabzon); Didier Zokora (Without Club); Alanzinho (Without Club); Marek Sapara (Without
+    Club).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2013
+  source_title: Transfermarkt
+- id: transfer_2014-15_arrival
+  topic: transfer
+  date: 2014-15
+  fact: '2014-15 sezonu transferleri, gelenler (kulüp, bonservis): Majeed Waris (Spartak Moscow, €6.90m); Óscar Cardozo (Benfica,
+    €5.00m); Sefa Yılmaz (Kayserispor, €3.50m); Kévin Constant (AC Milan, €2.50m); Mustapha Yatabaré (Guingamp, €2.50m); İshak
+    Doğan (Karabükspor, €2.35m); Erkan Zengin (Eskisehirspor, €2.25m); Aytaç Kara (Eskisehirspor, €2.10m); Deniz Yılmaz (Elazigspor,
+    €1.80m); Mehmet Ekici (Werder Bremen, €1.50m); Serdar Gürler (Elazigspor, €1.30m); Gökhan Karadeniz (Altinordu, €900k);
+    Musa Nizam (Antalyaspor, €750k); Uğur Demirok (Akhisarspor, €560k); Hakan Arıkan (Kayserispor, €550k); Essaïd Belkalem
+    (Watford, €450k); Anıl Taşdemir (Orduspor, €400k); Ferhat Yazgan (Wolfsburg II, €90k); Kurtuluş Yurt (Bandirma Spor, €70k);
+    Avraam Papadopoulos (Olympiacos); Yusuf Erdoğan (1461 Trabzon); Carl Medjani (Monaco); Turgut Şahin (Gaziantepspor); Fatih
+    Atik (Guingamp); Serhat Cakmak (Ajax U18); Salih Dursun (Galatasaray); Batuhan Artarslan (Trabzonspor U21); Uğurcan Çakır
+    (Trabzonspor U21); Ondrej Celustka (Sunderland); Aykut Akgün (C. Rizespor); Göksu Alhas (1461 Trabzon); Torric Jebrin
+    (1461 Trabzon); Batuhan Karadeniz (Elazigspor); Barış Memiş (1461 Trabzon); Abdullah Karmil (Ankaraspor); Oğulcan Gökce
+    (1461 Trabzon); Alim Öztürk (1461 Trabzon); Bora Sevim (1461 Trabzon).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2014
+  source_title: Transfermarkt
+- id: transfer_2014-15_departure
+  topic: transfer
+  date: 2014-15
+  fact: '2014-15 sezonu transferleri, gidenler (kulüp, bonservis): Olcan Adın (Galatasaray, €4.00m); Paulo Henrique (SH Shenhua,
+    €4.00m); Adrian Mierzejewski (Al-Nassr, €3.20m); Avraam Papadopoulos (SH Shenhua, €285k); Turgut Şahin (Kayserispor, €250k);
+    Serdar Gürler (K. Erciyesspor, €250k); Barış Memiş (K. Erciyesspor, €248k); Gökhan Karadeniz (Antalyaspor, €100k); Abdullah
+    Karmil (Adanaspor, €86k); Caner Osmanpaşa (K. Erciyesspor, €53k); Gökhan Alsan (Sanliurfaspor, €50k); Göksu Alhas (Sanliurfaspor,
+    €50k); Kadir Keleş (Akhisarspor, €17k); Ondrej Celustka (1.FC Nuremberg); Sol Bamba (Palermo); Florent Malouda (FC Metz);
+    Marc Janko (Sydney FC); Emre Güral (Eskisehirspor); Torric Jebrin (Buca Gelistirme); Batuhan Karadeniz (Sivasspor); Şahin
+    Aygüneş (Antalyaspor); Zeki Ayvaz (Akhisarspor); Alim Öztürk (Heart of Midl.); Bora Sevim (Gaziantepspor); Serhat Cakmak
+    (Ajax Amateurs); Anıl Taşdemir (Kayserispor); Aykut Akgün (Karabükspor); Alexandru Bourceanu (FCSB); Mustafa Yumlu (Eskisehirspor);
+    Abdulkadir Özdemir (Sanliurfaspor); Batuhan Artarslan (1461 Trabzon); Oğulcan Gökce (1461 Trabzon); Kurtuluş Yurt (1461
+    Trabzon); Gustavo Colman (Without Club); Yusuf Erdoğan (1461 Trabzon).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2014
+  source_title: Transfermarkt
+- id: transfer_2015-16_arrival
+  topic: transfer
+  date: 2015-16
+  fact: '2015-16 sezonu transferleri, gelenler (kulüp, bonservis): Dame N''Doye (Hull City); Muhammet Demir (Gaziantepspor);
+    Okay Yokuşlu (Kayserispor); Luis Pedro Cavanda (Lazio); Douglas (Dinamo Moskova); Özer Hurmacı (Kasımpaşa); Alper Uludağ
+    (Kayserispor); Stéphane Mbia (Sevilla); Esteban Alvarado (AZ Alkmaar); Güray Vural (Akhisarspor); Marko Marin (Chelsea);
+    Serge Akakpo (1461 Trabzon); Bosingwa (Kulüpsüz); Mehmet Kuruoğlu (Trabzonspor U21); Abdülkadir Ömür (Trabzonspor U17);
+    Ramazan Övüç (Trabzonspor U21); Muhammet Beşir (Trabzonspor U19); Cafer Tosun (Trabzonspor U17); Semih Karadeniz (Trabzonspor
+    U21); Savaş Çakır (Trabzonspor U21); Melih Kabasakal (Trabzonspor U21); Yavuz Aygün (Trabzonspor U21); Yusuf Yazıcı (Trabzonspor
+    U21); Mehmet Yeşil (Trabzonspor U19); Alexandru Bourceanu (FCSB); Mustafa Yumlu (Eskişehirspor); Gökhan Karadeniz (Antalyaspor);
+    Serdar Gürler (K. Erciyesspor); Ferhat Yazgan (1461 Trabzon); Uğurcan Çakır (1461 Trabzon); Kévin Constant (Kulüpsüz);
+    Essaïd Belkalem (Watford); Hakan Arıkan (Kayserispor).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2015
+  source_title: Transfermarkt
+- id: transfer_2016-17_arrival
+  topic: transfer
+  date: 2016-17
+  fact: '2016-17 sezonu transferleri, gelenler (kulüp, bonservis): Ogenyi Onazi (Lazio); Fabián Castillo (Dallas); Matus Bero
+    (Trencin); Hugo Rodallega (Akhisarspor); Emmanuel Más (San Lorenzo); Luis Ibáñez (Kızılyıldız); Hyun-jun Suk (Porto);
+    João Pereira (Sporting); Olcay Şahan (Beşiktaş); Ramil Sheydayev (Zenit 2); Carl Medjani (Leganés); Serge Akakpo (1461
+    Trabzon); Abdulkadir Parmak (1461 Trabzon); Jan Durica (Loko Moskova); Bahadır Güngördü (Karabükspor); Yunus Emre Çakır
+    (Trabzonspor U21); Furkan Taş (Trabzonspor U19); Abdurrahim Dursun (Trabzonspor U21); Dame N''Doye (Sunderland); Uğur
+    Demirok (Ankaraspor); Sefa Yılmaz (Alanyaspor); Mustapha Yatabaré (Montpellier); Mustafa Akbaş (Kayserispor); Zeki Yavru
+    (Kayserispor); Batuhan Artarslan (1461 Trabzon); Gökhan Alsan (Karabükspor); Mehmet Yeşil (Trabzonspor U21); Bosingwa
+    (?); Marko Marin (Chelsea); Salih Dursun (Galatasaray).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2016
+  source_title: Transfermarkt
+- id: transfer_2017-18_arrival
+  topic: transfer
+  date: 2017-18
+  fact: '2017-18 sezonu transferleri, gelenler (kulüp, bonservis): Juraj Kucka (Milan); Burak Yılmaz (BJ Guoan); José Sosa
+    (Milan); Filip Novak (Midtjylland); Tomas Hubocan (Marsilya); Théo Bongonda (Celta Vigo); Volkan Şen (Fenerbahçe); Kamil
+    Ahmet Çörekçi (Eskişehirspor); Cafer Tosun (Trabzonspor U21); Ayberk Kardaş (Trabzonspor U21); Hüseyin Türkmen (Trabzonspor
+    U21); Sami Can Özkan (Trabzonspor U21); Furkan Yıldırım (Trabzonspor U21); Arda Akbulut (Trabzonspor U16); Muhammet Demir
+    (Gaziantepspor); Aykut Demir (Ankaraspor); Sefa Yılmaz (Gaziantepspor); Batuhan Artarslan (Şanlıurfaspor); Musa Nizam
+    (Gaziantepspor); Ramil Sheydayev (Žilina); Ramazan Övüç (Samsunspor); Abdulkadir Parmak (Altınordu); Muhammet Beşir (1461
+    Trabzon); İbrahim Demir (1461 Trabzon); Melih Kabasakal (Sarıyer); Semih Karadeniz (1461 Trabzon); Furkan Taş (Arsinspor);
+    Yunus Emre Çakır (1461 Trabzon).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2017
+  source_title: Transfermarkt
+- id: transfer_2018-19_arrival
+  topic: transfer
+  date: 2018-19
+  fact: '2018-19 sezonu transferleri, gelenler (kulüp, bonservis): Anthony Nwakaeme (H. Beer Sheva, €1.10m); Majid Hosseini
+    (Esteghlal FC, €517k); Zargo Touré (FC Lorient, €350k); Caleb Ekuban (Leeds, €200k); Burak Temir (G.Birligi U21, €19k);
+    Vahid Amiri (Persepolis FC); Zeki Yavru (Genclerbirligi); Ebrar Cumur (Trabzonspor U21); Ali Osman Karnapoğlu (Trabzonspor
+    U21); Murat Cem Akpınar (Trabzonspor U21); Tunahan Ergül (Trabzonspor U21); Arda Akbulut (Trabzonspor U19); Kağan Moradaoğlu
+    (Trabzonspor U16); Cem Kablan (Trabzonspor U21); Aytaç Kara (Y. Malatyaspor); Ramil Sheydayev (Qarabağ); Luis Ibáñez (Karabükspor);
+    Melih Kabasakal (1461 Trabzon); Muhammet Beşir (Samsunspor); Savaş Çakır (1461 Trabzon); Bahadır Güngördü (Ankara Demir);
+    Semih Karadeniz (1461 Trabzon); Abdurrahim Dursun (Kirklarelispor); Abdulkadir Parmak (Adana Demirspor); Furkan Taş (1461
+    Trabzon); Yunus Emre Çakır (1461 Trabzon); Furkan Yıldırım (1461 Trabzon).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2018
+  source_title: Transfermarkt
+- id: transfer_2018-19_departure
+  topic: transfer
+  date: 2018-19
+  fact: '2018-19 sezonu transferleri, gidenler (kulüp, bonservis): Juraj Kucka (Parma, €6.40m); Okay Yokuşlu (Celta, €6.00m);
+    Fabián Castillo (Club Tijuana, €2.26m); Matus Bero (Vitesse, €1.64m); Burak Yılmaz (Beşiktaş, €1.36m); Aytaç Kara (Bursaspor);
+    Uğur Demirok (Konyaspor); Dame N''Doye (Copenhagen); Ramil Sheydayev (KS Samara); Esteban Alvarado (LD Alajuelense); Zeki
+    Yavru (Akhisarspor); Jan Durica (Dukla Prague); Furkan Taş (Tokatspor); Melih Kabasakal (E. Erokspor); Muhammet Beşir
+    (Samsunspor); Savaş Çakır (1461 Trabzon); Cafer Tosun (1461 Trabzon); Semih Karadeniz (Zonguldak Spor); Yunus Emre Çakır
+    (1461 Trabzon); Abdurrahim Dursun (1461 Trabzon); Bahadır Güngördü (1461 Trabzon); Furkan Yıldırım (1461 Trabzon); Sami
+    Can Özkan (1461 Trabzon); Burak Temir (1461 Trabzon); Onur Kıvrak (?); Mustafa Akbaş (Without Club); Ayberk Kardaş (Trabzonspor
+    U21); Ali Osman Karnapoğlu (Trabzonspor U21); Arda Akbulut (Trabzonspor U19); Kağan Moradaoğlu (Trabzonspor U17); Tomas
+    Hubocan (Marseille).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2018
+  source_title: Transfermarkt
+- id: transfer_2019-20_arrival
+  topic: transfer
+  date: 2019-20
+  fact: '2019-20 sezonu transferleri, gelenler (kulüp, bonservis): Caleb Ekuban (Leeds, €1.00m); Gastón Campi (Estudiantes
+    LP, €800k); Erce Kardeşler (Altinordu, €455k); Alexander Sørloth (Crystal Palace, €375k); Ivanildo Fernandes (Sporting
+    CP U23, €300k); Yusuf Sarı (Marseille, €250k); Doğan Erdoğan (LASK, €200k); Badou Ndiaye (Stoke City, €176k); Ahmet Canbaz
+    (W. Bremen II, €125k); Guilherme (Alvarenga, €100k); Fıratcan Üzüm (Eskisehirspor, €87k); Nemanja Andjusic (Mladost Kakanj,
+    €50k); Salih Kavrazlı (Altinordu U17, €45k); Daniel Sturridge (Liverpool); Edgar Ié (Lille); John Obi Mikel (Middlesbrough);
+    Manuel da Costa (Al-Ittihad); Furkan Tütüncü (1461 Trabzon); Mert Kurt (1461 Trabzon); Ahmet Eren (1461 Trabzon); Azat
+    Kuçkar (1461 Trabzon); Manoel (Cruzeiro); Donis Avdijaj (Without Club); Bilal Başaçıkoğlu (Without Club); Behlül Aydın
+    (Trabzonspor U19); Kerem Baykuş (Trabzonspor U19); Koray Kılınç (Trabzonspor U19); Serkan Asan (Trabzonspor U19); Taha
+    Tunç (Trabzonspor U19); Berkay Sefa Kara (Trabzonspor U21); Safa Kınalı (Trabzonspor U19); Atakan Gündüz (Trabzonspor
+    U19); Savaş Çakır (1461 Trabzon); Cafer Tosun (1461 Trabzon); Yunus Emre Çakır (1461 Trabzon); Semih Karadeniz (Zonguldak
+    Spor); Murat Cem Akpınar (1461 Trabzon); Abdurrahim Dursun (1461 Trabzon); Bahadır Güngördü (1461 Trabzon); Furkan Yıldırım
+    (1461 Trabzon); Sami Can Özkan (1461 Trabzon); Burak Temir (Bodrum FK).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2019
+  source_title: Transfermarkt
+- id: transfer_2019-20_departure
+  topic: transfer
+  date: 2019-20
+  fact: '2019-20 sezonu transferleri, gidenler (kulüp, bonservis): Yusuf Yazıcı (Lille, €18.50m); Ogenyi Onazi (Denizlispor);
+    Donis Avdijaj (Heart of Midl.); Zargo Touré (Genclerbirligi); Hugo Rodallega (Denizlispor); Vahid Amiri (Persepolis FC);
+    Olcay Şahan (Denizlispor); Luis Ibáñez (Zrinjski Mostar); Batuhan Artarslan (Erzurumspor FK); Cem Kablan (Karagümrük);
+    Semih Karadeniz (Kocaelispor); Savaş Çakır (Bayrampasa); Azat Kuçkar (1461 Trabzon); Edgar Ié (?); Furkan Tütüncü (Bayburt
+    ÖI); Yunus Emre Çakır (Erzincanspor); Mert Kurt (Cankaya SK); Berkay Sefa Kara (GMG Kastamonu); Burak Temir (Bodrum FK);
+    Ahmet Eren (Cankaya SK); Furkan Yıldırım (Cankaya SK); Tunahan Ergül (Artvin Hopaspor); Daniel Sturridge (Ban); John Obi
+    Mikel (Without Club); Murat Cem Akpınar (Trabzonspor U19); Bahadır Güngördü (Without Club); Sami Can Özkan (Trabzonspor
+    U19); Cafer Tosun (Trabzonspor U19); Ebrar Cumur (Trabzonspor U19); Caleb Ekuban (Leeds); Ivanildo Fernandes (Sporting
+    CP U23).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2019
+  source_title: Transfermarkt
+- id: transfer_2020-21_arrival
+  topic: transfer
+  date: 2020-21
+  fact: '2020-21 sezonu transferleri, gelenler (kulüp, bonservis): Vitor Hugo (Palmeiras, €3.20m); Anastasios Bakasetas (Alanyaspor,
+    €3.00m); Berat Özdemir (Genclerbirligi, €2.50m); Fousseni Diabaté (Leicester, €1.57m); Flávio (EC Bahia, €1.20m); Anders
+    Trondsen (Rosenborg BK, €950k); Taha Tepe (Altinordu, €307k); Anıl Başaran (Balikesirspor, €270k); Marlon (Fluminense,
+    €150k); Benik Afobe (Stoke City, €100k); Stiven Plaza (Real Valladolid, €100k); Djaniny (Al-Ahli); Yunus Mallı (Wolfsburg);
+    Azat Kuçkar (1461 Trabzon); Lewis Baker (Chelsea); Taha Tunç (Trabzonspor U19); Murat Cem Akpınar (Trabzonspor U19); Hakan
+    Yeşil (Trabzonspor U19); Faruk Can Genç (Trabzonspor U19); Ebrar Cumur (Trabzonspor U19); Hüseyin Mert Kurt (Trabzonspor
+    U19); Süleyman Cebeci (Trabzonspor U19); Kağan Moradaoğlu (Trabzonspor U19); Ahmetcan Kaplan (Trabzonspor U19); Edgar
+    Ié (Feyenoord); Nemanja Andjusic (Balikesirspor); Fıratcan Üzüm (Ümraniyespor); Behlül Aydın (Sancaktepe FK); Koray Kılınç
+    (Turgutlu 1984); Berkay Sefa Kara (GMG Kastamonu); Yunus Emre Çakır (Erzincanspor); Ahmet Eren (Cankaya SK); Mert Kurt
+    (Cankaya SK); Furkan Yıldırım (Cankaya SK); Burak Temir (Yomra Spor); Tunahan Ergül (Artvin Hopaspor).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2020
+  source_title: Transfermarkt
+- id: transfer_2020-21_departure
+  topic: transfer
+  date: 2020-21
+  fact: '2020-21 sezonu transferleri, gidenler (kulüp, bonservis): Alexander Sørloth (Crystal Palace, €10.00m); Filip Novak
+    (Fenerbahçe); José Sosa (Fenerbahçe); Manuel da Costa (SCC Mohammédia); Bilal Başaçıkoğlu (Gaziantep FK); Doğan Erdoğan
+    (C. Rizespor); João Pereira (Sporting); Nemanja Andjusic (Velez Mostar); Berkay Sefa Kara (1461 Trabzon); Furkan Yıldırım
+    (1461 Trabzon); Yunus Emre Çakır (Erzincanspor); Azat Kuçkar (1461 Trabzon); Burak Temir (Iskenderunspor); Fousseni Diabaté
+    (Göztepe); Gastón Campi (Karagümrük); Anıl Başaran (Bandirma Spor); Abdurrahim Dursun (Bandirma Spor); Taha Tepe (Turgutlu
+    1984); Koray Kılınç (Istanbulspor); Kerem Baykuş (Istanbulspor); Taha Tunç (1461 Trabzon); Ahmet Canbaz (Ümraniyespor);
+    Murat Cem Akpınar (Kocaelispor); Ahmet Eren (Nevsehir Bld); Hüseyin Mert Kurt (Cankaya SK); Ebrar Cumur (Istanbulspor);
+    Tunahan Ergül (Yeni Mersin IY); Salih Kavrazlı (1461 Trabzon); Fıratcan Üzüm (Trabzonspor U19); Kağan Moradaoğlu (Trabzonspor
+    U19); Badou Ndiaye (Stoke City); Guilherme (Alvarenga); Manoel (Cruzeiro); Stiven Plaza (Real Valladolid).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2020
+  source_title: Transfermarkt
+- id: transfer_2021-22_arrival
+  topic: transfer
+  date: 2021-22
+  fact: '2021-22 sezonu transferleri, gelenler (kulüp, bonservis): Andreas Cornelius (Parma, €5.12m); Edin Visca (Basaksehir,
+    €4.30m); Taha Altıkardeş (Bursaspor, €1.31m); Manolis Siopis (Alanyaspor, €1.00m); Emrehan Gedikli (Leverkusen, €800k);
+    Enis Destan (Altinordu, €600k); Yusuf Erdoğan (Kasimpasa, €500k); Batuhan Kör (Bursaspor, €459k); Kerem Şen (Bursaspor,
+    €459k); Tymoteusz Puchacz (Union Berlin, €200k); Dorukhan Toköz (Beşiktaş); Marek Hamsik (IFK Göteborg); Bruno Peres (Roma);
+    Jean Evrard Kouassi (WH Yangtze); Gervinho (Parma); Fodé Koita (Kasimpasa); İsmail Köybaşı (C. Rizespor); Stefano Denswil
+    (Bologna); Muhammet Akpınar (Trabzonspor U19); Kadir Bakırtaş (Trabzonspor U19); Fousseni Diabaté (Göztepe); Gastón Campi
+    (Karagümrük); Abdurrahim Dursun (Bandirma Spor); Murat Cem Akpınar (Kocaelispor); Anıl Başaran (Bandirma Spor); Koray
+    Kılınç (Istanbulspor); Taha Tepe (Turgutlu 1984); Behlül Aydın (Pendikspor); Ahmet Canbaz (Ümraniyespor); Kerem Baykuş
+    (Istanbulspor); Salih Kavrazlı (1461 Trabzon); Tunahan Ergül (Yeni Mersin IY); Ahmet Eren (Nevsehir Bld); Furkan Tütüncü
+    (Cankaya SK); Atakan Gündüz (Istanbulspor); Taha Tunç (1461 Trabzon); Hüseyin Mert Kurt (Kelkit 1954 SK).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2021
+  source_title: Transfermarkt
+- id: transfer_2021-22_departure
+  topic: transfer
+  date: 2021-22
+  fact: '2021-22 sezonu transferleri, gidenler (kulüp, bonservis): Caleb Ekuban (Genoa, €2.60m); Yusuf Sarı (C. Rizespor);
+    Majid Hosseini (Kayserispor); Gastón Campi (Arouca); Kamil Ahmet Çörekçi (Hatayspor); Ahmet Canbaz (Erzurumspor FK); Tunahan
+    Ergül (1461 Trabzon); Ahmet Eren (Karacabey Bld); Mert Kurt (Yomra Spor); Furkan Tütüncü (52 Orduspor FK); Fousseni Diabaté
+    (Giresunspor); Flávio (Giresunspor); Abdulkadir Parmak (Kayserispor); Abdurrahim Dursun (Boluspor); Anıl Başaran (Beykoz
+    Anadolu); Safa Kınalı (Beykoz Anadolu); Koray Kılınç (Sariyer); Behlül Aydın (Sanliurfaspor); Hakan Yeşil (1461 Trabzon);
+    Kerem Baykuş (1461 Trabzon); Faruk Can Genç (Ümraniyespor); Muhammet Akpınar (Adiyaman FK); Atakan Gündüz (1461 Trabzon);
+    Taha Tunç (Yomra Spor); Kadir Bakırtaş (Yomra Spor); Edgar Ié (Without Club); Süleyman Cebeci (Trabzonspor U19); Marlon
+    (Fluminense); Lewis Baker (Chelsea); Benik Afobe (Stoke City).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2021
+  source_title: Transfermarkt
+- id: transfer_2022-23_arrival
+  topic: transfer
+  date: 2022-23
+  fact: '2022-23 sezonu transferleri, gelenler (kulüp, bonservis): Trezeguet (Aston Villa, €4.00m); Eren Elmalı (Kasimpasa,
+    €3.60m); Maxi Gómez (Valencia, €3.00m); Enis Bardhi (Levante, €3.00m); Umut Bozok (FC Lorient, €2.00m); Marc Bartra (Real
+    Betis, €1.25m); Doğucan Haspolat (Kasimpasa, €1.20m); Montassir Lahtimi (FUS Rabat, €600k); Yusuf Yazıcı (Lille, €500k);
+    Naci Ünüvar (Ajax, €150k); Stefano Denswil (Bologna); Jens Stryger (Udinese); Jean-Philippe Gbamin (Everton); Lazar Markovic
+    (Gaziantep FK); Süleyman Cebeci (Trabzonspor U19); Kağan Moradaoğlu (Trabzonspor U19); Emirhan Zaman (Trabzonspor U19);
+    Hakan Aydın (Trabzonspor U19); Arif Boşluk (Trabzonspor U19); Jean Evrard Kouassi (Karagümrük); Fousseni Diabaté (Giresunspor);
+    Abdulkadir Parmak (Kayserispor); Flávio (Giresunspor); Batuhan Kör (Manisa FK); Hakan Yeşil (Adanaspor); Abdurrahim Dursun
+    (Boluspor); Safa Kınalı (Beykoz Anadolu); Faruk Can Genç (A. Keciörengücü); Koray Kılınç (Sariyer); Anıl Başaran (1461
+    Trabzon); Muhammet Akpınar (Adiyaman FK); Arda Akbulut (Bandirma Spor); Ebrar Cumur (Istanbulspor); Atakan Gündüz (1461
+    Trabzon); Taha Tunç (Yomra Spor); Kadir Bakırtaş (Yomra Spor).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2022
+  source_title: Transfermarkt
+- id: transfer_2022-23_departure
+  topic: transfer
+  date: 2022-23
+  fact: '2022-23 sezonu transferleri, gidenler (kulüp, bonservis): Ahmetcan Kaplan (Ajax, €9.50m); Andreas Cornelius (Copenhagen,
+    €6.00m); Berat Özdemir (Al-Ettifaq, €2.44m); Vitor Hugo (EC Bahia, €1.80m); Jean Evrard Kouassi (Karagümrük, €700k); Erce
+    Kardeşler (Hatayspor, €400k); Flávio (Al-Taawoun, €196k); Yusuf Erdoğan (Adana Demirspor, €100k); Enis Destan (Warta Poznan,
+    €75k); Fousseni Diabaté (Partizan, €30k); Anthony Nwakaeme (Al-Fayha); Gervinho (Aris Saloniki); Yunus Mallı (Kasimpasa);
+    Abdurrahim Dursun (Adana Demirspor); Faruk Can Genç (Giresunspor); İsmail Köybaşı (Göztepe); Koray Kılınç (?); Emrehan
+    Gedikli (A. Lustenau); Batuhan Kör (1461 Trabzon); Hakan Yeşil (Bodrum FK); Kerem Şen (Istanbulspor); Fodé Koita (Kasimpasa);
+    Safa Kınalı (Altinordu); Murat Cem Akpınar (Giresunspor); Arda Akbulut (Bandirma Spor); Kadir Bakırtaş (Karaman FK); Bruno
+    Peres (Without Club); Anders Trondsen (Without Club); Stefano Denswil (Bologna); Naci Ünüvar (Ajax); Tymoteusz Puchacz
+    (Union Berlin).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2022
+  source_title: Transfermarkt
+- id: transfer_2023-24_arrival
+  topic: transfer
+  date: 2023-24
+  fact: '2023-24 sezonu transferleri, gelenler (kulüp, bonservis): Batista Mendy (Angers SCO, €4.40m); Mislav Orsic (Southampton,
+    €2.40m); Umut Güneş (Alanyaspor, €2.30m); Rayyan Baniya (Karagümrük, €2.05m); Paul Onuachu (Southampton, €1.50m); Tonio
+    Teklic (NK Varazdin, €1.00m); Onuralp Çevikkan (Altinordu U17, €700k); Filip Benkovic (Udinese, €500k); Mehmet Aydin (FC
+    Schalke 04, €350k); Nicolas Pépé (Arsenal); Taxiarchis Fountas (D.C. United); Joaquín Fernández (Real Valladolid); Thomas
+    Meunier (Dortmund); Dimitrios Kourbelis (Panathinaikos); Göktan Gürpüz (B. Dortmund II); Ognjen Bakic (NK Osijek); Berat
+    Özdemir (Al-Ettifaq); Veysel Sönmezsoy (Trabzonspor U19); Ali Alperen Çelik (Trabzonspor U19); Emir Uzun (Trabzonspor
+    U19); Ali Şahin Yılmaz (Trabzonspor U19); Djaniny (Sharjah FC); Flávio (Al-Taawoun); Enis Destan (Warta Poznan); Hakan
+    Yeşil (Bodrum FK); Kerem Şen (Istanbulspor); Emrehan Gedikli (A. Lustenau); Murat Cem Akpınar (Giresunspor); Behlül Aydın
+    (Sanliurfaspor); Safa Kınalı (1461 Trabzon); Fodé Koita (Kasimpasa); Arda Akbulut (Adanaspor); Kadir Bakırtaş (Karaman
+    FK).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2023
+  source_title: Transfermarkt
+- id: transfer_2023-24_departure
+  topic: transfer
+  date: 2023-24
+  fact: '2023-24 sezonu transferleri, gidenler (kulüp, bonservis): Abdülkadir Ömür (Hull City, €5.00m); Djaniny (Al-Fateh,
+    €1.01m); Anastasios Bakasetas (Panathinaikos, €1.00m); Doğucan Haspolat (KVC Westerlo, €600k); Behlül Aydın (GMG Kastamonu,
+    €196k); Flávio (Al-Taawoun, €182k); Serkan Asan (Pendikspor, €102k); Abdulkadir Parmak (Sivasspor, €100k); Montassir Lahtimi
+    (Wydad AC, €100k); Manolis Siopis (Cardiff); Dorukhan Toköz (Adana Demirspor); Marc Bartra (Real Betis); Jens Stryger
+    (Malmö); Taha Altıkardeş (Göztepe); Emrehan Gedikli (Konyaspor); Safa Kınalı (Boluspor); Fodé Koita (Sivasspor); Ebrar
+    Cumur (Sebat SK); Maxi Gómez (Cádiz CF); Dimitrios Kourbelis (Karagümrük); Tonio Teklic (Karagümrük); Hakan Yeşil (1461
+    Trabzon); Murat Cem Akpınar (Sakaryaspor); Süleyman Cebeci (68 Aksarayspor); Arda Akbulut (1461 Trabzon); Emirhan Zaman
+    (1461 Trabzon); Hakan Aydın (Sebat SK); Veysel Sönmezsoy (Sebat SK); Ali Alperen Çelik (Pazarspor); Kadir Bakırtaş (Cankaya
+    SK); Emir Uzun (Sebat SK); Ali Şahin Yılmaz (Trabzonspor U19); Marek Hamsik (?); Yusuf Yazıcı (Lille); Jean-Philippe Gbamin
+    (Everton); Lazar Markovic (Gaziantep FK).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2023
+  source_title: Transfermarkt
+- id: transfer_2024-25_arrival
+  topic: transfer
+  date: 2024-25
+  fact: '2024-25 sezonu transferleri, gelenler (kulüp, bonservis): Oleksandr Zubkov (Shakhtar D., €6.00m); Danylo Sikan (Shakhtar
+    D., €6.00m); Muhammed Cham (Clermont Foot, €4.00m); Pedro Malheiro (Boavista, €2.61m); Serdar Saatçı (Braga, €2.50m);
+    Simon Banza (Braga, €2.00m); Cihan Çanak (Standard Liège, €2.00m); Ozan Tufan (Hull City, €2.00m); Arseniy Batagov (Zorya
+    Lugansk, €1.83m); Denis Drăguș (Standard Liège, €1.70m); Okay Yokuşlu (West Brom, €1.65m); Tim Jabol-Folcarelli (AC Ajaccio,
+    €1.00m); Mustafa Eskihellaç (Gaziantep FK, €341k); John Lundstram (Rangers); Borna Barisic (Rangers); Stefan Savić (Atlético);
+    Anthony Nwakaeme (Al-Fayha); Poyraz Yıldırım (Trabzonspor U19); Ali Şahin Yılmaz (Trabzonspor U19); Salih Malkoçoğlu (Trabzonspor
+    U19); Zekeriya Bulut (Trabzonspor U19); Ahmet Yıldırım (Trabzonspor U19); Trezeguet (Al-Rayyan); Flávio (Al-Taawoun);
+    Maxi Gómez (Cádiz CF); Dimitrios Kourbelis (Karagümrük); Tonio Teklic (Karagümrük); Murat Cem Akpınar (Sakaryaspor); Montassir
+    Lahtimi (Wydad AC); Serkan Asan (Pendikspor); Hakan Yeşil (1461 Trabzon); Batuhan Kör (1461 Trabzon); Kerem Baykuş (1461
+    Trabzon); Süleyman Cebeci (68 Aksarayspor); Arda Akbulut (1461 Trabzon); Emirhan Zaman (1461 Trabzon); Hakan Aydın (Sebat
+    SK); Emir Uzun (Sebat SK); Kadir Bakırtaş (Cankaya SK); Ali Alperen Çelik (Pazarspor).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2024
+  source_title: Transfermarkt
+- id: transfer_2024-25_departure
+  topic: transfer
+  date: 2024-25
+  fact: '2024-25 sezonu transferleri, gidenler (kulüp, bonservis): Eren Elmalı (Galatasaray, €4.00m); Umut Güneş (Basaksehir,
+    €2.00m); Rayyan Baniya (Palermo, €450k); Murat Cem Akpınar (Sakaryaspor, €419k); Hakan Yeşil (Pendikspor, €307k); Batuhan
+    Kör (Van Spor FK, €196k); Nicolas Pépé (Villarreal); Enis Bardhi (Bodrum FK); Taxiarchis Fountas (OFI Crete); Thomas Meunier
+    (Lille); Flávio (Al-Taawoun); Mislav Orsic (Pafos); Joaquín Fernández (Kansas City); Dimitrios Kourbelis (Al-Khaleej);
+    Umut Bozok (Eyüpspor); Montassir Lahtimi (Kazma SC); Ognjen Bakic (HNK Sibenik); Emir Uzun (Buyukcekmece FK); Ali Alperen
+    Çelik (Pazarspor); Kerem Baykuş (GMG Kastamonu); Trezeguet (Al-Rayyan); Borna Barisic (CD Leganés); Tonio Teklic (Erzurumspor
+    FK); Poyraz Yıldırım (Ümraniyespor); Kerem Şen (Istanbulspor); Göktan Gürpüz (Karagümrük); Serkan Asan (Igdir FK); Süleyman
+    Cebeci (Karaman FK); Zekeriya Bulut (Sebat SK); Stefano Denswil (Without Club); Maxi Gómez (Without Club); Hüseyin Türkmen
+    (Without Club); Paul Onuachu (Southampton); Berat Özdemir (Al-Ettifaq); Filip Benkovic (Udinese); Mehmet Aydin (FC Schalke
+    04).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2024
+  source_title: Transfermarkt
+- id: transfer_2025-26_arrival
+  topic: transfer
+  date: 2025-26
+  fact: '2025-26 sezonu transferleri, gelenler (kulüp, bonservis): Christ Inao Oulaï (SC Bastia, €9.60m); Felipe Augusto (Cercle
+    Brugge, €6.65m); Paul Onuachu (Southampton, €5.67m); Chibuike Nwaiwu (Wolfsberger AC, €5.50m); Kazeem Olaigbe (Rennes,
+    €5.00m); Benjamin Bouchouari (Saint-Étienne, €4.00m); Mathias Løvik (Parma, €4.00m); Wagner Pina (Estoril, €3.00m); Ernest
+    Muci (Beşiktaş, €1.00m); Umut Nayir (Konyaspor); André Onana (Man Utd); Erol Can Çolak (Trabzonspor U19); Boran Başkan
+    (Trabzonspor U19); Arda Öztürk (Trabzonspor U19); Onuralp Çakıroğlu (Trabzonspor U19); Taha Emre İnce (Trabzonspor U19);
+    Denis Drăguș (Eyüpspor); Rayyan Baniya (Palermo); Poyraz Yıldırım (Antalyaspor); Tonio Teklic (Erzurumspor FK); Göktan
+    Gürpüz (Karagümrük); Borna Barisic (CD Leganés); Serkan Asan (Igdir FK); Kerem Şen (Istanbulspor); Süleyman Cebeci (Karaman
+    FK).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2025
+  source_title: Transfermarkt
+- id: transfer_2025-26_departure
+  topic: transfer
+  date: 2025-26
+  fact: '2025-26 sezonu transferleri, gidenler (kulüp, bonservis): Uğurcan Çakır (Galatasaray, €30.00m); Pedro Malheiro (Al-Wasl,
+    €6.13m); Danylo Sikan (Anderlecht, €4.00m); Kazeem Olaigbe (Konyaspor, €3.02m); Trezeguet (Al Ahly, €1.60m); Rayyan Baniya
+    (Konyaspor, €1.00m); Muhammed Cham (Slavia Prague, €600k); Batista Mendy (Sevilla FC, €250k); Süleyman Cebeci (Karaman
+    FK, €21k); Enis Destan (Hull City); Tonio Teklic (Widzew Lodz); Serkan Asan (Igdir FK); Taha Tepe (Igdir FK); Kerem Şen
+    (Serik Spor); Denis Drăguș (Eyüpspor); Cihan Çanak (Genclerbirligi); John Lundstram (Hull City); Serdar Saatçı (Al-Nasr);
+    Poyraz Yıldırım (Sakaryaspor); Göktan Gürpüz (Genclerbirligi); Arif Boşluk (Konyaspor); Ali Şahin Yılmaz (Istanbulspor);
+    Borna Barisic (Without Club); Simon Banza (Braga).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2025
+  source_title: Transfermarkt
+- id: transfer_2026-27_arrival
+  topic: transfer
+  date: 2026-27
+  fact: '2026-27 sezonu transferleri, gelenler (kulüp, bonservis): Franculino (Midtjylland, €25.00m); Aral Şimşir (Midtjylland,
+    €15.00m); Noah Saviolo (Vit. Guimarães, €11.50m); Ernest Muci (Beşiktaş, €8.50m); Sidny Lopes Cabral (Benfica, €7.00m);
+    René Mitongo (Standard Liège, €3.00m); Cenk Özkacar (Valencia, €1.75m); Ali Habeşoğlu (Bodrum FK, €1.65m); Melih Kabasakal
+    (Gaziantep FK, €422k); Mohamed Salah (Liverpool); Fabinho (Al-Ittihad); Ruslan Malinovskyi (Genoa); Samet Akaydin (C.
+    Rizespor); Metehan Mimaroğlu (Genclerbirligi); Thierry Karadeniz (1.FC Köln U19); Oğuzhan Yılmaz (Trabzonspor U19); Batista
+    Mendy (Sevilla FC); Kazeem Olaigbe (Konyaspor); Muhammed Cham (Slavia Prague); Göktan Gürpüz (Genclerbirligi); Cihan Çanak
+    (Genclerbirligi); Serdar Saatçı (Al-Nasr); John Lundstram (Hull City); Poyraz Yıldırım (Sakaryaspor); Arif Boşluk (Konyaspor);
+    Ali Şahin Yılmaz (Istanbulspor); Veysel Sönmezsoy (Sebat SK); Zekeriya Bulut (Sebat SK).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2026
+  source_title: Transfermarkt
+- id: transfer_2026-27_departure
+  topic: transfer
+  date: 2026-27
+  fact: '2026-27 sezonu transferleri, gidenler (kulüp, bonservis): Christ Inao Oulaï (Fiorentina, €26.00m); Felipe Augusto
+    (Zenit S-Pb, €15.00m); Oleksandr Zubkov (AEK Athens, €4.00m); Salih Malkoçoğlu (Al-Jazira, €3.75m); Mathias Løvik (Molde
+    FK, €2.50m); Arif Boşluk (Konyaspor, €550k); Serdar Saatçı (Corum FK, €500k); Göktan Gürpüz (Corum FK, €200k); Denis Drăguș
+    (FCSB); John Lundstram (Leicester); Edin Visca (Basaksehir); Ali Şahin Yılmaz (Bodrum FK); Boran Başkan (Bodrum FK); Taha
+    Emre İnce (Pendikspor); Onuralp Çakıroğlu (Pendikspor); Veysel Sönmezsoy (Sebat SK); Zekeriya Bulut (Etimesgut SK); Kazeem
+    Olaigbe (Basel); Muhammed Cham (Red Star); Poyraz Yıldırım (Muglaspor); René Mitongo (Estrela Amadora); Oğuzhan Yılmaz
+    (Maras Istiklal); Arda Öztürk (Igdir FK); Thierry Karadeniz (Sebat SK); Anthony Nwakaeme (Without Club); Ernest Muci (Beşiktaş).'
+  source: https://www.transfermarkt.com.tr/trabzonspor/transfers/verein/449/saison_id/2026
+  source_title: Transfermarkt
+- id: squad_1967-68
+  topic: kadro
+  date: 1967-68
+  fact: '1967-68 sezonu kadro: Ahmet Suat Özyazıcı (Forward), Ahmet Ziya Genç (Forward), Argun Sayın (Goalkeeper), Atan Çakır
+    (Defender), Atay Aksu (Forward), Coşkun Şahinkaya (Midfielder), Faruk Nafız Özak (Midfielder), Fatih Gürel (Goalkeeper),
+    Haydar Tuncer (Defender), İbrahim Ayvaz (Midfielder), İbrahim Çoban (Midfielder), Kenan Aksu (Defender), Necati Atasoy
+    (Forward), Necmi Perekli (Forward), Osman Türk (Forward), Özkan Sümer (Midfielder), Recai (Forward), Selahattin Şahinkaya
+    (Forward), Şevki Gençosmanoğlu (Midfielder), Turgut Görgün (Forward), Yaşar Babuz (Forward). gelenler: Ahmet Suat Özyazıcı,
+    Ahmet Ziya Genç, Coşkun Şahinkaya, Kenan Aksu, Necmi Perekli, Özkan Sümer.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1967-68_sezonu
+  source_title: Trabzonspor 1967-68 sezonu - Vikipedi
+- id: squad_1968-69
+  topic: kadro
+  date: 1968-69
+  fact: '1968-69 sezonu kadro: Ahmet Suat Özyazıcı (Forward), Ahmet Tanrıkulu (Forward), Ahmet Ziya Genç (Forward), Ali Rıza
+    Turan (Forward), Atan Çakır (Defender), Atay Aksu (Forward), Aydın Akar (Midfielder), Bülent Şahinkaya (Midfielder), Coşkun
+    Şahinkaya (Midfielder), Çetin Coşan (Forward), Faruk Nafız Özak (Midfielder), Fatih Gürel (Goalkeeper), Hayrettin Yıldırım
+    (Forward), İsmail Özdil (Midfielder), Kenan Aksu (Defender), Mustafa Beşlioğlu (Defender), Necmi Perekli (Forward), Orhan
+    Durmaz (Midfielder), Osman Türk (Forward), Ömer Faruk Özceylan (Goalkeeper), Özkan Sümer (Midfielder), Selahattin Şahinkaya
+    (Forward), Şevki Gençosmanoğlu (Midfielder), Tayyar Altınsoy (Forward), Turgut Görgün (Forward), Zeki Demir (Forward).
+    gelenler: Ahmet Tanrıkulu, Ali Rıza Turan, Aydın Akar, Bülent Şahinkaya, Çetin Coşan, Hayrettin Yıldırım, İsmail Özdil,
+    Mustafa Beşlioğlu, Orhan Durmaz, Ömer Faruk Özceylan, Tayyar Altınsoy, Zeki Demir. gidenler: Argun Sayın, Haydar Tuncer,
+    İbrahim Ayvaz, İbrahim Çoban, Necati Atasoy, Recai, Yaşar Babuz.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1968-69_sezonu
+  source_title: Trabzonspor 1968-69 sezonu - Vikipedi
+- id: squad_1969-70
+  topic: kadro
+  date: 1969-70
+  fact: '1969-70 sezonu kadro: Abdullah Aktuğ (Midfielder), Ahmet Suat Özyazıcı (Forward), Ahmet Tanrıkulu (Forward), Ahmet
+    Ziya Atasoy (Midfielder), Ahmet Ziya Genç (Forward), Ali Rıza Turan (Forward), Atay Aktuğ (Forward), Bülent Şahinkaya
+    (Midfielder), Coşkun Şahinkaya (Midfielder), Çetin Noyan (Defender), Faruk Nafız Özak (Midfielder), Güven Önüt (Forward),
+    Hamdi Hacıarif Kaptanoğlu (Forward), İsmail Özdil (Midfielder), Mehmet Ata Özer (Forward), Mehmet Cemil Altın (Forward),
+    Mehmet Tetik (Defender), Mustafa Savaşer (Midfielder), Necdet Müldür (Forward), Necmi Perekli (Forward), Osman Türk (Forward),
+    Ömer Faruk Özceylan (Goalkeeper), Özkan Sümer (Midfielder), Şevki Gençosmanoğlu (Midfielder), Tuncel Sönmez (Goalkeeper),
+    Turan Yurdakul (Defender). gelenler: Abdullah Aktuğ, Ahmet Ziya Atasoy, Atay Aktuğ, Çetin Noyan, Güven Önüt, Hamdi Hacıarif
+    Kaptanoğlu, Mehmet Ata Özer, Mehmet Cemil Altın, Mehmet Tetik, Mustafa Savaşer, Necdet Müldür, Tuncel Sönmez, Turan Yurdakul.
+    gidenler: Atan Çakır, Atay Aksu, Aydın Akar, Çetin Coşan, Fatih Gürel, Hayrettin Yıldırım, Kenan Aksu, Mustafa Beşlioğlu,
+    Orhan Durmaz, Selahattin Şahinkaya, Tayyar Altınsoy, Turgut Görgün, Zeki Demir.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1969-70_sezonu
+  source_title: Trabzonspor 1969-70 sezonu - Vikipedi
+- id: squad_1970-71
+  topic: kadro
+  date: 1970-71
+  fact: '1970-71 sezonu kadro: Abdullah Aktuğ (Midfielder), Ahmet Suat Özyazıcı, Ahmet Tanrıkulu (Forward), Ahmet Ziya Genç
+    (Forward), Ali Rıza Turan (Forward), Atay Aktuğ (Forward), Cemil Usta (Defender), Güvenir Kurtar (Defender), Hamdi Kaptanoğlu,
+    Hikmet Şatır, İlhan İkican (Goalkeeper), İsmail Özdil (Midfielder), Mehdi Aktuğ, Mehmet Cemil Altın (Forward), Mehmet
+    Tetik (Defender), Mustafa Savaşer (Midfielder), Necmi Perekli (Forward), Osman Türk (Forward), Ömer Faruk Özceylan (Goalkeeper),
+    Constantin Reculen Koska (Midfielder), Şaban Kerim, Turan Yurdakul (Defender), Ziya Atasoy. gelenler: Cemil Usta, Güvenir
+    Kurtar, Hikmet Şatır, İlhan İkican, Mehdi Aktuğ, Reculen Koska, Şaban Kerim. gidenler: Bülent Şahinkaya, Coşkun Şahinkaya,
+    Çetin Noyan, Güven Önüt, Mehmet Ata Özer, Necdet Müldür, Özkan Sümer, Şevki Gençosmanoğlu, Tuncel Sönmez.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1970-71_sezonu
+  source_title: Trabzonspor 1970-71 sezonu - Vikipedi
+- id: squad_1971-72
+  topic: kadro
+  date: 1971-72
+  fact: '1971-72 sezonu kadro: Abdullah Aktuğ (Midfielder), Ahmet Suat Özyazıcı, Ahmet Tanrıkulu (Forward), Ali Rıza Turan
+    (Forward), Atay Aktuğ (Forward), Bülent Gürsoytrak (Defender), Bülent Şahinkaya (Midfielder), Cemil Usta (Defender), Erkan
+    Yanardağ (Defender), İhsan Sakallıoğlu (Forward), İlhan İkican (Goalkeeper), Mehmet Cemil Altın (Forward), Mehmet Kobya
+    (Forward), Mehmet Tetik (Defender), Mustafa Savaşer (Midfielder), Necmi Perekli (Forward), Osman Türk (Forward), Suavi
+    Tanlak (Forward), Turan Yurdakul (Defender). gelenler: Bülent Gürsoytrak, Bülent Şahinkaya, Erkan Yanardağ, İhsan Sakallıoğlu,
+    Mehmet Kobya, Suavi Tanlak. gidenler: Ahmet Ziya Genç, Güvenir Kurtar, Hamdi Kaptanoğlu, Hikmet Şatır, İsmail Özdil, Mehdi
+    Aktuğ, Ömer Faruk Özceylan, Reculen Koska, Şaban Kerim, Ahmet Ziya Atasoy.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1971-72_sezonu
+  source_title: Trabzonspor 1971-72 sezonu - Vikipedi
+- id: squad_1972-73
+  topic: kadro
+  date: 1972-73
+  fact: '1972-73 sezonu kadro: Abdülaziz Öğütçen (Defender), Ahmet Tanrıkulu (Forward), Ali Kemal Denizci (Forward), Ali Rıza
+    Turan (Forward), Atay Aktuğ (Forward), Bekir Barçın (Midfielder), Bülent Gürsoytrak (Defender), Bülent Şahinkaya (Midfielder),
+    Cemil Usta (Defender), Engin Çınar (Forward), Erkan Yanardağ (Defender), İhsan Sakallıoğlu (Forward), İlhan İkican (Goalkeeper),
+    Kadir Özcan (Defender), Mehmet Cemil Altın (Forward), Mehmet Kobya (Forward), Mustafa Horasan (Forward), Necati Özçağlayan
+    (Defender), Osman Türk (Forward), Sabri Göz (Forward), Suavi Tanlak (Forward), Şenol Güneş (Goalkeeper). gelenler: Abdülaziz
+    Öğütçen, Ali Kemal Denizci, Bekir Barçın, Engin Çınar, Kadir Özcan, Mustafa Horasan, Necati Özçağlayan, Sabri Göz, Şenol
+    Güneş. gidenler: Abdullah Aktuğ, Ahmet Suat Özyazıcı, Mehmet Tetik, Mustafa Savaşer, Necmi Perekli, Turan Yurdakul.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1972-73_sezonu
+  source_title: Trabzonspor 1972-73 sezonu - Vikipedi
+- id: squad_1973-74
+  topic: kadro
+  date: 1973-74
+  fact: '1973-74 sezonu kadro: Abdülaziz Öğütçen (Defender), Ali Kemal Denizci (Forward), Ali Yavuz (Midfielder), Bekir Barçın
+    (Midfielder), Berkan Demirkan (Midfielder), Bülent Şahinkaya (Midfielder), Cemil Usta (Defender), Engin Çınar (Forward),
+    Faruk Nafız Özak (Midfielder), Hüsamettin Özdemir (Forward), Hüseyin Nuri Tok (Forward), İhsan Sakallıoğlu (Forward),
+    Alptekin Nazifoğlu (Goalkeeper), İlyas Akçay (Midfielder), Kadir Özcan (Defender), Ali Rıza TUNÇYÜREK (Midfielder), Mustafa
+    Özbey (Goalkeeper), Necati Özçağlayan (Defender), Güngör Şahinkaya (Midfielder), Şener Çınar (Defender), Şenol Güneş (Goalkeeper),
+    Talat Yılmaz (Forward), Turgay Beyazıt (Midfielder), Turgay Semercioğlu (Defender). gelenler: Ali Yavuz, Berkan Demirkan,
+    Hüsamettin Özdemir, Hüseyin Nuri Tok, İlyas Akçay, Mustafa Özbey, Güngör Şahinkaya, Şener Çınar, Talat Yılmaz, Turgay
+    Beyazıt, Berkan Demirkan, Turgay Semercioğlu. gidenler: Ahmet Tanrıkulu, Ali Rıza Turan, Atay Aktuğ, Bülent Gürsoytrak,
+    Erkan Yanardağ, Mehmet Kobya, Mustafa Horasan, Osman Türk, Sabri Göz, Suavİ Tanlak, Mehmet Cemil Altın, Ömer Eyüboğlu.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1973-74_sezonu
+  source_title: Trabzonspor 1973-74 sezonu - Vikipedi
+- id: squad_1974-75
+  topic: kadro
+  date: 1974-75
+  fact: '1974-75 sezonu kadro: Abdülaziz Öğütçen (Defender), Ali Kemal Denizci (Forward), Ali Yavuz (Midfielder), Bekir Barçın
+    (Midfielder), Bülent Şahinkaya (Midfielder), Cemil Usta (Defender), Engin Çınar (Forward), Faruk Nafız Özak (Midfielder),
+    Hüseyin Nuri Tok (Forward), İhsan Sakallıoğlu (Forward), İlhan İkican (Goalkeeper), İlyas Akçay (Midfielder), Kadir Özcan
+    (Defender), Mehmet Cemil Altın (Forward), Mustafa Özbey (Goalkeeper), Necati Özçağlayan (Defender), Şener Çınar (Defender),
+    Şenol Güneş (Goalkeeper), Tuncay Mesçi (Midfielder), Turgay Beyazıt (Midfielder), Turgay Semercioğlu (Defender). gelenler:
+    Tuncay Mesçi. gidenler: Hüsamettin Özdemir, Ömer Eyüboğlu, Suavi Tanlak, Talat Yılmaz.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1974-75_sezonu
+  source_title: Trabzonspor 1974-75 sezonu - Vikipedi
+- id: squad_1975-76
+  topic: kadro
+  date: 1975-76
+  fact: '1975-76 sezonu kadro: Ahmet Ceyhan (Defender), Ali Kemal Denizci (Forward), Ali Yavuz (Midfielder), Alptekin Nazifoğlu
+    (Goalkeeper), Bekir Barçın (Midfielder), Cemil Usta (Defender), Cihan Umanç (Midfielder), Engin Çınar (Forward), Faruk
+    Nafız Özak (Midfielder), Hüseyin Nuri Tok (Forward), Hüsnü Özkara (Defender), İhsan Sakallıoğlu (Forward), Kadir Özcan
+    (Defender), Mehmet Cemil Altın (Forward), Mustafa Özbey (Goalkeeper), Necati Özçağlayan (Defender), Necmi Perekli (Forward),
+    Serdar Bali (Midfielder), Şener Çınar (Defender), Şenol Güneş (Goalkeeper), Tuncay Mesçi (Midfielder), Turgay Semercioğlu
+    (Defender). gelenler: Ahmet Ceyhan, Alptekin Nazifoğlu, Cihan Umanç, Hüsnü Özkara, Necmi Perekli, Serdar Bali. gidenler:
+    Abdülaziz Öğütçen, Bülent Şahinkaya, İlhan İkican, İlyas Akçay, Turgay Beyazıt.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1975-76_sezonu
+  source_title: Trabzonspor 1975-76 sezonu - Vikipedi
+- id: squad_1976-77
+  topic: kadro
+  date: 1976-77
+  fact: '1976-77 sezonu kadro: Ahmet Ceyhan (Defender), Ali Kemal Denizci (Forward), Ali Yavuz (Midfielder), Alptekin Nazifoğlu
+    (Goalkeeper), Bekir Barçın (Midfielder), Cemil Usta (Defender), Engin Çınar (Forward), Eyüp Odabaşı (Midfielder), Güngör
+    Şahinkaya (Midfielder), Hüseyin Nuri Tok (Forward), Hüsnü Özkara (Defender), Kadir Özcan (Defender), Kemal Babul (Midfielder),
+    Mehmet Cemil Altın (Forward), Necati Özçağlayan (Defender), Necdet Ergün (Forward), Necmi Perekli (Forward), Selahattin
+    Diyadin (Midfielder), Serdar Bali (Midfielder), Şenol Güneş (Goalkeeper), Turgay Semercioğlu (Defender), Ünsal Özer (Defender).
+    gelenler: Eyüp Odabaşı, Güngör Şahinkaya, Kemal Babul, Necdet Ergün, Selahattin Diyadin, Ünsal Özer. gidenler: Cihan Umanç,
+    Faruk Nafız Özak, İhsan Sakallıoğlu, Mustafa Özbey, Şener Çınar, Tuncay Mesçi.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1976-77_sezonu
+  source_title: Trabzonspor 1976-77 sezonu - Vikipedi
+- id: squad_1977-78
+  topic: kadro
+  date: 1977-78
+  fact: '1977-78 sezonu kadro: Ahmet Ceyhan (Defender), Ali Kemal Denizci (Forward), Alptekin Nazifoğlu (Goalkeeper), Bekir
+    Barçın (Midfielder), Cemil Usta (Defender), Cengiz Akçay (Forward), Faruk Sağlam (Midfielder), Galip Değerli (Forward),
+    Güngör Şahinkaya (Midfielder), Hüseyin Nuri Tok (Forward), Hüsnü Özkara (Defender), Kadir Özcan (Defender), Mehmet Ekşi
+    (Defender), Necati Özçağlayan (Defender), Necdet Ergün (Forward), Orhan Naci Akyüz (Midfielder), Serdar Bali (Midfielder),
+    Şenol Güneş (Goalkeeper), Turgay Semercioğlu (Defender), Ufuk Şiranlı (Defender), Yaşar Alemdaroğlu (Midfielder). gelenler:
+    Cengiz Akçay, Faruk Sağlam, Galip Değerli, Mehmet Ekşi, Orhan Naci Akyüz, Ufuk Şiranlı, Yaşar Alemdaroğlu. gidenler: Ali
+    Yavuz, Engin Çınar, Eyüp Odabaşı, Kemal Babul, Mehmet Cemil Altın, Necmi Perekli, Selahattin Diyadin, Ünsal Özer.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1977-78_sezonu
+  source_title: Trabzonspor 1977-78 sezonu - Vikipedi
+- id: squad_1978-79
+  topic: kadro
+  date: 1978-79
+  fact: '1978-79 sezonu kadro: Ahmet Ceyhan (Defender), Alptekin Nazifoğlu (Goalkeeper), Bekir Barçın (Midfielder), Cengiz
+    Akçay (Forward), Faruk Sağlam (Midfielder), Galip Değerli (Forward), Güngör Şahinkaya (Midfielder), Hüseyin Nuri Tok (Forward),
+    Hüsnü Özkara (Defender), Levent Erköse (Forward), Mehmet Ekşi (Defender), Mustafa Gedik (Forward), Necati Özçağlayan (Defender),
+    Necdet Ergün (Forward), Orhan Naci Akyüz (Midfielder), Osman Yılmaz (Midfielder), Selahattin Babul (Midfielder), Serdar
+    Bali (Midfielder), Şenol Güneş (Goalkeeper), Tuncay Soyak (Midfielder), Turgay Semercioğlu (Defender), Ufuk Şiranlı (Defender),
+    Yaşar Alemdaroğlu (Midfielder). gelenler: Levent Erköse, Mustafa Gedik, Osman Yılmaz, Selahattin Babul, Tuncay Soyak.
+    gidenler: Ali Kemal Denizci, Bekir Barçın, Kadir Özcan.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1978-79_sezonu
+  source_title: Trabzonspor 1978-79 sezonu - Vikipedi
+- id: squad_1979-80
+  topic: kadro
+  date: 1979-80
+  fact: '1979-80 sezonu kadro: Ali Çanakçı (Goalkeeper), Ahmet Ceyhan (Defender), Arif Abanozlu (Defender), Cemil Canalioğlu
+    (Defender), Cengiz Akçay (Forward), Faruk Sağlam (Midfielder), Galip Değerli (Forward), Güngör Şahinkaya (Midfielder),
+    Hüseyin Nuri Tok (Forward), Hüsnü Özkara (Defender), İskender Günen (Forward), İsmail Yavru (Defender), Levent Erköse
+    (Forward), Mustafa Gedik (Forward), Necati Özçağlayan (Defender), Selahattin Babul (Midfielder), Serdar Bali (Midfielder),
+    Şenol Güneş (Goalkeeper), Tuncay Soyak (Midfielder), Turgay Semercioğlu (Defender), Ufuk Şiranlı (Defender), Yaşar Alemdaroğlu
+    (Midfielder). gelenler: Ali Çanakçı, Arif Abanozlu, İskender Günen, İsmail Yavru. gidenler: Alptekin Nazifoğlu, Mehmet
+    Ekşi, Necdet Ergün, Orhan Naci Akyüz, Osman Yılmaz.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1979-80_sezonu
+  source_title: Trabzonspor 1979-80 sezonu - Vikipedi
+- id: squad_1980-81
+  topic: kadro
+  date: 1980-81
+  fact: '1980-81 sezonu kadro: Abdülkadir Aslan (Defender), Ahmet Ceyhan (Defender), Ali Çanakçı (Goalkeeper), Ali Yılmaz
+    (Forward), Arif Abanozlu (Defender), Bahaddin Güneş (Defender), Cemil Canalioğlu (Midfielder), Faruk Sağlam (Midfielder),
+    Galip Değerli (Forward), Güngör Şahinkaya (Midfielder), Halil İbrahim Akçay (Defender), Hüsnü Özkara (Defender), İskender
+    Günen (Forward), Levent Erköse (Forward), Mustafa Gedik (Forward), Necati Özçağlayan (Defender), Osman Şatır (Midfielder),
+    Ömer Alper Boğuşlu (Goalkeeper), Selahattin Babul (Midfielder), Sinan Ünal (Forward), Şenol Güneş (Goalkeeper), Şenol
+    Ustaömer (Defender), Tuncay Soyak (Midfielder), Turgay Semercioğlu (Defender), Yaşar Alemdaroğlu (Midfielder). gelenler:
+    Abdülkadir Aslan, Ali Yılmaz, Bahaddin Güneş, Halil İbrahim Akçay, Osman Şatır, Ömer Alper Boğuşlu, Sinan Ünal, Şenol
+    Ustaömer. gidenler: Cengiz Akçay, Hüseyin Nuri Tok, İsmail Yavru, Serdar Bali, Selahattin Babul.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1980-81_sezonu
+  source_title: Trabzonspor 1980-81 sezonu - Vikipedi
+- id: squad_1981-82
+  topic: kadro
+  date: 1981-82
+  fact: '1981-82 sezonu kadro: Ahmet Ceyhan (Defender), Ali Yılmaz (Forward), Bahaddin Güneş (Defender), Cemil Canalioğlu
+    (Midfielder), Cengiz Akçay (Forward), Erdoğan Koç (Midfielder), Güngör Şahinkaya (Midfielder), Halil İbrahim Akçay (Defender),
+    Hüsnü Özkara (Defender), İbrahim Tolgay Kerimoğlu (Midfielder), İskender Günen (Forward), İsmail Hamarat (Midfielder),
+    Metin Yüce (Midfielder), Mustafa Gedik (Forward), Necati Özçağlayan (Defender), Osman Şatır (Midfielder), Ömer Alper Boğuşlu
+    (Goalkeeper), Raci Özkara (Defender), Sinan Ünal (Forward), Şenol Güneş (Goalkeeper), Şenol Ustaömer (Defender), Tuncay
+    Soyak (Midfielder), Turgay Semercioğlu (Defender), Turgut Kural (Forward), Yaşar Alemdaroğlu (Midfielder), Zeki Çakır
+    (Midfielder). gelenler: Cengiz Akçay, Erdoğan Koç, İbrahim Tolgay Kerimoğlu, İsmail Hamarat, Metin Yüce, Raci Özkara,
+    Turgut Kural, Zeki Çakır. gidenler: Abdülkadir Aslan, Ali Çanakçı, Arif Abanozlu, Faruk Sağlam, Galip Değerli, Levent
+    Erköse.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1981-82_sezonu
+  source_title: Trabzonspor 1981-82 sezonu - Vikipedi
+- id: squad_1982-83
+  topic: kadro
+  date: 1982-83
+  fact: '1982-83 sezonu kadro: Ahmet Ceyhan (Defender), Ali Yılmaz (Forward), Bahaddin Güneş (Defender), Cemil Canalioğlu
+    (Midfielder), Gökhan Ersoy (Defender), Güngör Şahinkaya (Midfielder), İhsan Derelioğlu (Goalkeeper), İskender Günen (Forward),
+    İsmail Hamarat (Midfielder), Levent Erköse (Forward), Mehmet Köroğlu (Midfielder), Metin Bak (Defender), Metin Yüce (Midfielder),
+    Mustafa Gedik (Forward), Necati Özçağlayan (Defender), Osman Nuri Şahinoğlu (Defender), Ömer Alper Boğuşlu (Goalkeeper),
+    Raci Özkara (Defender), Selami Güven (Defender), Sinan Ünal (Forward), Şenol Güneş (Goalkeeper), Şenol Ustaömer (Defender),
+    Tuncay Soyak (Midfielder), Turgay Semercioğlu (Defender), Turgut Kural (Forward), Yaşar Alemdaroğlu (Midfielder), Zeki
+    Çakır (Midfielder). gelenler: Gökhan Ersoy, İhsan Derelioğlu, Levent Erköse, Mehmet Köroğlu, Metin Bak, Osman Nuri Şahinoğlu,
+    Selami Güven. gidenler: Cengiz Akçay, Erdoğan Koç, Halil İbrahim Akçay, Hüsnü Özkara, İbrahim Tolgay Kerimoğlu, Osman
+    Şatır.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1982-83_sezonu
+  source_title: Trabzonspor 1982-83 sezonu - Vikipedi
+- id: squad_1983-84
+  topic: kadro
+  date: 1983-84
+  fact: '1983-84 sezonu kadro: Ali Yılmaz (Forward), Bahaddin Güneş (Defender), Gökhan Ersoy (Defender), Güngör Şahinkaya
+    (Midfielder), Hasan Şengün (Forward), Hasan Vezir (Forward), İhsan Derelioğlu (Goalkeeper), İskender Günen (Forward),
+    İsmail Hakkı Yılmaz (Forward), İsmail Hamarat (Midfielder), Kemal Serdar (Defender), Lemi Çelik (Midfielder), Levent Erköse
+    (Forward), Mehmet Köroğlu (Midfielder), Metin Bak (Defender), Metin Yüce (Midfielder), Mustafa Gedik (Forward), Necati
+    Özçağlayan (Defender), Osman Denizci (Midfielder), Osman Nuri Şahinoğlu (Defender), Ömer Alper Boğuşlu (Goalkeeper), Raci
+    Özkara (Defender), Selami Güven (Defender), Sinan Ünal (Forward), Şenol Güneş (Goalkeeper), Şenol Ustaömer (Defender),
+    Tuncay Soyak (Midfielder), Turgay Semercioğlu (Defender), Turgut Kural (Forward), Yaşar Alemdaroğlu (Midfielder), Zeki
+    Çakır (Midfielder). gelenler: Hasan Şengün, Hasan Vezir, İsmail Hakkı Yılmaz, Kemal Serdar, Lemi Çelik, Osman Denizci.
+    gidenler: Ahmet Ceyhan, Cemil Canalioğlu.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1983-84_sezonu
+  source_title: Trabzonspor 1983-84 sezonu - Vikipedi
+- id: squad_1984-85
+  topic: kadro
+  date: 1984-85
+  fact: '1984-85 sezonu kadro: Bahaddin Güneş (Defender), Cemal Gürsel Menteşe (Forward), Gökhan Ersoy (Defender), Güngör
+    Şahinkaya (Midfielder), Hamdi Aslan (Defender), Hami Mandıralı (Forward), Hasan Şengün (Forward), Hasan Vezir (Forward),
+    İbrahim Yazıcı (Defender), İhsan Derelioğlu (Goalkeeper), İskender Günen (Forward), Kemal Serdar (Defender), Lemi Çelik
+    (Midfielder), Mehmet Köroğlu (Midfielder), Necati Özçağlayan (Defender), Osman Denizci (Midfielder), Raci Özkara (Defender),
+    Selami Güven (Defender), Şenol Güneş (Goalkeeper), Şenol Ustaömer (Defender), Tuncay Soyak (Midfielder), Turgay Semercioğlu
+    (Defender), Vedat Turan (Midfielder), Yaşar Alemdaroğlu (Midfielder). gelenler: Cemal Gürsel Menteşe, Hamdi Aslan, Hami
+    Mandıralı, İbrahim Yazıcı, Vedat Turan. gidenler: Ali Yılmaz, İsmail Hakkı Yılmaz, İsmail Hamarat, Levent Erköse, Metin
+    Bak, Metin Yüce, Mustafa Gedik, Osman Nuri Şahinoğlu, Ömer Alper Boğuşlu, Sinan Ünal, Turgut Kural, Zeki Çakır.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1984-85_sezonu
+  source_title: Trabzonspor 1984-85 sezonu - Vikipedi
+- id: squad_1985-86
+  topic: kadro
+  date: 1985-86
+  fact: '1985-86 sezonu kadro: Bahaddin Güneş (Defender), Cemal Gürsel Menteşe (Forward), Güngör Şahinkaya (Midfielder), Hamdi
+    Aslan (Defender), Hamdi Zıvalıoğlu (Midfielder), Hami Mandıralı (Forward), Hasan Şengün (Forward), Hasan Vezir (Forward),
+    Hayrettin Aksoy (Defender), İbrahim Yazıcı (Defender), İhsan Derelioğlu (Goalkeeper), İskender Günen (Forward), Jürgen
+    Groh (Defender), Kemal Serdar (Defender), Lemi Çelik (Midfielder), Mehmet Köroğlu (Midfielder), Necati Özçağlayan (Defender),
+    Osman Denizci (Midfielder), Selami Güven (Defender), Serdar Bali (Midfielder), Şenol Güneş (Goalkeeper), Şenol Ustaömer
+    (Defender), Tuncay Soyak (Midfielder), Turgay Semercioğlu (Defender), Yaşar Alemdaroğlu (Midfielder). gelenler: Hamdi
+    Zıvalıoğlu, Hayrettin Aksoy, Jürgen Groh, Serdar Bali. gidenler: Gökhan Ersoy, Raci Özkara, Vedat Turan, Serdar Bali.'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1985-86_sezonu
+  source_title: Trabzonspor 1985-86 sezonu - Vikipedi
+- id: squad_2026-27
+  topic: kadro
+  date: 2026-27
+  fact: '2026-27 kadrosu: Ahmet Doğan Yıldırım (GK, 1 numara); Batista Mendy (DM, 3 numara); Samet Akaydin (CB, 4 numara);
+    Okay Yokuşlu (DM, 5 numara); Fabinho (DM, 6 numara); Ernest Muçi (AM, 7 numara); Benjamin Bouchouari (CM, 8 numara); Franculino
+    (ST, 9 numara); Muhammed Salah (RW, 10 numara); Ozan Tufan (CM, 11 numara); Umut Nayir (ST, 14 numara); Stefan Savić (CB,
+    15 numara); Ruslan Malinovski (CM, 17 numara); Mustafa Eskihellaç (LB, 19 numara); Wagner Pina (RB, 20 numara); André
+    Onana (GK, 24 numara); Onuralp Çevikkan (GK, 25 numara); Tim Jabol-Folcarelli (CM, 26 numara); Chibuike Nwaiwu (CB, 27
+    numara); Paul Onuachu (ST, 30 numara); Cenk Özkacar (CB, 39 numara); Arseni Batagov (CB, 44 numara); Sidny Lopes Cabral
+    (LB, 55 numara); Melih Kabasakal (DM, 57 numara); Aral Şimşir (LW, 58 numara); Cihan Çanak (RW, 61 numara); Noah Saviolo
+    (LW, 70 numara); Metehan Mimaroğlu (LW, 77 numara); Erol Can Çolak (GK, 96 numara); Ali Habeşoğlu (ST, 99 numara); CANDANIZ
+    VELİOĞLU (GK Coach); METİN AKKTAŞ (GK Coach).'
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_2026-27_sezonu#Kadro
+  source_title: Trabzonspor 2026-27 sezonu - Wikipedia

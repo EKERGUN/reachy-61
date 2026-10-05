@@ -85,6 +85,13 @@
   <button data-tab="quiz">Quiz</button><button data-tab="settings">Settings</button>
 </nav>
 <main>
+  <div class="card talk">
+    <div class="watch">
+      <div><b id="talkLabel">Otto</b> <span class="pill" id="talkState">…</span></div>
+      <div class="row" style="margin:0"><button class="switch" id="talkBtn">Talk</button><button class="switch" id="sleepBtn">Sleep</button></div>
+    </div>
+    <div class="small" id="caption" style="margin-top:6px"></div>
+  </div>
   <section id="tab-match">
     <div class="card watch">
       <div><b id="watchLabel">Match mode</b><div class="small" id="watchState">…</div></div>
@@ -152,6 +159,11 @@
       <label for="latency"><span id="latencyLabel">Speaker delay</span>: <b id="latencyValue"></b></label>
       <input id="latency" type="range" min="0" max="0.5" step="0.01">
       <label class="check"><input type="checkbox" id="offers"> <span id="offersLabel">Offers</span></label>
+      <label for="voice" id="voiceLabel">Voice</label>
+      <select id="voice"></select>
+      <label class="check"><input type="checkbox" id="selfStart"> <span id="selfStartLabel">Starts a chat</span></label>
+      <label for="sleepAfter" id="sleepAfterLabel">Sleep after (min)</label>
+      <input id="sleepAfter" type="number" min="0" max="600" step="5">
       <div class="row"><button class="act" id="save">Save</button></div>
       <div class="row"><button class="act" id="listenModel">Download listening model</button> <span class="small" id="modelState"></span></div>
       <div class="row"><button class="act" id="record">Record voice lines</button> <span class="small" id="voiceState"></span></div>
@@ -181,6 +193,7 @@
 <script>
 const $ = id => document.getElementById(id);
 let L = {};                                         // UI strings in the team's language
+let talkOn = false, asleep = false;
 let watchOn = false, lang = "en", tab = "match", clips = [], lastJoke = null, quizPhase = "idle";
 let player = localStorage.getItem("fanPlayer") || "", dismissedOffer = "";
 const clock = sec => new Date(sec * 1000).toLocaleTimeString(lang, {hour: "2-digit", minute: "2-digit"});
@@ -218,6 +231,7 @@ async function loadTeam() {
   const strings = {moodLabel: L.mood, teamLabel: L.team, keyLabel: L.gemini_key, save: L.save, record: L.record_voice,
     watchLabel: L.watch, roomLabel: L.room, recentLabel: L.recent, apiKeyLabel: L.api_key, listenModel: L.listen_model,
     latencyLabel: L.latency, offersLabel: L.offers, offerYes: L.offer_yes, offerNo: L.offer_no,
+    voiceLabel: sub(L.talk, "voice"), selfStartLabel: sub(L.talk, "self_start"), sleepAfterLabel: sub(L.talk, "sleep_after"),
     nowLabel: sub(L.fun, "now"), stopBtn: sub(L.fun, "stop"), jokeBtn: sub(L.fun, "joke"), musicBtn: sub(L.fun, "music"),
     matchClipBtn: sub(L.fun, "match"), chantBtn: sub(L.fun, "chant"), lastJokeLabel: sub(L.fun, "last_joke"),
     libraryLabel: sub(L.fun, "library"), nameLabel: sub(L.quiz, "name"), joinBtn: sub(L.quiz, "join"),
@@ -281,6 +295,12 @@ async function poll() {
       const li = el("li", "", `${clock(r.at)}  ${sub(L.moments, r.moment)}`);
       li.append(el("span", "small", sub(L.sources, r.source))); ul.append(li);
     }
+    const tk = s.talk || {};
+    talkOn = !!tk.chat && tk.chat !== "off"; asleep = !!tk.asleep;
+    text($("talkState"), sub(L.talk, asleep ? "asleep" : talkOn ? "talking" : tk.quiet ? "quiet" : "awake"));
+    $("talkBtn").classList.toggle("on", talkOn); text($("talkBtn"), sub(L.talk, talkOn ? "end" : "talk"));
+    $("sleepBtn").classList.toggle("on", asleep); text($("sleepBtn"), sub(L.talk, asleep ? "wake" : "sleep"));
+    text($("caption"), talkOn && tk.caption ? `“${tk.caption}”` : (tk.wake_word === false ? sub(L.talk, "no_wake") : ""));
     const now = s.now_playing;
     text($("nowTitle"), now ? (now.title || sub(L.moments, now.moment)) : sub(L.fun, "nothing"));
     const o = s.offer, key = o ? `${o.kind}${o.at}` : "";
@@ -463,16 +483,23 @@ async function loadSettings() {
   text($("apiKeyState"), s.API_FOOTBALL_KEY ? L.key_saved : L.key_missing);
   $("latency").value = s.latency; text($("latencyValue"), `${Math.round(s.latency * 1000)} ms`);
   $("offers").checked = !!s.offers;
+  const v = $("voice"); v.replaceChildren();
+  for (const name of s.voices || []) v.append(new Option(name, name, false, name === s.voice));
+  $("selfStart").checked = !!s.self_start; $("sleepAfter").value = s.sleep_after_min;
 }
 $("latency").oninput = () => text($("latencyValue"), `${Math.round($("latency").value * 1000)} ms`);
 $("save").onclick = async () => {
   const body = {TEAM: $("team").value, GEMINI_API_KEY: $("key").value, API_FOOTBALL_KEY: $("apiKey").value,
-                FAN_ROBOT_AUDIO_LATENCY_S: String($("latency").value), FAN_ROBOT_OFFERS: $("offers").checked ? "1" : "0.0"};
+                FAN_ROBOT_AUDIO_LATENCY_S: String($("latency").value), FAN_ROBOT_OFFERS: $("offers").checked ? "1" : "0.0",
+                GEMINI_VOICE: $("voice").value, FAN_ROBOT_SELF_START: $("selfStart").checked ? "1" : "0.0",
+                FAN_ROBOT_SLEEP_AFTER_MIN: String($("sleepAfter").value === "0" ? "0.0" : $("sleepAfter").value)};
   const r = await api("settings", body);
   $("key").value = ""; $("apiKey").value = ""; toast(r.ok ? L.saved : r.error); await loadTeam(); await loadSettings();
 };
 $("record").onclick = async () => { const r = await api("voice/record", {}); if (!r.ok) toast(r.error); };
 $("watchBtn").onclick = () => api("watch", {on: !watchOn});
+$("talkBtn").onclick = async () => { const r = await api("chat", {on: !talkOn}); if (!r.ok) toast(r.error); };
+$("sleepBtn").onclick = () => api("sleep", {on: !asleep});
 $("listenModel").onclick = async () => { const r = await api("listen-model", {}); if (!r.ok) toast(r.error); };
 
 loadTeam().then(loadSettings); poll();

@@ -172,5 +172,19 @@
   },
   "latency": "Speaker delay (dance sync)",
   "offers": "The robot offers things by itself (jokes, quiz, music)",
-  "counts": "jokes · questions · facts"
+  "counts": "jokes · questions · facts",
+  "talk": {
+    "talk": "Talk",
+    "end": "End",
+    "sleep": "Sleep",
+    "wake": "Wake",
+    "asleep": "Asleep",
+    "talking": "Talking",
+    "quiet": "Quiet (say \"Otto\")",
+    "awake": "Awake",
+    "voice": "Voice (male)",
+    "self_start": "Start a chat when it sees me",
+    "sleep_after": "Sleep after minutes (0 = never)",
+    "no_wake": "No listening model: \"Otto\" can't be heard. Download it in Settings."
+  }
 }

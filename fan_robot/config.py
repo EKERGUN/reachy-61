@@ -24,7 +24,8 @@ DATA_DIR = Path(os.environ.get("FAN_ROBOT_DATA_DIR", Path.home() / "fan_robot"))
 ENV_FILE = DATA_DIR / ".env"
 
 # Keys the setup page may write. Secrets are accepted but never sent back to the browser.
-EDITABLE = ("GEMINI_API_KEY", "TEAM", "API_FOOTBALL_KEY", "FAN_ROBOT_AUDIO_LATENCY_S", "FAN_ROBOT_OFFERS")
+EDITABLE = ("GEMINI_API_KEY", "TEAM", "API_FOOTBALL_KEY", "FAN_ROBOT_AUDIO_LATENCY_S", "FAN_ROBOT_OFFERS",
+            "GEMINI_VOICE", "FAN_ROBOT_SELF_START", "FAN_ROBOT_SLEEP_AFTER_MIN")
 SECRETS = ("GEMINI_API_KEY", "API_FOOTBALL_KEY")
 
 
@@ -66,7 +67,11 @@ class Settings:
     audio_latency_s: float = 0.15                    # speaker delay: dance moves lead the music by this much
     offers: float = 1.0                              # 1 = the robot offers jokes/quiz/music by itself, 0 = only on request
     gemini_tts_model: str = "gemini-3.8-flash-tts"
-    gemini_voice: str = "Kore"
+    gemini_live_model: str = "gemini-3.8-live"          # the conversation (same as Otto)
+    gemini_voice: str = "Fenrir"                         # a man's voice; the same for recorded lines and chat
+    chat_idle_s: float = 30.0                           # a chat ends after this long without anyone talking
+    sleep_after_min: float = 20.0                       # asleep after this long with nothing happening (0 = never)
+    self_start: float = 1.0                             # 1 = starts a chat when it sees someone
     # Listening (all overridable as FAN_ROBOT_<NAME> in .env, e.g. FAN_ROBOT_VAD_THRESHOLD=0.7)
     vad_threshold: float = 0.6
     speech_start_s: float = 0.15
@@ -87,7 +92,7 @@ class Settings:
             self.team = env["TEAM"]
         if "API_FOOTBALL_KEY" in env:
             self.api_football_key = env["API_FOOTBALL_KEY"]
-        for key in ("GEMINI_TTS_MODEL", "GEMINI_VOICE", "GEMINI_AUDIO_MODEL"):
+        for key in ("GEMINI_TTS_MODEL", "GEMINI_VOICE", "GEMINI_AUDIO_MODEL", "GEMINI_LIVE_MODEL"):
             if env.get(key):
                 setattr(self, key.lower(), env[key])
         for f in fields(self):

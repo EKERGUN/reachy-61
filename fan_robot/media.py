@@ -207,6 +207,22 @@ class MediaLibrary:
 
     # ---- choosing ----------------------------------------------------------------
 
+    def find(self, name: str, category: str | None = None) -> MediaItem | None:
+        """The clip whose title best matches a spoken name ("Hayde Hayde Trabzon'u çal")."""
+        from .knowledge import tokens
+        want = set(tokens(name))
+        best, best_score = None, 0.0
+        for item in self.items():
+            if category and item.category != category:
+                continue
+            have = set(tokens(item.title + " " + " ".join(item.tags)))
+            score = len(want & have) / max(1, len(have))
+            if score > best_score:
+                best, best_score = item, score
+        return best if best_score >= 0.34 else None
+
+    # ---- choosing (by mood) -------------------------------------------------------
+
     def choose(self, rng, category: str | None = None, moment: str | None = None, band: str = "calm",
                tags: list[str] | None = None, auto: bool = False) -> MediaItem | None:
         """The clip that fits best: the mood, the tags, not played lately, liked (with some chance).

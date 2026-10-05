@@ -38,6 +38,10 @@ def record_all(settings: Settings, team: TeamPack, force: bool = False, progress
                data_dir: Path | None = None) -> int:
     lines = team.all_lines()
     tts = GeminiTTS(settings)
+    # A new voice re-records everything: the robot must sound like one person (lines and chat).
+    marker = voice_dir(team, data_dir) / "voice.txt"
+    if not marker.is_file() or marker.read_text(encoding="utf-8").strip() != settings.gemini_voice:
+        force = True
     done = 0
     for n, (name, text) in enumerate(lines, 1):
         path = line_path(team, name, data_dir)
@@ -48,6 +52,8 @@ def record_all(settings: Settings, team: TeamPack, force: bool = False, progress
             tmp.replace(path)                     # never leave a half-written clip
             done += 1
         progress(n, len(lines))
+    marker.parent.mkdir(parents=True, exist_ok=True)
+    marker.write_text(settings.gemini_voice, encoding="utf-8")
     return done
 
 

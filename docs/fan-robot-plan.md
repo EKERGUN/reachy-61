@@ -175,6 +175,19 @@ teams/trabzonspor/
 - Hardware checks: the speaker delay slider (dance in sync), whether wobbling and dances combine
   well, CPU during a long clip (`top`), the robot's own music not counting as the room.
 
+## 9c. Phase 4 (built): Otto talks
+
+- Name **Otto**. "Otto bordo" wakes him (he shouts "Mavi!"); "bordo" -> "Mavi!"; "Otto" -> he listens;
+  **"Otto dur"** -> stops everything and stays quiet until called by name ("hayır" is too common).
+- Turkish only, a man's voice (Fenrir), an enthusiastic fan who asks "biliyor muydun?" questions.
+- Starts a chat himself when he sees someone (not in match mode, not when told to be quiet, at most
+  every 10 minutes); a chat ends after 30 s of silence; sleeps after 20 minutes of nothing.
+- Tools: knowledge search (340 sourced facts incl. transfers and squads), share a fact, a trivia
+  question, live results/table/next match, play a clip by name, stop, joke, quiz, emotions, quiet,
+  goodbye, sleep.
+- To check on the robot: the Vosk Turkish model downloads and hears "Otto"/"oto"; echo while a song
+  plays; CPU while talking; the API-Football free plan covers the current season.
+
 ## 10. Decisions needed
 
 1. Main language: Turkish only, or Turkish + English?
