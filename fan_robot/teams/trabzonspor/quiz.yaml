@@ -1,0 +1,1124 @@
+# Built by scripts/build_from_corpus.py from corpus/trabzonspor (do not edit by hand; edit the
+# corpus or the script and rebuild). Every entry keeps its source.
+questions:
+- id: ts_ilk_sampiyonluk
+  q: Trabzonspor ilk Süper Lig şampiyonluğunu hangi sezonda kazandı?
+  options:
+  - 1985-86
+  - 1975-76
+  - 1974-75
+  - 1989-90
+  answer: 1
+  difficulty: 1
+  tags:
+  - şampiyonluk
+  source: &id001
+    url: https://tr.wikipedia.org/wiki/Trabzonspor
+    title: 'Vikipedi: Trabzonspor'
+  explain: '1975-76: İstanbul dışından ilk şampiyon.'
+- id: ts_son_sampiyonluk
+  q: Trabzonspor 7. Süper Lig şampiyonluğunu hangi sezonda kazandı?
+  options:
+  - 2010-11
+  - 2019-20
+  - 2004-05
+  - 2021-22
+  answer: 3
+  difficulty: 1
+  tags:
+  - şampiyonluk
+  source: *id001
+  explain: 2021-22 sezonunda, 1983-84 sonrası ilk şampiyonluk.
+- id: ts_kac_sampiyonluk
+  q: Trabzonspor kaç kez Süper Lig şampiyonu oldu? (Ekim 2026 itibarıyla)
+  options:
+  - '7'
+  - '8'
+  - '6'
+  - '5'
+  answer: 0
+  difficulty: 1
+  tags:
+  - şampiyonluk
+  source: *id001
+  explain: 'Şampiyonluklar: 1975-76, 1976-77, 1978-79, 1979-80, 1980-81, 1983-84, 2021-22.'
+- id: ts_art_arda
+  q: Trabzonspor art arda üç Süper Lig şampiyonluğunu hangi yıllar arasında yaşadı?
+  options:
+  - 2019-20, 2020-21, 2021-22
+  - 1975-76, 1976-77, 1977-78
+  - 1981-82, 1982-83, 1983-84
+  - 1978-79, 1979-80, 1980-81
+  answer: 3
+  difficulty: 2
+  tags:
+  - şampiyonluk
+  source: *id001
+- id: ts_hangisi_degil_0
+  q: Hangi sezonda Trabzonspor Süper Lig şampiyonu OLMADI?
+  options:
+  - 1975-76
+  - 1978-79
+  - 1977-78
+  - 1976-77
+  answer: 2
+  difficulty: 2
+  tags:
+  - şampiyonluk
+  source: *id001
+  explain: 1977-78 sezonunu ikinci bitirdi.
+- id: ts_hangisi_degil_1
+  q: Hangi sezonda Trabzonspor Süper Lig şampiyonu OLMADI?
+  options:
+  - 1983-84
+  - 1981-82
+  - 1980-81
+  - 1979-80
+  answer: 1
+  difficulty: 2
+  tags:
+  - şampiyonluk
+  source: *id001
+  explain: 1981-82 sezonunu ikinci bitirdi.
+- id: ts_hangisi_degil_2
+  q: Hangi sezonda Trabzonspor Süper Lig şampiyonu OLMADI?
+  options:
+  - 1980-81
+  - 2021-22
+  - 1994-95
+  - 1976-77
+  answer: 2
+  difficulty: 2
+  tags:
+  - şampiyonluk
+  source: *id001
+  explain: 1994-95 sezonunu ikinci bitirdi.
+- id: ts_ilk_kupa
+  q: Trabzonspor ilk Türkiye Kupası'nı hangi sezonda kazandı?
+  options:
+  - 1974-75
+  - 1983-84
+  - 1976-77
+  - 1991-92
+  answer: 2
+  difficulty: 2
+  tags:
+  - kupa
+  source: *id001
+  explain: 1974-75'te finale kaldı ama Beşiktaş'a kaybetti.
+- id: ts_kac_kupa
+  q: Trabzonspor kaç kez Türkiye Kupası kazandı? (Ekim 2026 itibarıyla)
+  options:
+  - '7'
+  - '10'
+  - '12'
+  - '9'
+  answer: 1
+  difficulty: 2
+  tags:
+  - kupa
+  source: *id001
+  explain: 'Kupalar: 1976-77, 1977-78, 1983-84, 1991-92, 1994-95, 2002-03, 2003-04, 2009-10, 2019-20, 2025-26.'
+- id: ts_kurulus
+  q: Trabzonspor hangi yıl kuruldu?
+  options:
+  - '1923'
+  - '1967'
+  - '1959'
+  - '1975'
+  answer: 1
+  difficulty: 1
+  tags:
+  - tarih
+  source:
+    url: https://www.trabzonspor.org.tr/tr/kulup/tarihce
+    title: Vikipedi / trabzonspor.org.tr
+  explain: 2 Ağustos 1967'de kulüplerin birleşmesiyle.
+- id: ts_renkler
+  q: Trabzonspor'un renkleri nedir?
+  options:
+  - Bordo-mavi
+  - Sarı-kırmızı
+  - Siyah-beyaz
+  - Sarı-lacivert
+  answer: 0
+  difficulty: 1
+  tags:
+  - tarih
+  source:
+    url: https://www.trabzonspor.org.tr/tr/kulup/tarihce
+    title: Vikipedi / trabzonspor.org.tr
+- id: ts_liverpool
+  q: Trabzonspor 1976-77 Avrupa Kupası'nda evinde hangi İngiliz takımını 1-0 yendi?
+  options:
+  - Liverpool
+  - Everton
+  - Manchester United
+  - Arsenal
+  answer: 0
+  difficulty: 2
+  tags:
+  - avrupa
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+    title: Kaynak
+  explain: Cemil Usta'nın penaltı golüyle, Hüseyin Avni Aker'de.
+- id: ts_eski_stad
+  q: Trabzonspor'un 2016'ya kadar oynadığı efsane stadın adı nedir?
+  options:
+  - Hüseyin Avni Aker
+  - Ali Sami Yen
+  - İnönü
+  - Atatürk Olimpiyat
+  answer: 0
+  difficulty: 1
+  tags:
+  - stadyum
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+    title: Kaynak
+- id: ts_yeni_stad
+  q: Trabzonspor'un 2016-17'de açılan yeni stadı kimin adını taşır?
+  options:
+  - Hüseyin Avni Aker
+  - Hami Mandıralı
+  - Şenol Güneş
+  - Ahmet Suat Özyazıcı
+  answer: 2
+  difficulty: 1
+  tags:
+  - stadyum
+  source:
+    url: https://tr.wikipedia.org/wiki/%C5%9Eenol_G%C3%BCne%C5%9F_Spor_Kompleksi
+    title: Kaynak
+  explain: Şenol Güneş Spor Kompleksi, Akyazı.
+- id: ts_yenilmezlik
+  q: Trabzonspor 1975-1981 arasında evinde art arda kaç lig maçında yenilmedi?
+  options:
+  - '50'
+  - '70'
+  - '90'
+  - '120'
+  answer: 2
+  difficulty: 2
+  tags:
+  - rekor
+  source:
+    url: https://www.aa.com.tr/tr/futbol/super-ligin-rekorlari-ve-ilkleri/1556886
+    title: Kaynak
+  explain: 2 Kasım 1975'ten 1 Kasım 1981'e kadar.
+- id: ts_sl_grup
+  q: Trabzonspor Şampiyonlar Ligi gruplarında ilk kez hangi sezonda oynadı?
+  options:
+  - 2011-12
+  - 2010-11
+  - 2004-05
+  - 2022-23
+  answer: 0
+  difficulty: 2
+  tags:
+  - avrupa
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+    title: Kaynak
+  explain: Grup maçlarından biri Inter'e karşıydı.
+- id: ts_ilk_baskan
+  q: Trabzonspor'un ilk başkanı kimdir?
+  options:
+  - Ali Osman Ulusoy
+  - Rıfat Dedeoğlu
+  - Atay Aktuğ
+  - Sadri Şener
+  answer: 0
+  difficulty: 3
+  tags:
+  - yönetim
+  source:
+    url: https://www.trabzonspor.org.tr/en/archive/presidents
+    title: trabzonspor.org.tr
+  explain: 1967-08-02 tarihinde göreve geldi.
+- id: ts_2022_hoca
+  q: 2021-22 şampiyonluğunda Trabzonspor'un teknik direktörü kimdi?
+  options:
+  - Abdullah Avcı
+  - Ünal Karaman
+  - Ersun Yanal
+  - Şenol Güneş
+  answer: 0
+  difficulty: 1
+  tags:
+  - şampiyonluk
+  - yönetim
+  source:
+    url: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+    title: Kaynak
+- id: ts_golcu_1967-68
+  q: 1967-68 sezonunda (1. Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Orhan Akyüz
+  - Hüseyin Tok
+  - Cengiz Akçay
+  - Necmi Perekli
+  answer: 3
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1967-68: takım ligi 6. sırada bitirdi.'
+- id: ts_golcu_1968-69
+  q: 1968-69 sezonunda (1. Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Orhan Akyüz
+  - Suavi Tanlak
+  - İhsan Sakallıoğlu
+  - Necmi Perekli
+  answer: 3
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1968-69: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_1969-70
+  q: 1969-70 sezonunda (1. Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Suavi Tanlak
+  - Cengiz Akçay
+  - Hüseyin Tok
+  - Necmi Perekli
+  answer: 3
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1969-70: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_1970-71
+  q: 1970-71 sezonunda (1. Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - İhsan Sakallıoğlu
+  - Hüsnü Özkara
+  - Necmi Perekli
+  - Orhan Akyüz
+  answer: 2
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1970-71: takım ligi 8. sırada bitirdi.'
+- id: ts_golcu_1971-72
+  q: 1971-72 sezonunda (1. Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Suavi Tanlak
+  - Sinan Ünal
+  - Hüseyin Tok
+  - Necmi Perekli
+  answer: 3
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1971-72: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_1972-73
+  q: 1972-73 sezonunda (1. Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Suavi Tanlak
+  - İhsan Sakallıoğlu
+  - Hasan Şengün
+  - Tuncay Soyak
+  answer: 0
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1972-73: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_1973-74
+  q: 1973-74 sezonunda (1. Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Hüseyin Tok
+  - İhsan Sakallıoğlu
+  - Orhan Akyüz
+  - Sinan Ünal
+  answer: 1
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1973-74: takım ligi 1. sırada bitirdi.'
+- id: ts_golcu_1974-75
+  q: 1974-75 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Cengiz Akçay
+  - Hasan Vezir
+  - Orhan Akyüz
+  - Hüseyin Tok
+  answer: 3
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1974-75: takım ligi 9. sırada bitirdi.'
+- id: ts_golcu_1975-76
+  q: 1975-76 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Hasan Vezir
+  - Tuncay Soyak
+  - Sinan Ünal
+  - Hüseyin Tok
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_1975-76_sezonu
+    title: Trabzonspor 1975-76 sezonu - Vikipedi
+  explain: '1975-76: takım ligi 1. sırada bitirdi.'
+- id: ts_golcu_1976-77
+  q: 1976-77 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Tuncay Soyak
+  - Orhan Akyüz
+  - Serdar Bali
+  - Necmi Perekli
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1976-77: takım ligi 1. sırada bitirdi.'
+- id: ts_golcu_1977-78
+  q: 1977-78 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Cengiz Akçay
+  - Hamdi Aslan
+  - Suavi Tanlak
+  - Hüsnü Özkara
+  answer: 0
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1977-78: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_1978-79
+  q: 1978-79 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Tuncay Soyak
+  - Orhan Akyüz
+  - Hami Mandıralı
+  - Serdar Bali
+  answer: 1
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1978-79: takım ligi 1. sırada bitirdi.'
+- id: ts_golcu_1979-80
+  q: 1979-80 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Hamdi Aslan
+  - Levent Erköse
+  - Orhan Akyüz
+  - Serdar Bali
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1979-80: takım ligi 1. sırada bitirdi.'
+- id: ts_golcu_1980-81
+  q: 1980-81 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Sinan Ünal
+  - Hüseyin Tok
+  - Orhan Çıkırıkçı
+  - Orhan Akyüz
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1980-81: takım ligi 1. sırada bitirdi.'
+- id: ts_golcu_1981-82
+  q: 1981-82 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Sinan Ünal
+  - Hüsnü Özkara
+  - Cengiz Akçay
+  - Levent Erköse
+  answer: 1
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1981-82: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_1982-83
+  q: 1982-83 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Hüseyin Tok
+  - Orhan Kaynak
+  - Suavi Tanlak
+  - Levent Erköse
+  answer: 3
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1982-83: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_1983-84
+  q: 1983-84 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Orhan Kaynak
+  - Hasan Şengün
+  - Necmi Perekli
+  - İhsan Sakallıoğlu
+  answer: 1
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Süper_Lig_1983-84
+    title: Süper Lig 1983-84 - Vikipedi
+  explain: '1983-84: takım ligi 1. sırada bitirdi.'
+- id: ts_golcu_1984-85
+  q: 1984-85 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Shota Arveladze
+  - Hamdi Aslan
+  - Tuncay Soyak
+  - Suavi Tanlak
+  answer: 2
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1984-85: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_1985-86
+  q: 1985-86 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Shota Arveladze
+  - Hasan Şengün
+  - Hüseyin Tok
+  - Hüsnü Özkara
+  answer: 1
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1985-86: takım ligi 7. sırada bitirdi.'
+- id: ts_golcu_1986-87
+  q: 1986-87 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Hamdi Aslan
+  - Sinan Ünal
+  - Hami Mandıralı
+  - Hasan Vezir
+  answer: 3
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1986-87: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_1987-88
+  q: 1987-88 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Cengiz Akçay
+  - Hasan Vezir
+  - Orhan Kaynak
+  - Hami Mandıralı
+  answer: 3
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1987-88: takım ligi 6. sırada bitirdi.'
+- id: ts_golcu_1988-89
+  q: 1988-89 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Hasan Vezir
+  - Orhan Çıkırıkçı
+  - Hami Mandıralı
+  - Davor Vugrinec
+  answer: 2
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1988-89: takım ligi 5. sırada bitirdi.'
+- id: ts_golcu_1989-90
+  q: 1989-90 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Orhan Akyüz
+  - Shota Arveladze
+  - Hamdi Aslan
+  - Serdar Bali
+  answer: 2
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_1989-90_sezonu
+    title: Trabzonspor 1989-90 sezonu - Vikipedi
+  explain: '1989-90: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_1990-91
+  q: 1990-91 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Hami Mandıralı
+  - Serdar Bali
+  - Hasan Vezir
+  - Levent Erköse
+  answer: 0
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1990-91: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_1991-92
+  q: 1991-92 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Tuncay Soyak
+  - Sinan Ünal
+  - Hami Mandıralı
+  - Fatih Tekke
+  answer: 2
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1991-92: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_1992-93
+  q: 1992-93 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Shota Arveladze
+  - Orhan Çıkırıkçı
+  - Orhan Kaynak
+  - Hamdi Aslan
+  answer: 1
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1992-93: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_1993-94
+  q: 1993-94 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Shota Arveladze
+  - Hami Mandıralı
+  - Fatih Tekke
+  - Orhan Kaynak
+  answer: 0
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1993-94: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_1994-95
+  q: 1994-95 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Robson Carioca
+  - Orhan Çıkırıkçı
+  - Hami Mandıralı
+  - Orhan Kaynak
+  answer: 3
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1994-95: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_1995-96
+  q: 1995-96 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Orhan Kaynak
+  - Shota Arveladze
+  - Tuncay Soyak
+  - Robson Carioca
+  answer: 1
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Süper_Lig_1995-96
+    title: Süper Lig 1995-96 - Vikipedi
+  explain: '1995-96: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_1996-97
+  q: 1996-97 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Hami Mandıralı
+  - Tuncay Soyak
+  - Hamdi Aslan
+  - Umut Bulut
+  answer: 0
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1996-97: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_1997-98
+  q: 1997-98 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Hami Mandıralı
+  - Orhan Çıkırıkçı
+  - Hamdi Aslan
+  - Hasan Vezir
+  answer: 0
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1997-98: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_1998-99
+  q: 1998-99 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Orhan Kaynak
+  - Gökdeniz Karadeniz
+  - Davor Vugrinec
+  - Hami Mandıralı
+  answer: 2
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1998-99: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_1999-2000
+  q: 1999-2000 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Burak Yılmaz
+  - Orhan Kaynak
+  - Hami Mandıralı
+  - Robson Carioca
+  answer: 2
+  difficulty: 3
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '1999-2000: takım ligi 6. sırada bitirdi.'
+- id: ts_golcu_2000-01
+  q: 2000-01 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Burak Yılmaz
+  - Robson Carioca
+  - Gökhan Ünal
+  - Hami Mandıralı
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2000-01: takım ligi 5. sırada bitirdi.'
+- id: ts_golcu_2001-02
+  q: 2001-02 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Robson Carioca
+  - Fatih Tekke
+  - Gökhan Ünal
+  - Hamdi Aslan
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2001-02: takım ligi 14. sırada bitirdi.'
+- id: ts_golcu_2002-03
+  q: 2002-03 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Davor Vugrinec
+  - Gökhan Ünal
+  - Burak Yılmaz
+  - Fatih Tekke
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2002-03: takım ligi 7. sırada bitirdi.'
+- id: ts_golcu_2003-04
+  q: 2003-04 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Adrian Mierzejewski
+  - Orhan Kaynak
+  - Gökdeniz Karadeniz
+  - Óscar Cardozo
+  answer: 2
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2003-04: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_2004-05
+  q: 2004-05 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Shota Arveladze
+  - Orhan Kaynak
+  - Robson Carioca
+  - Fatih Tekke
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2004-05: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_2005-06
+  q: 2005-06 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Fatih Tekke
+  - Shota Arveladze
+  - Orhan Kaynak
+  - Umut Bulut
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2005-06: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_2006-07
+  q: 2006-07 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Umut Bulut
+  - Gökhan Ünal
+  - Shota Arveladze
+  - Adrian Mierzejewski
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2006-07: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_2007-08
+  q: 2007-08 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Umut Bulut
+  - Alexander Sørloth
+  - Óscar Cardozo
+  - Adrian Mierzejewski
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2007-08: takım ligi 6. sırada bitirdi.'
+- id: ts_golcu_2008-09
+  q: 2008-09 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Gökhan Ünal
+  - Umut Bulut
+  - Gökdeniz Karadeniz
+  - Caleb Ekuban
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2008-09: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_2009-10
+  q: 2009-10 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Umut Bulut
+  - Fatih Tekke
+  - Davor Vugrinec
+  - Hugo Rodallega
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2009-10: takım ligi 5. sırada bitirdi.'
+- id: ts_golcu_2010-11
+  q: 2010-11 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Andreas Cornelius
+  - Paulo Henrique
+  - Trézéguet
+  - Burak Yılmaz
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/2010-11_Süper_Lig
+    title: 2010-11 Süper Lig - Vikipedi
+  explain: '2010-11: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_2011-12
+  q: 2011-12 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Burak Yılmaz
+  - Adrian Mierzejewski
+  - Caleb Ekuban
+  - Umut Bulut
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2011-12: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_2012-13
+  q: 2012-13 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Paulo Henrique
+  - Dame N'Doye
+  - Burak Yılmaz
+  - Adrian Mierzejewski
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2012-13: takım ligi 9. sırada bitirdi.'
+- id: ts_golcu_2013-14
+  q: 2013-14 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Gökhan Ünal
+  - Paulo Henrique
+  - Hugo Rodallega
+  - Trézéguet
+  answer: 1
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2013-14: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_2014-15
+  q: 2014-15 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Fatih Tekke
+  - Hugo Rodallega
+  - Adrian Mierzejewski
+  - Óscar Cardozo
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2014-15: takım ligi 5. sırada bitirdi.'
+- id: ts_golcu_2015-16
+  q: 2015-16 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Fatih Tekke
+  - Alexander Sørloth
+  - Hugo Rodallega
+  - Óscar Cardozo
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2015-16: takım ligi 12. sırada bitirdi.'
+- id: ts_golcu_2016-17
+  q: 2016-17 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Dame N'Doye
+  - Adrian Mierzejewski
+  - Trézéguet
+  - Paul Onuachu
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2016-17: takım ligi 6. sırada bitirdi.'
+- id: ts_golcu_2017-18
+  q: 2017-18 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Gökhan Ünal
+  - Paul Onuachu
+  - Alexander Sørloth
+  - Burak Yılmaz
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2017-18: takım ligi 5. sırada bitirdi.'
+- id: ts_golcu_2018-19
+  q: 2018-19 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Gökhan Ünal
+  - Caleb Ekuban
+  - Hugo Rodallega
+  - Umut Bulut
+  answer: 2
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2018-19: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_2019-20
+  q: 2019-20 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Umut Bulut
+  - Alexander Sørloth
+  - Andreas Cornelius
+  - Paulo Henrique
+  answer: 1
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2019-20: takım ligi 2. sırada bitirdi.'
+- id: ts_golcu_2020-21
+  q: 2020-21 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Caleb Ekuban
+  - Gökhan Ünal
+  - Dame N'Doye
+  - Burak Yılmaz
+  answer: 0
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2020-21: takım ligi 4. sırada bitirdi.'
+- id: ts_golcu_2021-22
+  q: 2021-22 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Óscar Cardozo
+  - Alexander Sørloth
+  - Andreas Cornelius
+  - Hugo Rodallega
+  answer: 2
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_2021-22_sezonu
+    title: Trabzonspor 2021-22 sezonu - Vikipedi
+  explain: '2021-22: takım ligi 1. sırada bitirdi.'
+- id: ts_golcu_2022-23
+  q: 2022-23 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Dame N'Doye
+  - Trézéguet
+  - Simon Banza
+  - Andreas Cornelius
+  answer: 1
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2022-23: takım ligi 6. sırada bitirdi.'
+- id: ts_golcu_2023-24
+  q: 2023-24 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Óscar Cardozo
+  - Alexander Sørloth
+  - Caleb Ekuban
+  - Paul Onuachu
+  answer: 3
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2023-24: takım ligi 3. sırada bitirdi.'
+- id: ts_golcu_2024-25
+  q: 2024-25 sezonunda (Süper Lig) Trabzonspor'un en golcü oyuncusu kimdi?
+  options:
+  - Caleb Ekuban
+  - Andreas Cornelius
+  - Simon Banza
+  - Adrian Mierzejewski
+  answer: 2
+  difficulty: 2
+  tags:
+  - golcü
+  source:
+    url: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+    title: Trabzonspor (futbol takımı) - Vikipedi
+  explain: '2024-25: takım ligi 7. sırada bitirdi.'

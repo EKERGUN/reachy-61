@@ -1,0 +1,1532 @@
+# Built by scripts/build_from_corpus.py from corpus/trabzonspor (do not edit by hand; edit the
+# corpus or the script and rebuild). Every entry keeps its source.
+facts:
+- id: season_1967-68
+  fact: '1967-68 sezonu, 1. Lig (ikinci kademe): 6. sıra (45 puan). Takımın en golcüsü Necmi Perekli.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1967-68
+- id: season_1968-69
+  fact: '1968-69 sezonu, 1. Lig (ikinci kademe): 4. sıra (39 puan). Takımın en golcüsü Necmi Perekli.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1968-69
+- id: season_1969-70
+  fact: '1969-70 sezonu, 1. Lig (ikinci kademe): 4. sıra (36 puan). Takımın en golcüsü Necmi Perekli.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1969-70
+- id: season_1970-71
+  fact: '1970-71 sezonu, 1. Lig (ikinci kademe): 8. sıra (31 puan). Takımın en golcüsü Necmi Perekli.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1970-71
+- id: season_1971-72
+  fact: '1971-72 sezonu, 1. Lig (ikinci kademe): 2. sıra (37 puan). Takımın en golcüsü Necmi Perekli.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1971-72
+- id: season_1972-73
+  fact: '1972-73 sezonu, 1. Lig (ikinci kademe): 2. sıra (39 puan). Takımın en golcüsü Suavi Tanlak.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1972-73
+- id: season_1973-74
+  fact: '1973-74 sezonu, 1. Lig (ikinci kademe): 1. sıra (47 puan). Takımın en golcüsü İhsan Sakallıoğlu.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1973-74
+- id: season_1974-75
+  fact: '1974-75 sezonu, Süper Lig: 9. sıra (30 puan). Takımın en golcüsü Hüseyin Tok.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1974-75
+- id: season_1975-76
+  fact: '1975-76 sezonu, Süper Lig: şampiyon (43 puan). Takımın en golcüsü Hüseyin Tok.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1975-76_sezonu
+  source_title: Trabzonspor 1975-76 sezonu - Vikipedi
+  date: 1975-76
+- id: season_1976-77
+  fact: '1976-77 sezonu, Süper Lig: şampiyon (43 puan). Takımın en golcüsü Necmi Perekli.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1976-77
+- id: season_1977-78
+  fact: '1977-78 sezonu, Süper Lig: 2. sıra (41 puan). Takımın en golcüsü Cengiz Akçay.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1977-78
+- id: season_1978-79
+  fact: '1978-79 sezonu, Süper Lig: şampiyon (42 puan). Takımın en golcüsü Orhan Akyüz.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1978-79
+- id: season_1979-80
+  fact: '1979-80 sezonu, Süper Lig: şampiyon (39 puan). Takımın en golcüsü Serdar Bali.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1979-80
+- id: season_1980-81
+  fact: '1980-81 sezonu, Süper Lig: şampiyon (43 puan). Takımın en golcüsü Sinan Ünal.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1980-81
+- id: season_1981-82
+  fact: '1981-82 sezonu, Süper Lig: 2. sıra (43 puan). Takımın en golcüsü Hüsnü Özkara.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1981-82
+- id: season_1982-83
+  fact: '1982-83 sezonu, Süper Lig: 2. sıra (47 puan). Takımın en golcüsü Levent Erköse.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1982-83
+- id: season_1983-84
+  fact: '1983-84 sezonu, Süper Lig: şampiyon (50 puan). Takımın en golcüsü Hasan Şengün.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Süper_Lig_1983-84
+  source_title: Süper Lig 1983-84 - Vikipedi
+  date: 1983-84
+- id: season_1984-85
+  fact: '1984-85 sezonu, Süper Lig: 3. sıra (42 puan). Takımın en golcüsü Tuncay Soyak.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1984-85
+- id: season_1985-86
+  fact: '1985-86 sezonu, Süper Lig: 7. sıra (37 puan). Takımın en golcüsü Hasan Şengün.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1985-86
+- id: season_1986-87
+  fact: '1986-87 sezonu, Süper Lig: 4. sıra (49 puan). Takımın en golcüsü Hasan Vezir.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1986-87
+- id: season_1987-88
+  fact: '1987-88 sezonu, Süper Lig: 6. sıra (41 puan). Takımın en golcüsü Hami Mandıralı.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1987-88
+- id: season_1988-89
+  fact: '1988-89 sezonu, Süper Lig: 5. sıra (45 puan). Takımın en golcüsü Hami Mandıralı.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1988-89
+- id: season_1989-90
+  fact: '1989-90 sezonu, Süper Lig: 3. sıra (48 puan). Takımın en golcüsü Hamdi Aslan.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1989-90_sezonu
+  source_title: Trabzonspor 1989-90 sezonu - Vikipedi
+  date: 1989-90
+- id: season_1990-91
+  fact: '1990-91 sezonu, Süper Lig: 3. sıra (51 puan). Takımın en golcüsü Hami Mandıralı.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1990-91
+- id: season_1991-92
+  fact: '1991-92 sezonu, Süper Lig: 4. sıra (55 puan). Takımın en golcüsü Hami Mandıralı.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1991-92
+- id: season_1992-93
+  fact: '1992-93 sezonu, Süper Lig: 3. sıra (60 puan). Takımın en golcüsü Orhan Çıkırıkçı.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1992-93
+- id: season_1993-94
+  fact: '1993-94 sezonu, Süper Lig: 3. sıra (59 puan). Takımın en golcüsü Shota Arveladze.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1993-94
+- id: season_1994-95
+  fact: '1994-95 sezonu, Süper Lig: 2. sıra (76 puan). Takımın en golcüsü Orhan Kaynak.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1994-95
+- id: season_1995-96
+  fact: '1995-96 sezonu, Süper Lig: 2. sıra (82 puan). Takımın en golcüsü Shota Arveladze.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Süper_Lig_1995-96
+  source_title: Süper Lig 1995-96 - Vikipedi
+  date: 1995-96
+- id: season_1996-97
+  fact: '1996-97 sezonu, Süper Lig: 3. sıra (72 puan). Takımın en golcüsü Hami Mandıralı.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1996-97
+- id: season_1997-98
+  fact: '1997-98 sezonu, Süper Lig: 3. sıra (66 puan). Takımın en golcüsü Hami Mandıralı.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1997-98
+- id: season_1998-99
+  fact: '1998-99 sezonu, Süper Lig: 4. sıra (58 puan). Takımın en golcüsü Davor Vugrinec.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1998-99
+- id: season_1999-2000
+  fact: '1999-2000 sezonu, Süper Lig: 6. sıra (53 puan). Takımın en golcüsü Hami Mandıralı.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 1999-2000
+- id: season_2000-01
+  fact: '2000-01 sezonu, Süper Lig: 5. sıra (58 puan). Takımın en golcüsü Hami Mandıralı.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2000-01
+- id: season_2001-02
+  fact: '2001-02 sezonu, Süper Lig: 14. sıra (40 puan). Takımın en golcüsü Robson Carioca.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2001-02
+- id: season_2002-03
+  fact: '2002-03 sezonu, Süper Lig: 7. sıra (51 puan). Takımın en golcüsü Fatih Tekke.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2002-03
+- id: season_2003-04
+  fact: '2003-04 sezonu, Süper Lig: 2. sıra (72 puan). Takımın en golcüsü Gökdeniz Karadeniz.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2003-04
+- id: season_2004-05
+  fact: '2004-05 sezonu, Süper Lig: 2. sıra (77 puan). Takımın en golcüsü Fatih Tekke.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2004-05
+- id: season_2005-06
+  fact: '2005-06 sezonu, Süper Lig: 4. sıra (52 puan). Takımın en golcüsü Fatih Tekke.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2005-06
+- id: season_2006-07
+  fact: '2006-07 sezonu, Süper Lig: 4. sıra (52 puan). Takımın en golcüsü Umut Bulut.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2006-07
+- id: season_2007-08
+  fact: '2007-08 sezonu, Süper Lig: 6. sıra (49 puan). Takımın en golcüsü Umut Bulut.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2007-08
+- id: season_2008-09
+  fact: '2008-09 sezonu, Süper Lig: 3. sıra (65 puan). Takımın en golcüsü Gökhan Ünal.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2008-09
+- id: season_2009-10
+  fact: '2009-10 sezonu, Süper Lig: 5. sıra (57 puan). Takımın en golcüsü Umut Bulut.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2009-10
+- id: season_2010-11
+  fact: '2010-11 sezonu, Süper Lig: 2. sıra (82 puan). Takımın en golcüsü Burak Yılmaz.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/2010-11_Süper_Lig
+  source_title: 2010-11 Süper Lig - Vikipedi
+  date: 2010-11
+- id: season_2011-12
+  fact: '2011-12 sezonu, Süper Lig: 3. sıra (56 puan). Takımın en golcüsü Burak Yılmaz.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2011-12
+- id: season_2012-13
+  fact: '2012-13 sezonu, Süper Lig: 9. sıra (46 puan). Takımın en golcüsü Adrian Mierzejewski.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2012-13
+- id: season_2013-14
+  fact: '2013-14 sezonu, Süper Lig: 4. sıra (53 puan). Takımın en golcüsü Paulo Henrique.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2013-14
+- id: season_2014-15
+  fact: '2014-15 sezonu, Süper Lig: 5. sıra (57 puan). Takımın en golcüsü Óscar Cardozo.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2014-15
+- id: season_2015-16
+  fact: '2015-16 sezonu, Süper Lig: 12. sıra (40 puan). Takımın en golcüsü Óscar Cardozo.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2015-16
+- id: season_2016-17
+  fact: '2016-17 sezonu, Süper Lig: 6. sıra (51 puan). Takımın en golcüsü Dame N''Doye.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2016-17
+- id: season_2017-18
+  fact: '2017-18 sezonu, Süper Lig: 5. sıra (55 puan). Takımın en golcüsü Burak Yılmaz.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2017-18
+- id: season_2018-19
+  fact: '2018-19 sezonu, Süper Lig: 4. sıra (63 puan). Takımın en golcüsü Hugo Rodallega.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2018-19
+- id: season_2019-20
+  fact: '2019-20 sezonu, Süper Lig: 2. sıra (65 puan). Takımın en golcüsü Alexander Sørloth.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2019-20
+- id: season_2020-21
+  fact: '2020-21 sezonu, Süper Lig: 4. sıra (71 puan). Takımın en golcüsü Caleb Ekuban.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2020-21
+- id: season_2021-22
+  fact: '2021-22 sezonu, Süper Lig: şampiyon (81 puan). Takımın en golcüsü Andreas Cornelius.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_2021-22_sezonu
+  source_title: Trabzonspor 2021-22 sezonu - Vikipedi
+  date: 2021-22
+- id: season_2022-23
+  fact: '2022-23 sezonu, Süper Lig: 6. sıra (57 puan). Takımın en golcüsü Trézéguet.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2022-23
+- id: season_2023-24
+  fact: '2023-24 sezonu, Süper Lig: 3. sıra (67 puan). Takımın en golcüsü Paul Onuachu.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2023-24
+- id: season_2024-25
+  fact: '2024-25 sezonu, Süper Lig: 7. sıra (51 puan). Takımın en golcüsü Simon Banza.'
+  topic: sezon
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  source_title: Trabzonspor (futbol takımı) - Vikipedi
+  date: 2024-25
+- id: titles_Süper Lig
+  fact: 'Süper Lig şampiyonlukları (7, Ekim 2026 itibarıyla): 1975-76, 1976-77, 1978-79, 1979-80, 1980-81, 1983-84, 2021-22.'
+  topic: kupalar
+  source: https://tr.wikipedia.org/wiki/Trabzonspor
+  source_title: 'Vikipedi: Trabzonspor'
+- id: titles_Türkiye Kupası
+  fact: 'Türkiye Kupası şampiyonlukları (10, Ekim 2026 itibarıyla): 1976-77, 1977-78, 1983-84, 1991-92, 1994-95, 2002-03,
+    2003-04, 2009-10, 2019-20, 2025-26.'
+  topic: kupalar
+  source: https://tr.wikipedia.org/wiki/Trabzonspor
+  source_title: 'Vikipedi: Trabzonspor'
+- id: titles_Süper Kupa
+  fact: 'Süper Kupa şampiyonlukları (10, Ekim 2026 itibarıyla): 1976, 1977, 1978, 1979, 1980, 1983, 1995, 2010, 2020, 2022.'
+  topic: kupalar
+  source: https://tr.wikipedia.org/wiki/Trabzonspor
+  source_title: 'Vikipedi: Trabzonspor'
+- id: titles_Başbakanlık Kupası
+  fact: 'Başbakanlık Kupası şampiyonlukları (5, Ekim 2026 itibarıyla): 1975-76, 1977-78, 1984-85, 1993-94, 1995-96.'
+  topic: kupalar
+  source: https://tr.wikipedia.org/wiki/Trabzonspor
+  source_title: 'Vikipedi: Trabzonspor'
+- id: titles_İkinci Lig Kırmızı Grup
+  fact: 'İkinci Lig Kırmızı Grup şampiyonlukları (1, Ekim 2026 itibarıyla): 1973-74.'
+  topic: kupalar
+  source: https://tr.wikipedia.org/wiki/Trabzonspor
+  source_title: 'Vikipedi: Trabzonspor'
+- id: titles_Kıbrıs Barış Kupası
+  fact: 'Kıbrıs Barış Kupası şampiyonlukları (1, Ekim 2026 itibarıyla): 1975.'
+  topic: kupalar
+  source: https://tr.wikipedia.org/wiki/Trabzonspor
+  source_title: 'Vikipedi: Trabzonspor'
+- id: pres_1
+  fact: Ali Osman Ulusoy, Trabzonspor başkanı (1967-08-02 - 1968-02-08).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1967-08-02'
+- id: pres_2
+  fact: Rıfat Dedeoğlu, Trabzonspor başkanı (1968-02-08 - 1969-04-27).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1968-02-08'
+- id: pres_3
+  fact: Ali Osman Ulusoy, Trabzonspor başkanı (1969-04-27 - 1970-04-14).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1969-04-27'
+- id: pres_4
+  fact: Rıfat Dedeoğlu, Trabzonspor başkanı (1970-04-14 - 1971-04-11).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1970-04-14'
+- id: pres_5
+  fact: Bekir Suat Oyman, Trabzonspor başkanı (1971-04-11 - 1973-09-02).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1971-04-11'
+- id: pres_6
+  fact: Ahmet Salih Erdem, Trabzonspor başkanı (1973-09-02 - 1975-06-01).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1973-09-02'
+- id: pres_7
+  fact: Mustafa Şamil Ekinci, Trabzonspor başkanı (1975-06-01 - 1980-06-12).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1975-06-01'
+- id: pres_8
+  fact: Ahmet Celal Ataman, Trabzonspor başkanı (1980-06-12 - 1981-10-04).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1980-06-12'
+- id: pres_9
+  fact: Mustafa Günaydın, Trabzonspor başkanı (1981-10-04 - 1982-10-03).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1981-10-04'
+- id: pres_10
+  fact: Mehmet Ali Yılmaz, Trabzonspor başkanı (1982-10-03 - 1988-01-17).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1982-10-03'
+- id: pres_11
+  fact: Mazhar Afacan, Trabzonspor başkanı (1988-01-17 - 1989-05-14).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1988-01-17'
+- id: pres_12
+  fact: Mehmet Ali Yılmaz, Trabzonspor başkanı (1989-05-14 - 1992-01-12).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1989-05-14'
+- id: pres_13
+  fact: Sadri Şener, Trabzonspor başkanı (1992-01-12 - 1995-01-08).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1992-01-12'
+- id: pres_14
+  fact: Faruk Nafız Özak, Trabzonspor başkanı (1995-01-08 - 1996-12-15).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1995-01-08'
+- id: pres_15
+  fact: Mehmet Ali Yılmaz, Trabzonspor başkanı (1996-12-15 - 2000-12-31).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '1996-12-15'
+- id: pres_16
+  fact: Özkan Sümer, Trabzonspor başkanı (2000-12-31 - 2003-09-05).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '2000-12-31'
+- id: pres_17
+  fact: Atay Aktuğ, Trabzonspor başkanı (2003-12-21 - 2005-12-18).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '2003-12-21'
+- id: pres_18
+  fact: Nuri Albayrak, Trabzonspor başkanı (2005-12-18 - 2008-02-10).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '2005-12-18'
+- id: pres_19
+  fact: Sadri Şener, Trabzonspor başkanı (2008-02-10 - 2013-05-26).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '2008-02-10'
+- id: pres_20
+  fact: İbrahim Hacıosmanoğlu, Trabzonspor başkanı (2013-05-26 - 2015-12-06).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '2013-05-26'
+- id: pres_21
+  fact: Muharrem Usta, Trabzonspor başkanı (2015-12-06 - 2018-04-08).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '2015-12-06'
+- id: pres_22
+  fact: Ahmet Ali Ağaoğlu, Trabzonspor başkanı (2018-04-08 - 2023-03-03).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '2018-04-08'
+- id: pres_23
+  fact: Ertuğrul Doğan, Trabzonspor başkanı (2023-03-26 - devam ediyor).
+  topic: yönetim
+  source: https://www.trabzonspor.org.tr/en/archive/presidents
+  date: '2023-03-26'
+- id: coach_1
+  fact: Hayri Gür, Trabzonspor teknik direktörü (1966-01-01 - 1967-08-02).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '1966-01-01'
+- id: coach_2
+  fact: Halil Özyazıcı, Trabzonspor teknik direktörü (1967-08-09 - 1967-12-31).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1967-08-09'
+- id: coach_3
+  fact: Harun Kılman, Trabzonspor teknik direktörü (1968-01-01 - 1968-07-05).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '1968-01-01'
+- id: coach_4
+  fact: Erdoğan Gürhan, Trabzonspor teknik direktörü (1968-07-05 - 1969-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1968-07-05'
+- id: coach_5
+  fact: Ahmet Karlıklı, Trabzonspor teknik direktörü (1969-07-01 - 1969-12-31).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1969-07-01'
+- id: coach_6
+  fact: Altan Santepe, Trabzonspor teknik direktörü (1970-01-01 - 1971-06-30).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '1970-01-01'
+- id: coach_7
+  fact: Kamuran Soykıray, Trabzonspor teknik direktörü (1971-07-01 - 1972-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1971-07-01'
+- id: coach_8
+  fact: Mustafa Ertan, Trabzonspor teknik direktörü (1972-07-01 - 1973-03-26).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1972-07-01'
+- id: coach_9
+  fact: Ahmet Suat Özyazıcı, Trabzonspor teknik direktörü (1973-03-26 - 1975-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1973-03-26'
+- id: coach_10
+  fact: Şükrü Ersoy, Trabzonspor teknik direktörü (1975-07-01 - 1975-12-31).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1975-07-01'
+- id: coach_11
+  fact: Ahmet Suat Özyazıcı, Trabzonspor teknik direktörü (1976-01-01 - 1978-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1976-01-01'
+- id: coach_12
+  fact: Özkan Sümer, Trabzonspor teknik direktörü (1978-07-01 - 1979-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1978-07-01'
+- id: coach_13
+  fact: Ahmet Suat Özyazıcı, Trabzonspor teknik direktörü (1979-07-06 - 1980-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1979-07-06'
+- id: coach_14
+  fact: Özkan Sümer, Trabzonspor teknik direktörü (1980-07-09 - 1981-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1980-07-09'
+- id: coach_15
+  fact: Ahmet Suat Özyazıcı, Trabzonspor teknik direktörü (1981-08-06 - 1984-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1981-08-06'
+- id: coach_16
+  fact: Özkan Sümer, Trabzonspor teknik direktörü (1984-07-01 - 1985-04-09).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1984-07-01'
+- id: coach_17
+  fact: İlyas Akçay, Trabzonspor teknik direktörü (1985-04-09 - 1985-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1985-04-09'
+- id: coach_18
+  fact: Jürgen Sundermann, Trabzonspor teknik direktörü (1985-07-01 - 1986-03-14).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1985-07-01'
+- id: coach_19
+  fact: Şenol Güneş, Trabzonspor teknik direktörü (1986-03-17 - 1986-06-30).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '1986-03-17'
+- id: coach_20
+  fact: Ahmet Suat Özyazıcı, Trabzonspor teknik direktörü (1986-03-17 - 1987-11-18).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1986-03-17'
+- id: coach_21
+  fact: Metin Türel, Trabzonspor teknik direktörü (1987-11-01 - 1988-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1987-11-01'
+- id: coach_22
+  fact: Ahmet Suat Özyazıcı, Trabzonspor teknik direktörü (1988-07-01 - 1988-09-13).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '1988-07-01'
+- id: coach_23
+  fact: Werner Biskup, Trabzonspor teknik direktörü (1988-07-01 - 1988-09-06).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1988-07-01'
+- id: coach_24
+  fact: Şenol Güneş, Trabzonspor teknik direktörü (1988-09-13 - 1989-08-17).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1988-09-13'
+- id: coach_25
+  fact: Urbain Braems, Trabzonspor teknik direktörü (1989-07-01 - 1990-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1989-07-01'
+- id: coach_27
+  fact: Özkan Sümer, Trabzonspor teknik direktörü (1990-07-16 - 1991-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1990-07-16'
+- id: coach_28
+  fact: Urbain Braems, Trabzonspor teknik direktörü (1991-07-01 - 1992-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1991-07-01'
+- id: coach_29
+  fact: Georges Leekens, Trabzonspor teknik direktörü (1992-07-01 - 1993-09-24).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1992-07-01'
+- id: coach_30
+  fact: Şenol Güneş, Trabzonspor teknik direktörü (1993-09-23 - 1997-02-03).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1993-09-23'
+- id: coach_31
+  fact: Yılmaz Vural, Trabzonspor teknik direktörü (1997-02-03 - 1997-10-09).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1997-02-03'
+- id: coach_32
+  fact: Özkan Sümer, Trabzonspor teknik direktörü (1997-10-16 - 1998-03-04).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1997-10-16'
+- id: coach_33
+  fact: Ali Kemal Denizci, Trabzonspor teknik direktörü (1998-03-04 - 1998-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1998-03-04'
+- id: coach_34
+  fact: Gordon Milne, Trabzonspor teknik direktörü (1998-07-02 - 1999-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1998-07-02'
+- id: coach_35
+  fact: Ahmet Suat Özyazıcı, Trabzonspor teknik direktörü (1999-01-01 - 1999-12-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '1999-01-01'
+- id: coach_36
+  fact: Jürgen Wähling, Trabzonspor teknik direktörü (1999-07-01 - 1999-12-30).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '1999-07-01'
+- id: coach_37
+  fact: Hüsnü Özkara, Trabzonspor teknik direktörü (1999-07-01 - 2000-01-06).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '1999-07-01'
+- id: coach_38
+  fact: Giray Bulak, Trabzonspor teknik direktörü (2000-01-06 - 2001-01-01).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2000-01-06'
+- id: coach_39
+  fact: Sadi Tekelioğlu, Trabzonspor teknik direktörü (2001-10-19 - 2001-11-09).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2001-10-19'
+- id: coach_40
+  fact: Hans-Peter Briegel, Trabzonspor teknik direktörü (2001-11-09 - 2002-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2001-11-09'
+- id: coach_41
+  fact: Samet Aybaba, Trabzonspor teknik direktörü (2002-07-01 - 2003-12-04).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2002-07-01'
+- id: coach_42
+  fact: Turgay Semercioğlu, Trabzonspor teknik direktörü (2003-04-11 - 2004-02-05).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2003-04-11'
+- id: coach_43
+  fact: Ziya Doğan, Trabzonspor teknik direktörü (2004-02-05 - 2005-01-17).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2004-02-05'
+- id: coach_44
+  fact: Şenol Güneş, Trabzonspor teknik direktörü (2005-01-26 - 2005-10-26).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2005-01-26'
+- id: coach_45
+  fact: Orhan Çıkırıkçı, Trabzonspor teknik direktörü (2005-10-07 - 2005-10-26).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2005-10-07'
+- id: coach_46
+  fact: Vahid Halilhodžić, Trabzonspor teknik direktörü (2005-10-07 - 2006-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2005-10-07'
+- id: coach_47
+  fact: Sebastião Lazaroni, Trabzonspor teknik direktörü (2006-07-01 - 2006-09-07).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2006-07-01'
+- id: coach_48
+  fact: Ziya Doğan, Trabzonspor teknik direktörü (2006-09-07 - 2007-10-22).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2006-09-07'
+- id: coach_49
+  fact: Ersun Yanal, Trabzonspor teknik direktörü (2007-12-27 - 2009-11-27).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2007-12-27'
+- id: coach_50
+  fact: Ahmet Özen, Trabzonspor teknik direktörü (2009-11-28 - 2009-11-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2009-11-28'
+- id: coach_51
+  fact: Cemil Canalioğlu, Trabzonspor teknik direktörü (2009-05-15 - 2009-05-31).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2009-05-15'
+- id: coach_52
+  fact: Hugo Broos, Trabzonspor teknik direktörü (2009-07-01 - 2009-11-24).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2009-07-01'
+- id: coach_53
+  fact: Şenol Güneş, Trabzonspor teknik direktörü (2009-12-04 - 2013-01-29).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2009-12-04'
+- id: coach_54
+  fact: Tolunay Kafkas, Trabzonspor teknik direktörü (2013-01-29 - 2013-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2013-01-29'
+- id: coach_55
+  fact: Mustafa Reşit Akçay, Trabzonspor teknik direktörü (2013-07-01 - 2014-02-10).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2013-07-01'
+- id: coach_56
+  fact: Cemil Canalioğlu, Trabzonspor teknik direktörü (2014-02-10 - 2014-05-12).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2014-02-10'
+- id: coach_57
+  fact: Hami Mandıralı, Trabzonspor teknik direktörü (2014-02-10 - 2014-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2014-02-10'
+- id: coach_58
+  fact: Vahid Halilhodžić, Trabzonspor teknik direktörü (2014-07-15 - 2014-11-08).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2014-07-15'
+- id: coach_59
+  fact: Ersun Yanal, Trabzonspor teknik direktörü (2014-11-10 - 2015-07-02).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2014-11-10'
+- id: coach_60
+  fact: Shota Arveladze, Trabzonspor teknik direktörü (2015-07-03 - 2015-11-11).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2015-07-03'
+- id: coach_61
+  fact: Sadi Tekelioğlu, Trabzonspor teknik direktörü (2016-01-21 - 2016-05-13).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2016-01-21'
+- id: coach_62
+  fact: Hami Mandıralı, Trabzonspor teknik direktörü (2016-05-13 - 2016-05-20).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2016-05-13'
+- id: coach_63
+  fact: Taner Yılmaz, Trabzonspor teknik direktörü (2016-05-14 - 2016-05-20).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2016-05-14'
+- id: coach_64
+  fact: Ersun Yanal, Trabzonspor teknik direktörü (2016-07-01 - 2017-10-16).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2016-07-01'
+- id: coach_65
+  fact: Rıza Çalımbay, Trabzonspor teknik direktörü (2017-10-18 - 2018-06-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2017-10-18'
+- id: coach_66
+  fact: Ünal Karaman, Trabzonspor teknik direktörü (2018-07-01 - 2019-12-30).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2018-07-01'
+- id: coach_67
+  fact: Hüseyin Çimşir, Trabzonspor teknik direktörü (2020-01-02 - 2020-07-20).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2020-01-02'
+- id: coach_68
+  fact: Eddie Newton, Trabzonspor teknik direktörü (2020-07-20 - 2020-10-31).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2020-07-20'
+- id: coach_69
+  fact: İhsan Derelioğlu, Trabzonspor teknik direktörü (2020-10-31 - 2020-11-08).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2020-10-31'
+- id: coach_70
+  fact: Abdullah Avcı, Trabzonspor teknik direktörü (2020-11-10 - 2023-03-08).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2020-11-10'
+- id: coach_71
+  fact: Orhan Ak, Trabzonspor teknik direktörü (2023-03-08 - 2023-04-04).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2023-03-08'
+- id: coach_72
+  fact: İhsan Derelioğlu, Trabzonspor teknik direktörü (2023-04-05 - 2023-04-18).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2023-04-05'
+- id: coach_73
+  fact: Nenad Bjelica, Trabzonspor teknik direktörü (2023-04-18 - 2023-10-11).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2023-04-18'
+- id: coach_74
+  fact: Abdullah Avcı, Trabzonspor teknik direktörü (2023-10-12 - 2024-08-31).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2023-10-12'
+- id: coach_75
+  fact: İhsan Derelioğlu, Trabzonspor teknik direktörü (2024-08-31 - 2024-09-02).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2024-08-31'
+- id: coach_76
+  fact: Şenol Güneş, Trabzonspor teknik direktörü (2024-09-03 - 2025-03-10).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2024-09-03'
+- id: coach_77
+  fact: Fatih Tekke, Trabzonspor teknik direktörü (2025-03-10 - 2026-09-01).
+  topic: yönetim
+  source: https://en.wikipedia.org/wiki/List_of_Trabzonspor_(football_team)_managers
+  date: '2025-03-10'
+- id: coach_78
+  fact: Hüseyin Çimşir, Trabzonspor teknik direktörü (2026-09-01 - 2026-09-17).
+  topic: yönetim
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)_teknik_direkt%C3%B6rleri_listesi
+  date: '2026-09-01'
+- id: coach_79
+  fact: Thomas Reis, Trabzonspor teknik direktörü (2026-09-17 - devam ediyor).
+  topic: yönetim
+  source: https://www.aksam.com.tr/spor/son-firtina-reis
+  date: '2026-09-17'
+- id: TS-001
+  fact: İdmanocağı SK (having merged with Martıspor and Yıldızspor) is admitted to the Turkish professional leagues, joining
+    the Second League under its own name and colors.
+  topic: foundation
+  source: https://www.trabzonspor.org.tr/tr/kulup/tarihce
+  date: '1966-06-21'
+- id: TS-002
+  fact: Per the club's official history, İdmangücü, Karadenizgücü, Martıspor and Yolspor join forces to form an initial Trabzonspor
+    under red-and-white colors, competing in the Second League in 1966-67.
+  topic: foundation
+  source: https://www.trabzonspor.org.tr/tr/kulup/tarihce
+  date: '1966-07-20'
+- id: TS-003
+  fact: Trabzonspor Kulübü is formally founded through the merger of İdmanocağı and İdmangücü (together with Karadenizgücü
+    and Martıspor), adopting the claret-and-blue (bordo-mavi) colors.
+  topic: foundation
+  source: https://www.trabzonspor.org.tr/tr/kulup/tarihce
+  date: '1967-08-02'
+- id: TS-004
+  fact: '1.Lig Championship playoff: home vs Zonguldakspor 0-0 (lost 3-4 on penalties) — Promotion to Süper Lig'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  date: '1974-05-12'
+- id: TS-005
+  fact: 'Türkiye Kupası Final (1st leg): home vs Beşiktaş 1-0 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '1975-05-04'
+- id: TS-006
+  fact: 'Türkiye Kupası Final (2nd leg): away vs Beşiktaş 0-2 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '1975-05-18'
+- id: TS-007
+  fact: 'Trabzonspor 90-match home unbeaten streak in Süper Lig, from 2 November 1975 (vs Altay, 2-1) to 1 November 1981 (vs
+    Kocaelispor, 1-0). 70 wins, 20 draws, 152 goals scored, 18 conceded. The first Istanbul-side home win at Avni Aker: Fenerbahçe
+    2-1 on 31.05.1981.'
+  topic: derby_records
+  source: https://www.aa.com.tr/tr/futbol/super-ligin-rekorlari-ve-ilkleri/1556886
+  date: '1975-11-02'
+- id: TS-008
+  fact: 'Süper Lig Week 23: home vs Fenerbahçe 1-0 — Title race turning point'
+  topic: landmark_game
+  source: https://www.trabzonspor.org.tr/tr/haberler/guncel-haberler/7-sampiyonlugumuzun-hikayesi
+  date: '1976-04-04'
+- id: TS-009
+  fact: 'Süper Lig Week 30: away vs Fenerbahçe 1-2 — Title clinch confirmation'
+  topic: landmark_game
+  source: https://arsiv.mackolik.com/Takim/2/Fenerbahce/1975/1976
+  date: '1976-06-06'
+- id: TS-010
+  fact: 'European Cup second round, first leg: Trabzonspor 1-0 Liverpool at Hüseyin Avni Aker Stadium (penalty goal by Cemil
+    Usta), in Trabzonspor''s European debut campaign.'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: '1976-10-20'
+- id: TS-011
+  fact: 'European Cup second round, second leg: Liverpool 3-0 Trabzonspor at Anfield; Trabzonspor eliminated 1-3 on aggregate.'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: '1976-11-03'
+- id: TS-012
+  fact: 'Süper Lig Week 30: home vs Altay 2-0 — Title clinch'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  date: '1977-06-05'
+- id: TS-013
+  fact: 'Türkiye Kupası Final (1st leg): home vs Adana Demirspor 3-0 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '1978-05-24'
+- id: TS-014
+  fact: 'Türkiye Kupası Final (2nd leg): away vs Adana Demirspor 0-0 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '1978-06-07'
+- id: TS-015
+  fact: 'Süper Lig Week 30: home vs Zonguldakspor 2-0 — Title clinch'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  date: '1979-06-03'
+- id: TS-016
+  fact: 'Süper Lig Week 30: home vs Zonguldakspor 2-0 — Title clinch'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  date: '1980-06-01'
+- id: TS-017
+  fact: 'Süper Lig Week 30: home vs Adanaspor 1-0 — Title clinch'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesyonel_Futbol_Takımı
+  date: '1981-06-07'
+- id: TS-018
+  fact: 'Süper Lig Week 26: away vs Fenerbahçe 1-0 — Title race turning point'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Fenerbahçe_(futbol_takımı)_1983-84_sezonu
+  date: '1984-04-01'
+- id: TS-019
+  fact: 'Türkiye Kupası Final: neutral vs Beşiktaş 2-0 (aet) — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1983-84_sezonu
+  date: '1984-05-30'
+- id: TS-020
+  fact: 'Süper Lig Week 34: home vs Fenerbahçe 1-0 — Title clinch'
+  topic: landmark_game
+  source: https://arsiv.mackolik.com/Takim/4/Trabzonspor/1983%2F1984
+  date: '1984-06-03'
+- id: TS-021
+  fact: 'UEFA Cup Winners'' Cup First round (1st leg): home vs Barcelona 1-0 — European landmark'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupaları_tarihi
+  date: '1990-09-19'
+- id: TS-022
+  fact: 'UEFA Cup Winners'' Cup First round (2nd leg): away vs Barcelona 2-7 — European landmark'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupaları_tarihi
+  date: '1990-10-03'
+- id: TS-023
+  fact: 'UEFA Cup First round (1st leg): home vs Dinamo Zagreb 3-2 — European landmark'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupaları_tarihi
+  date: '1991-09-17'
+- id: TS-024
+  fact: 'UEFA Cup Second round (1st leg): home vs Lyon 4-3 — European landmark'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupaları_tarihi
+  date: '1991-09-18'
+- id: TS-025
+  fact: 'UEFA Cup First round (2nd leg): away vs Dinamo Zagreb 1-1 — European landmark'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupaları_tarihi
+  date: '1991-10-01'
+- id: TS-026
+  fact: 'UEFA Cup Second round (2nd leg): away vs Lyon 4-1 — European landmark'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupaları_tarihi
+  date: '1991-10-01'
+- id: TS-027
+  fact: 'Süper Lig Week 10: away vs Beşiktaş 1-7 — Record defeat'
+  topic: landmark_game
+  source: https://www.sporx.com/futbol/ekstra/trabzonspor-dan-tarihi-yenilgi-SXGLQ63651SXX
+  date: '1993-11-20'
+- id: TS-028
+  fact: 'Türkiye Kupası Final: neutral vs Beşiktaş 2-1 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '1995-04-12'
+- id: TS-029
+  fact: 'Süper Lig Week 32: home vs Fenerbahçe 1-2 — Title decider'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Süper_Lig_1995-96
+  date: '1996-05-05'
+- id: TS-030
+  fact: 'Title decider at Hüseyin Avni Aker: Trabzonspor, leading the league by one point with three rounds left, takes a
+    1-0 lead against Fenerbahçe (Abdullah Ercan 18'') but loses 1-2 (Oğuz Çetin 55'', Aykut Kocaman 82''), surrendering the
+    leadership; Fenerbahçe goes on to win the title and Trabzonspor finishes second with 82 points (then a club record).'
+  topic: turning_point
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_1995-96_sezonu
+  date: '1996-05-05'
+- id: TS-031
+  fact: 'Türkiye Kupası Final: home vs Kocaelispor 1-1 (lost on penalties) — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '1997-04-23'
+- id: TS-032
+  fact: 'Türkiye Kupası Final: neutral vs Gençlerbirliği 3-1 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '2003-04-23'
+- id: TS-033
+  fact: 'Türkiye Kupası Final: neutral vs Denizlispor 4-0 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '2004-05-05'
+- id: TS-034
+  fact: 'UEFA Intertoto Cup Second round (1st leg): home vs Vllaznia Shkodër 6-0 — Record European win'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupaları_tarihi
+  date: '2007-07-07'
+- id: TS-035
+  fact: 'Türkiye Kupası Final: neutral vs Fenerbahçe 3-1 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '2010-05-05'
+- id: TS-036
+  fact: 'Süper Lig Week 34: away vs Kardemir Karabükspor 4-0 — Title race'
+  topic: landmark_game
+  source: https://www.tff.org/default.aspx?pageID=201&ftxtID=12657
+  date: '2011-05-22'
+- id: TS-037
+  fact: 'UEFA Champions League group stage debut: Trabzonspor, admitted to the group stage by UEFA as league runners-up replacing
+    banned champions Fenerbahçe, beats defending-class Inter Milan 1-0 at the San Siro (Ondřej Čelůstka 76'') - one of the
+    greatest results in club history. Earlier that window they had lost to Benfica (1-3 agg) in the CL third qualifying round.'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: '2011-09-14'
+- id: TS-038
+  fact: 28,874 attendance at Hüseyin Avni Aker Stadium for Trabzonspor vs Inter Milan Champions League group match - Turkish
+    stadium attendance record for a European match.
+  topic: european
+  source: https://tr.wikipedia.org/wiki/2011-12_UEFA_%C5%9Eampiyonlar_Ligi_grup_a%C5%9Famas%C4%B1
+  date: '2011-09-14'
+- id: TS-039
+  fact: The new Şenol Güneş Sports Complex stadium in Akyazı, Trabzon (capacity approx. 40,980) is inaugurated in a ceremony
+    attended by President Recep Tayyip Erdoğan and the Emir of Qatar Tamim bin Hamad Al Thani, followed by a friendly between
+    club legends. The stadium is named after Trabzonspor legend and former national coach Şenol Güneş.
+  topic: stadium
+  source: https://tr.wikipedia.org/wiki/%C5%9Eenol_G%C3%BCne%C5%9F_Spor_Kompleksi
+  date: '2016-12-18'
+- id: TS-040
+  fact: 'First official match at the new stadium: Trabzonspor 4-0 Gaziantepspor, watched by 22,654 spectators; Fabián Castillo
+    scores the stadium''s first goal.'
+  topic: stadium
+  source: https://tr.wikipedia.org/wiki/%C5%9Eenol_G%C3%BCne%C5%9F_Spor_Kompleksi
+  date: '2017-01-29'
+- id: TS-041
+  fact: 'Stadium naming rights: Medical Park becomes naming sponsor on 29 January 2017 (five-year deal; reported ~US$25M),
+    the venue operating as Medical Park Arena / Medical Park Stadyumu until 2022 (sponsor name not used in UEFA competitions).'
+  topic: stadium
+  source: https://tr.wikipedia.org/wiki/%C5%9Eeol_G%C3%BCne%C5%9F_Spor_Kompleksi
+  date: '2017-01-29'
+- id: TS-042
+  fact: 'Türkiye Kupası Final: neutral vs Alanyaspor 2-0 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '2020-07-29'
+- id: TS-043
+  fact: 'Trabzonspor wins its ninth Turkish Cup, shutting out Aytemiz Alanyaspor 2-0 in the final on 29 July 2020. Goals:
+    Abdülkadir Ömür (25''), Alexander Sørloth (90+10'').'
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+  date: '2020-07-29'
+- id: TS-045
+  fact: 'Süper Lig Week 35: home vs Antalyaspor 2-2 — Title clinch'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_2021-22_sezonu
+  date: '2022-04-30'
+- id: TS-047
+  fact: 'Trabzonspor wins the Turkish Super Cup in 2022 - its tenth Super Cup (1976, 1977, 1978, 1979, 1980, 1983, 1995, 2010,
+    2020, 2022). Defeated Sivasspor 4-0 (scorers: Cornelius, Toköz, Boyraz, Eysiner).'
+  topic: super_cup
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)
+  date: '2022-07-30'
+- id: TS-048
+  fact: 'UEFA Champions League play-off round: eliminated by FC Copenhagen 1-2 on aggregate (0-0 home, 1-2 away). Drops to
+    the UEFA Europa League group stage (Group H): finishes third after beating Ferencváros 1-0 at home (2-3 away), Monaco
+    4-0 at home (1-3 away) and Red Star Belgrade 2-1 at home (1-2 away); transferred to the Europa Conference League round
+    of 32, eliminated by Basel 1-2 on aggregate (1-0 home, 0-2 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: '2022-08-24'
+- id: TS-049
+  fact: Papara signs a five-year stadium naming-rights deal (announced 8 August 2023; reported annual value 1.416 billion
+    TL / ~EUR 47.8M at announcement); from the 2023-24 season the stadium is named Papara Park.
+  topic: stadium
+  source: https://tr.wikipedia.org/wiki/%C5%9Eenol_G%C3%BCne%C5%9F_Spor_Kompleksi
+  date: '2023-08-08'
+- id: TS-050
+  fact: 'Süper Lig Week 11: away vs Fenerbahçe 3-2 — Derby landmark'
+  topic: landmark_game
+  source: https://beinsports.com.tr/haber/trabzonspor-833-gundur-derbi-kazanamiyor
+  date: '2023-11-04'
+- id: TS-051
+  fact: 'Süper Lig Week 21: home vs Galatasaray 1-5 — Derby landmark'
+  topic: landmark_game
+  source: https://www.fotomac.com.tr/trabzonspor/2026/01/06/trabzonspor-uc-buyukler-karsisinda-15-mactir-kazanamiyor
+  date: '2024-01-21'
+- id: TS-052
+  fact: 'Türkiye Kupası Final: neutral vs Beşiktaş 2-3 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '2024-05-23'
+- id: TS-053
+  fact: 'Süper Lig Week 22: away vs Beşiktaş 1-2 — Derby landmark'
+  topic: landmark_game
+  source: https://www.turkiyegazetesi.com.tr/spor/son-2-yilda-tam-14-mac-trabzonsporun-derbi-kabusu-1760366
+  date: '2025-02-15'
+- id: TS-054
+  fact: 'Süper Lig Week 28: away vs Fenerbahçe 1-4 — Derby landmark'
+  topic: landmark_game
+  source: https://www.turkiyegazetesi.com.tr/spor/son-2-yilda-tam-14-mac-trabzonsporun-derbi-kabusu-1760366
+  date: '2025-04-06'
+- id: TS-055
+  fact: 'Süper Lig Week 31: home vs Galatasaray 0-2 — Derby landmark'
+  topic: landmark_game
+  source: https://www.turkiyegazetesi.com.tr/spor/son-2-yilda-tam-14-mac-trabzonsporun-derbi-kabusu-1760366
+  date: '2025-05-10'
+- id: TS-056
+  fact: 'Türkiye Kupası Final: neutral vs Galatasaray 0-3 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '2025-05-14'
+- id: TS-057
+  fact: 'Süper Lig Week 4: away vs Fenerbahçe 0-1 — Derby landmark'
+  topic: landmark_game
+  source: https://www.turkiyegazetesi.com.tr/spor/son-2-yilda-tam-14-mac-trabzonsporun-derbi-kabusu-1760366
+  date: '2025-09-14'
+- id: TS-058
+  fact: 'Süper Lig Week 11: away vs Galatasaray 0-0 — Derby landmark'
+  topic: landmark_game
+  source: https://www.turkiyegazetesi.com.tr/spor/son-2-yilda-tam-14-mac-trabzonsporun-derbi-kabusu-1760366
+  date: '2025-11-01'
+- id: TS-059
+  fact: 'Süper Lig Week 15: home vs Beşiktaş 3-3 — Derby landmark'
+  topic: landmark_game
+  source: https://www.turkiyegazetesi.com.tr/spor/son-2-yilda-tam-14-mac-trabzonsporun-derbi-kabusu-1760366
+  date: '2025-12-14'
+- id: TS-060
+  fact: 'Türkiye Kupası Final: neutral vs Konyaspor 2-1 — Turkish Cup final'
+  topic: landmark_game
+  source: https://tr.wikipedia.org/wiki/Türkiye_Kupası_finalleri_listesi
+  date: '2026-05-22'
+- id: TS-061
+  fact: Trabzonspor wins its tenth Turkish Cup, defeating TÜMOSAN Konyaspor 2-1 in the Ziraat Türkiye Kupası final held in
+    Antalya.
+  topic: domestic_cup
+  source: https://www.aa.com.tr/tr/spor/trabzonspor-ziraat-turkiye-kupasi-finalinde-konyasporu-2-1-yenerek-sampiyon-oldu/3946243
+  date: '2026-05-22'
+- id: TS-062
+  fact: '2026 summer transfer window: Trabzonspor signed 13 players, including Muhammed Salah (return, free), André Onana,
+    Aral Şimşir, Ruslan Malinovskyi — reported as Süper Lig''s largest single-window incoming squad.'
+  topic: record_signings
+  source: https://www.timeturk.com/trabzonspor-kimleri-aldi-super-lig-2026-2027-sezonu-12-transferin-tam-listesi
+  date: 2026-08
+- id: TS-063
+  fact: 'UEFA Europa League play-off round: Trabzonspor loses 0-1 at home (20 August 2026) and 0-4 away at Ferencváros (27
+    August 2026, finishing with nine men), 0-5 on aggregate, and drops into the UEFA Conference League league phase.'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)
+  date: '2026-08-27'
+- id: TS-064
+  fact: 'Süper Lig Week 5: home vs Galatasaray 4-0 — Derby landmark'
+  topic: landmark_game
+  source: https://arsiv.mackolik.com/Takim/4/Trabzonspor
+  date: '2026-09-19'
+- id: TS-127
+  fact: Second season in the First League; Trabzonspor reaches the Turkish Cup final as runners-up (1974-75).
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)
+  date: 1974-75
+- id: TS-130
+  fact: Trabzonspor wins its first Turkish Cup (1977).
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+  date: 1976-77
+- id: TS-131
+  fact: Trabzonspor wins the Turkish Super Cup (Presidential Cup) for the first time in 1976.
+  topic: super_cup
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)
+- id: TS-132
+  fact: Trabzonspor wins its second Turkish Cup (1977-78), defeating Adana Demirspor 3-0 on aggregate (0-0 away, 3-0 second
+    leg per Turkish Cup records).
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+  date: 1977-78
+- id: TS-133
+  fact: 'European Cup round of 32: Trabzonspor eliminates B 1903 (Denmark) 1-2 on aggregate (1-0 home, 0-2 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1977-78
+- id: TS-135
+  fact: 'European Cup round of 32: eliminated by Hajduk Split 0-2 on aggregate (0-1, 0-1).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1979-80
+- id: TS-137
+  fact: 'European Cup round of 32: eliminated by Szombierki Bytom (Poland) 2-4 on aggregate (2-1 home, 0-3 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1980-81
+- id: TS-139
+  fact: 'European Cup round of 32: eliminated by Dynamo Kyiv 1-2 on aggregate (1-1 home, 0-1 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1981-82
+- id: TS-140
+  fact: 'UEFA Cup round of 64: heavy 0-6 aggregate defeat to 1. FC Kaiserslautern (0-3, 0-3).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1982-83
+- id: TS-142
+  fact: Trabzonspor wins the Turkish Cup (1983-84), beating Beşiktaş 2-0 after extra time in the final at İzmir Atatürk Stadium
+    (attendance 17,956).
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+  date: 1983-84
+- id: TS-143
+  fact: 'UEFA Cup round of 64: eliminated by Inter Milan 1-2 on aggregate (1-0 home, 0-2 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1983-84
+- id: TS-144
+  fact: 'European Cup round of 32: eliminated by Dnipro Dnipropetrovsk 1-3 on aggregate (1-0 home, 0-3 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1984-85
+- id: TS-145
+  fact: 'European Cup Winners'' Cup: Trabzonspor beats Bray Wanderers (Ireland) 3-1 on aggregate, then wins 1-0 at home against
+    Barcelona before losing 2-7 away; eliminated 3-7 on aggregate in the round of 32.'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1990-91
+- id: TS-146
+  fact: Trabzonspor wins the Turkish Cup (1991-92, listed as the 1992 cup win).
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+  date: 1991-92
+- id: TS-147
+  fact: 'UEFA Cup run to the round of 16: beats Dinamo Zagreb (4-3 agg) and Lyon (8-4 agg), then loses 1-2 on aggregate to
+    B 1903.'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1991-92
+- id: TS-148
+  fact: 'Cup Winners'' Cup round of 16: beats TPS Turku (4-2 agg), eliminated by Atlético Madrid (0-2 agg: 0-2 home, 0-0 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1992-93
+- id: TS-149
+  fact: 'UEFA Cup: beats Valletta (6-2 agg), eliminated by Cagliari on away goals (2-2 agg: 1-1 home, 0-0 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1993-94
+- id: TS-150
+  fact: Trabzonspor wins the Turkish Cup (1994-95), defeating Galatasaray 4-2 on aggregate (3-2 away, 1-0 home at Hüseyin
+    Avni Aker).
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+  date: 1994-95
+- id: TS-152
+  fact: 'UEFA Cup run to the round of 16: beats Dinamo București (5-4 agg) and Aston Villa on away goals (2-2 agg), then loses
+    2-4 on aggregate to Lazio (1-2, 1-2).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1994-95
+- id: TS-153
+  fact: 'Cup Winners'' Cup: beats Žalgiris Vilnius (3-2 agg), eliminated by Deportivo La Coruña 0-4 on aggregate (0-1 home,
+    0-3 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1995-96
+- id: TS-155
+  fact: 'UEFA Cup: beats Slovan Bratislava (5-3 agg) and Bodø/Glimt (5-2 agg), eliminated by Schalke 04 in the round of 32
+    (3-4 agg: 3-3 home, 0-1 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1996-97
+- id: TS-156
+  fact: 'UEFA Cup: beats Dundee United (2-1 agg), eliminated by VfL Bochum in the round of 64 (5-6 agg: 2-1 home, 3-5 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1997-98
+- id: TS-157
+  fact: 'UEFA Cup second qualifying round: eliminated by Wisła Kraków 2-7 on aggregate (1-2 home, 1-5 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 1998-99
+- id: TS-158
+  fact: 'UEFA Intertoto Cup: Trabzonspor gets past Perugia in the third round (Wikipedia lists aggregate 4-2 with the away
+    leg marked 1-3 a.e.t./awarded per note 3) and is eliminated by Hamburger SV in the semi-finals (3-6 agg: 2-2 home, 1-4
+    away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: '1999'
+- id: TS-159
+  fact: Trabzonspor wins the Turkish Cup (2002-03), defeating Gençlerbirliği 3-1 in the final at Antalya Atatürk Stadium.
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+  date: 2002-03
+- id: TS-160
+  fact: Trabzonspor wins a second consecutive Turkish Cup (2003-04), defeating Gençlerbirliği 4-0 in the final at the Atatürk
+    Olympic Stadium (attendance 40,000).
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+  date: 2003-04
+- id: TS-162
+  fact: 'UEFA Cup first round: eliminated by Villarreal 2-3 on aggregate (0-0 home, 2-3 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2003-04
+- id: TS-163
+  fact: 'UEFA Champions League qualifying: beats Skonto Riga (4-1 agg), eliminated by Dynamo Kyiv in the third qualifying
+    round (2-3 agg); drops to the UEFA Cup first round and is eliminated by Athletic Bilbao (3-4 agg: 3-2 home, 0-2 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2004-05
+- id: TS-165
+  fact: 'UEFA Champions League second qualifying round: eliminated by Anorthosis Famagusta 2-3 on aggregate (1-0 home, 1-3
+    away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2005-06
+- id: TS-166
+  fact: 'UEFA Cup: beats APOEL (2-1 agg) with the home leg played behind closed doors after crowd-trouble sanctions, then
+    eliminated by Osasuna on away goals (2-2 agg: 2-2 home, 0-0 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2006-07
+- id: TS-167
+  fact: 'UEFA Intertoto Cup: beats Vllaznia Shkodër 10-0 on aggregate (6-0, 4-0), eliminated by Oțelul Galați in the third
+    round (2-4 agg: 1-2, 1-2).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: '2007'
+- id: TS-168
+  fact: Trabzonspor wins the Turkish Cup (2009-10, listed as the 2010 cup win) - its eighth.
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+  date: 2009-10
+- id: TS-169
+  fact: 'UEFA Europa League play-off round: eliminated by Toulouse 2-3 on aggregate (1-3 home, 1-0 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2009-10
+- id: TS-170
+  fact: 'UEFA Europa League play-off round: eliminated by Liverpool 1-3 on aggregate (1-2 home, 0-1 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2010-11
+- id: TS-172
+  fact: 'Champions League Group B (with Inter Milan, CSKA Moscow, Lille): Trabzonspor finishes third with 7 points (W1 D4
+    L1, 3-5), unbeaten at home including 1-1 vs Inter (Halil Altıntop 23'') and 0-0 vs both CSKA and Lille; drops into the
+    UEFA Europa League round of 32 and loses 2-6 on aggregate to PSV Eindhoven (1-2 home, 1-4 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2011-12
+- id: TS-173
+  fact: 'UEFA Europa League play-off round: eliminated by Videoton on penalties (0-0 both legs; 3-5 on penalties).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2012-13
+- id: TS-174
+  fact: 'UEFA Europa League: qualifies through Derry City (7-2 agg), Dinamo Minsk (1-0 agg) and Kukësi (5-1 agg); tops Group
+    J undefeated with 14 points (Apollon Limassol 4-2/2-1, Lazio 3-3/0-0, Legia Warsaw 2-0/2-0); eliminated in the round of
+    32 by Juventus 0-4 on aggregate (0-2, 0-2).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2013-14
+- id: TS-175
+  fact: 'UEFA Europa League: beats Rostov in the play-off (2-0 agg); finishes second in Group L (Metalist Kharkiv 3-1/2-1,
+    Legia Warsaw 0-1/0-2, Lokeren 2-0/1-1); eliminated in the round of 32 by Napoli 0-5 on aggregate (0-4 home, 0-1 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2014-15
+- id: TS-176
+  fact: 'UEFA Europa League qualifying: beats Differdange 03 (3-1 agg), then suffers an upset elimination by FK Rabotnički
+    (1-2 agg: 1-1 a.e.t. home, 0-1 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2015-16
+- id: TS-177
+  fact: 'UEFA Europa League: beats Sparta Prague (4-3 agg) and AEK Athens on away goals (3-3 agg: 0-2 away, 3-1 home); finishes
+    4th in Group C (Getafe 0-1/0-1, Basel 2-2/0-2, Krasnodar 0-2/1-3).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2019-20
+- id: TS-179
+  fact: 'UEFA Europa Conference League qualifying: Trabzonspor beats Molde on penalties (4-4 agg: 3-3 home, 1-1 a.e.t. away,
+    4-3 pens) in the third qualifying round, then loses the play-off to Roma 1-5 on aggregate (1-2 home, 0-3 away).'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2021-22
+- id: TS-180
+  fact: Turkish Cup runners-up (2023-24).
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)
+  date: 2023-24
+- id: TS-182
+  fact: Turkish Cup runners-up (2024-25).
+  topic: domestic_cup
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)
+  date: 2024-25
+- id: TS-183
+  fact: 'UEFA Europa League qualifying: beats Ružomberok (3-0 agg), eliminated by Rapid Wien in the third qualifying round
+    (0-3 agg: 0-1 home, 0-2 away). Drops to the UEFA Conference League play-off round and is eliminated by St. Gallen on penalties
+    (1-1 a.e.t. home, 0-0 away; 4-5 pens) - no European group stage in 2024-25.'
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2024-25
+- id: TS-185
+  fact: Trabzonspor enters the 2026-27 UEFA Conference League league phase (qualified as third in Türkiye via the Europa League
+    play-off route; UEFA coefficient ranking 169 at the time of qualification).
+  topic: european
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+  date: 2026-27
+- id: TS-186
+  fact: 'Trabzonspor vs Fenerbahçe derby (all competitions): 105 official league meetings since 1974. Fenerbahçe 44 wins,
+    Trabzonspor 27 wins, 34 draws. Goals: Fenerbahçe 145, Trabzonspor 111. Fenerbahçe''s 1-2 home win in 1996 is the derby''s
+    most iconic moment. Trabzonspor''s home record: 17W-12D-7L vs Istanbul clubs.'
+  topic: derby_records
+  source: https://www.aspor.com.tr/spor-toto-super-lig/2026/02/14/trabzonspor-fenerbahce-derbisinin-ilk-11leri-belli-oldu
+  date: 1974-2026
+- id: TS-187
+  fact: 'Karadeniz Fırtınası (Black Sea Storm): Trabzonspor fan culture as a regional identity symbol. The ''Bordo-Mavi Aşıkları''
+    (Crimson-Blue Lovers) and ''Canlı Bahçe Fırtına'' (Live Garden Storm) ultras groups organize choreographed displays. The
+    2022 championship celebrations turned Trabzon city and the Bosphorus Bridge bordo-mavi, marking a cultural moment beyond
+    football.'
+  topic: fan_culture
+  source: https://www.aa.com.tr/tr/futbol/istanbul-bogazi-bordo-mavi-renklere-burundu/2577316
+- id: TS-188
+  fact: 'Notable record inbound transfers: Enner Valencia (2019, Fenerbahçe->Trabzonspor, reported 12M€+2M bonus), Cenk Tosun
+    (2023, Everton->Trabzonspor loan), Uğurcan Çakır (2019 loan from Alanyaspor, permanent 2020).'
+  topic: record_signings
+  source: https://www.hurriyet.com.tr/spor
+- id: TS-189
+  fact: 'Record outbound transfer: Uğurcan Çakır sold to Galatasaray for 36 million Euro (July 2023: 27.5M garanti + 3M bonus,
+    KDV dahil), Turkey''s most expensive goalkeeper and most expensive domestic player sale.'
+  topic: record_signings
+  source: https://www.aa.com.tr/tr/futbol/ugurcan-cakir-turk-futbol-tarihinin-en-pahali-ucuncu-transferi-oldu/3677060
+- id: TS-190
+  fact: Minor fire incident in the lower stands during a Turkish Cup match (March 2017) - no injuries, briefly delayed kick-off.
+    First major safety test of the new stadium.
+  topic: stadium
+  source: https://www.hurriyet.com.tr/spor
+  date: 2017-03
+- id: TS-191
+  fact: 'Turkish Cup - 10 wins: 1976-77, 1977-78, 1983-84, 1991-92, 1994-95, 2002-03, 2003-04, 2009-10, 2019-20, 2025-26 (2026
+    final vs Konyaspor). Runners-up (8): 1974-75, 1975-76, 1984-85, 1989-90, 1996-97, 2012-13, 2023-24, 2024-25.'
+  topic: honours_summary
+  source: https://tr.wikipedia.org/wiki/T%C3%BCrkiye_Kupas%C4%B1'nda_Trabzonspor
+- id: TS-192
+  fact: 'European record overview (per Wikipedia ''Trabzonspor in European football'', overall record table as of 20 August
+    2026): UEFA Champions League/European Cup 10 campaigns (30 matches, 10W 8D 12L, GF25 GA36); UEFA Europa League 11 campaigns
+    (60 matches, 24W 11D 25L, GF70 GA71); UEFA Conference League 3 campaigns (8 matches, 1W 4D 3L, GF7 GA12); Cup Winners''
+    Cup 3 campaigns (12 matches, 4W 4D 4L, GF13 GA18); UEFA Cup 11 campaigns (38 matches, 14W 11D 13L, GF60 GA61); UEFA Intertoto
+    Cup 2 campaigns (8 matches, 3W 1D 4L, GF19 GA12). Grand total: 39 campaigns, 156 matches, 56W 39D 61L (GF194 GA210). Club
+    coefficient: 11,000 (140th in Europe as of November 2026; was 118th in 2024-25). Best European results: 1976 home win
+    vs Liverpool (European Cup); 1990 home win vs Barcelona (Cup Winners'' Cup); 1991-92 UEFA Cup round of 16; 2011 away win
+    at Inter Milan (Champions League group); 2013-14 undefeated EL group winners. 2013-14 undefeated EL group winners.'
+  topic: honours_summary
+  source: https://tr.wikipedia.org/wiki/Trabzonspor%27un_Avrupa_kupalar%C4%B1_tarihi
+- id: TS-193
+  fact: 'Club records: 7 league titles (1975-76, 1976-77, 1978-79, 1979-80, 1980-81, 1983-84, 2021-22); 10 Turkish Cups; 10
+    Super Cups; 90 consecutive home league matches unbeaten (1975-1981); 105 league derby meetings vs Fenerbahçe; €36M sale
+    of Uğurcan Çakır (most expensive Turkish goalkeeper sale).'
+  topic: honours_summary
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_Profesiyel_Futbol_Tak%C4%B1m%C4%B1
+- id: TS-194
+  fact: 'Süper Lig (Turkish top-flight) championships - 7 titles: 1975-76, 1976-77, 1978-79, 1979-80, 1980-81, 1983-84, 2021-22.
+    Runners-up (9): 1977-78, 1981-82, 1982-83, 1994-95, 1995-96, 2003-04, 2004-05, 2010-11, 2019-20.'
+  topic: honours_summary
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)
+- id: TS-195
+  fact: 'Turkish Super Cup / Presidential Cup - 10 wins: 1976, 1977, 1978, 1979, 1980, 1983, 1995, 2010, 2020, 2022.'
+  topic: honours_summary
+  source: https://tr.wikipedia.org/wiki/Trabzonspor_(futbol_tak%C4%B1m%C4%B1)

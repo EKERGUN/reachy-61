@@ -355,6 +355,8 @@ def test_halftime_from_the_feed_and_an_offer_that_can_be_accepted(tmp_path, monk
     assert tr.update(fx("HT")) == []
 
     brain = make_brain(tmp_path, monkeypatch)
+    assert brain.app.team.quiz                             # Trabzonspor has questions: half time offers the quiz
+    brain.app.team.quiz = []                               # without questions it offers a joke
     for j in brain.app.team.jokes:
         make_voice(brain.app.team, f"joke_{j.id}_punch", tmp_path)
     brain.handle("halftime")

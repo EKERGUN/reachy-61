@@ -201,3 +201,14 @@ def test_jokes_load_with_tags_and_are_split_before_the_punchline():
     assert sum(n.startswith("joke_") and n.endswith("_punch") for n in names) == len(t.jokes)   # recorded too
     assert len(set(names)) == len(names)
     assert load_team("example_en").jokes                                  # plain-list format still works
+
+
+def test_trabzonspor_quiz_and_knowledge_come_from_the_corpus_with_sources():
+    t = load_team("trabzonspor")
+    assert len(t.quiz) >= 50 and not t.quiz_problems
+    assert len({q.id for q in t.quiz}) == len(t.quiz)
+    for q in t.quiz:
+        assert q.source.startswith("https://") and len(set(q.options)) == len(q.options) == 4
+    assert len(t.knowledge) >= 100 and all(str(k["source"]).startswith("http") for k in t.knowledge)
+    first = next(q for q in t.quiz if q.id == "ts_ilk_sampiyonluk")
+    assert first.options[first.answer] == "1975-76"
