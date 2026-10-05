@@ -1,0 +1,7 @@
+dataset,total_records,english_citation_instances,youtube_citation_instances,unique_english_urls,unique_turkish_urls,unique_youtube_urls,turkish_replacements_found,coverage_gaps
+audio_census_1967_1986,18,0,18,0,0,18,0,18
+audio_census_2007_2026,3896,0,3876,0,0,1940,0,1940
+club_history_1967_2026,84,132,0,36,0,0,18,18
+presidents_head_coaches,102,83,0,2,0,0,2,0
+transfers_1987_2006,688,3,0,3,0,0,1,2
+TOTAL,4788,218,3894,1999,0,0,21,1978
