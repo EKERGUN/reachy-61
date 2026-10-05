@@ -35,6 +35,7 @@ class TeamPack:
     quiz: list[Question] = field(default_factory=list)
     quiz_problems: list[str] = field(default_factory=list)      # questions left out, and why
     knowledge: list[dict] = field(default_factory=list)          # sourced facts: {fact, topic, source}
+    persona: dict = field(default_factory=dict)                   # the robot's character in a chat (persona.yaml)
 
     def phrase(self, key: str, rng=random) -> str | None:
         lines = self.phrases.get(key) or []
@@ -86,7 +87,7 @@ def load_team(team_id: str, data_dir: Path | None = None) -> TeamPack:
     return TeamPack(id=folder.name, folder=folder, name=str(info.get("name", folder.name)),
                     language=str(info.get("language", "en")), info=info, phrases=lines,
                     jokes=parse_jokes(_yaml(folder / "jokes.yaml")), quiz=quiz, quiz_problems=problems,
-                    knowledge=knowledge)
+                    knowledge=knowledge, persona=_yaml(folder / "persona.yaml") or {})
 
 
 def load_locale(language: str) -> dict:

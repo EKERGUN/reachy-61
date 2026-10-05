@@ -6,8 +6,11 @@
   or the TV doesn't).
 - After a tool that makes the robot perform (a song, a joke, the quiz), Gemini's speech is dropped
   until the person talks again: the performance has the floor.
-- A session ends after `idle_s` without anyone talking (or by a tool), so the cloud isn't paid for
-  an empty room.
+- A turn only opens if someone is (or just was) in front of the robot: in a living room the TV
+  talks all the time, and it must not become the person's turn.
+- After an interruption (a goal, a barge-in) the rest of the robot's answer is dropped, not resumed.
+- A session ends after `idle_s` without anyone talking (or by a tool, after its goodbye has been
+  heard), so the cloud isn't paid for an empty room.
 
 All Gemini work runs on one asyncio loop in its own thread; other threads only post to it.
 """
@@ -34,10 +37,11 @@ class Chat:
     def __init__(self, make_live: Callable[[], GeminiLive | None], speaker, on_tool: Callable[[str, dict], dict],
                  face_recent: Callable[[float], bool] = lambda s: True, idle_s: float = 30.0,
                  end_hold_s: float = 0.6, barge_in_s: float = 0.4, clock=time.monotonic,
-                 on_state: Callable[[str], None] = lambda state: None):
+                 on_state: Callable[[str], None] = lambda state: None,
+                 others_busy: Callable[[], bool] = lambda: False, face_window_s: float = 5.0):
         self._make_live, self.speaker, self._on_tool = make_live, speaker, on_tool
         self._face_recent, self.idle_s, self.end_hold_s, self.barge_in_s = face_recent, idle_s, end_hold_s, barge_in_s
-        self.clock, self._on_state = clock, on_state
+        self.clock, self._on_state, self._others_busy, self.face_window_s = clock, on_state, others_busy, face_window_s
         self.state = "off"                      # off | connecting | on
         self.reason = ""
         self.live: GeminiLive | None = None
@@ -48,6 +52,9 @@ class Chat:
         self._end_timer: asyncio.TimerHandle | None = None
         self._utterance: int | None = None      # the speaker's id for the robot's current answer
         self._muted = False                     # a performance has the floor
+        self._drop_turn = False                 # interrupted: drop the rest of this answer
+        self._ending: Callable[[], None] | None = None    # end after the goodbye (then call this)
+        self._ending_since = 0.0
         self._last_activity = clock()
         self._loop: asyncio.AbstractEventLoop | None = None
         self._thread: threading.Thread | None = None
@@ -78,14 +85,24 @@ class Chat:
         self._post(self._stop, reason)
 
     def interrupt(self) -> None:
-        """Something more important happened (a goal): stop talking now."""
+        """Something more important happened (a goal): stop talking now, and don't resume.
+
+        Any thread: only flags are set here; audio still arriving for this answer is dropped.
+        """
+        self._drop_turn = True
         self.speaker.stop()
-        self._utterance = None
 
     def mute_until_spoken_to(self) -> None:
         """A performance (song, joke, quiz) starts: drop the robot's speech until the person talks."""
         self._muted = True
         self.interrupt()
+
+    def end_after_turn(self, then: Callable[[], None] | None = None) -> None:
+        """End the chat once the robot's current answer (the goodbye) has been heard."""
+        self._post(self._set_ending, then or (lambda: None))
+
+    def _set_ending(self, then) -> None:
+        self._ending, self._ending_since = then, self.clock()
 
     # ---- from the mic thread ---------------------------------------------------------
 
@@ -95,10 +112,10 @@ class Chat:
             self._post(self.live.send_audio, frame)
 
     def on_speech_start(self) -> None:
-        self._post(self._speech_start, False)
+        self._post(self._speech_start, False, list(self._recent))   # the preroll, copied on the mic thread
 
     def on_speech_sustained(self) -> None:
-        self._post(self._speech_start, True)
+        self._post(self._speech_start, True, list(self._recent))
 
     def on_speech_end(self) -> None:
         self._post(self._speech_end)
@@ -127,7 +144,7 @@ class Chat:
             log.warning("No Gemini key: can't talk")
             return
         self.live, self.reason = live, reason
-        self._muted, self._last_activity = False, self.clock()
+        self._muted, self._drop_turn, self._ending, self._last_activity = False, False, None, self.clock()
         self._set_state("connecting")
         asyncio.ensure_future(self._open(live, nudge))
 
@@ -135,7 +152,7 @@ class Chat:
         cb = LiveCallbacks(on_model_audio=self._from_gemini(self._model_audio),
                            on_turn_complete=self._from_gemini(self._turn_complete),
                            on_interrupted=self._from_gemini(self._interrupted),
-                           on_closed=self._from_gemini(self._closed),
+                           on_closed=lambda error: self._closed(live, error),   # a late close of an old session is ignored
                            on_tool=self._tool,
                            on_output_transcript=self._from_gemini(self._caption),
                            on_input_transcript=self._from_gemini(self._heard))
@@ -162,11 +179,17 @@ class Chat:
         live, self.live = self.live, None
         self._sending = False
         self._cancel_end()
+        then, self._ending = self._ending, None
         if live is not None:
             asyncio.ensure_future(live.close())
         if self.state != "off":
             log.info("conversation off (%s)", reason)
             self._set_state("off")
+        if then is not None:
+            try:
+                then()
+            except Exception:
+                log.exception("after-chat step failed")
 
     def _from_gemini(self, fn):
         # Gemini callbacks already run on this loop.
@@ -174,19 +197,24 @@ class Chat:
 
     async def _watch_idle(self, live: GeminiLive) -> None:
         while self.live is live:
-            await asyncio.sleep(1.0)
-            busy = self._sending or self.speaker.speaking
-            if busy:
-                self._last_activity = self.clock()
-            elif self.clock() - self._last_activity >= self.idle_s:
+            await asyncio.sleep(0.5)
+            now = self.clock()
+            if self._ending is not None:
+                # The goodbye has been said (or never came): end now.
+                if (self._utterance is None and not self.speaker.speaking and now - self._ending_since > 1.0) \
+                        or now - self._ending_since > 10.0:
+                    self._stop("goodbye")
+                continue
+            if self._sending or self.speaker.speaking or self._others_busy():
+                self._last_activity = now          # talking, or a song/joke/quiz the chat started
+            elif now - self._last_activity >= self.idle_s:
                 self._stop("nobody talked")
 
     # ---- the person's turn ----------------------------------------------------------------
 
-    def _speech_start(self, sustained: bool) -> None:
-        if self.state != "on" or self.live is None:
+    def _speech_start(self, sustained: bool, preroll: list) -> None:
+        if self.state != "on" or self.live is None or self._ending is not None:
             return
-        self._last_activity = self.clock()
         if self._end_timer is not None:          # a pause inside one sentence: same turn
             self._cancel_end()
             return
@@ -198,9 +226,12 @@ class Chat:
                 return
             log.info("barge-in")
             self.interrupt()
+        elif not self._face_recent(self.face_window_s):
+            return                               # nobody in front: the TV or the next room
+        self._last_activity = self.clock()
         self._muted = False                      # the person talks: the robot may answer again
         self.live.activity_start()
-        for f in list(self._recent):
+        for f in preroll:
             self.live.send_audio(f)
         self._sending = True
 
@@ -213,6 +244,8 @@ class Chat:
         self._end_timer = None
         if self._sending and self.live is not None:
             self.live.activity_end()
+            self._drop_turn = False              # what comes now is the answer to this turn
+            self._utterance = None
         self._sending = False
         self._last_activity = self.clock()
 
@@ -224,7 +257,7 @@ class Chat:
     # ---- the robot's turn ----------------------------------------------------------------
 
     def _model_audio(self, pcm: np.ndarray) -> None:
-        if self._muted or self.state != "on":
+        if self._muted or self._drop_turn or self.state != "on":
             return
         if self._utterance is None:
             self._utterance = self.speaker.begin(streaming=True)
@@ -235,6 +268,7 @@ class Chat:
         if self._utterance is not None:
             self.speaker.end_stream(self._utterance)
         self._utterance = None
+        self._drop_turn = False
         self.caption = ""
 
     def _interrupted(self) -> None:
@@ -248,9 +282,15 @@ class Chat:
         self.last_heard = text
         log.info("heard (transcript, unreliable): %r", text)
 
-    def _closed(self, error: Exception | None) -> None:
+    def _closed(self, live, error: Exception | None) -> None:
+        """Gemini's thread: post to the loop."""
+        self._post(self._closed_on_loop, live, error)
+
+    def _closed_on_loop(self, live, error: Exception | None) -> None:
         if error is not None:
             log.warning("Gemini Live closed: %s", error)
+        if live is not self.live:
+            return                               # an old session closing late
         if self.live is not None and self.state != "off":
             self.live = None
             self._sending = False

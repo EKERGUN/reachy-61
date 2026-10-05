@@ -12,7 +12,6 @@ Everything spoken in a chat comes from Gemini Live (chat.py); the instant replie
 from __future__ import annotations
 
 import logging
-import threading
 import time
 from typing import TYPE_CHECKING
 
@@ -21,7 +20,7 @@ from .chat import Chat
 from .knowledge import FactBase
 from .live import GeminiLive
 from .persona import EMOTIONS, INSTRUCTION, VOCABULARY, tools
-from .performer import Gesture, Plan
+from .performer import Call, Gesture, Plan
 from .wake import try_wake_listener
 
 if TYPE_CHECKING:
@@ -40,7 +39,8 @@ class Talker:
         s = brain.app.settings
         self.speaker = Speaker(brain.mini.media, on_idle=lambda uid: None)
         self.chat = Chat(self._make_live, self.speaker, self.on_tool, face_recent=self.face_recent,
-                         idle_s=s.chat_idle_s, on_state=self._on_chat_state)
+                         idle_s=s.chat_idle_s, on_state=self._on_chat_state,
+                         others_busy=lambda: self.brain.performer.busy)
         self.vad = None                         # created in start(): needs onnxruntime
         self.wake = None
         self.asleep = False
@@ -51,9 +51,8 @@ class Talker:
         self._face_since: float | None = None
         self._last_chat_end = -1e9
         self._last_activity = clock()
-        self._end_requested = False
+        self._last_robot_sound = -1e9          # the robot's own voice or song (not a command)
         self._wobbling = False
-        self._lock = threading.Lock()
 
     # ---- setup ----------------------------------------------------------------------
 
@@ -72,6 +71,8 @@ class Talker:
         from .main import listen_model_dir
         team = self.brain.app.team
         self.facts = FactBase(team.knowledge)
+        if self.wake is not None:
+            self.wake.stop()
         self.wake = try_wake_listener(listen_model_dir(team.language), self.on_command)
         self.chat.stop("settings changed")
 
@@ -80,12 +81,16 @@ class Talker:
         if not s.gemini_api_key:
             return None
         context = f"Bugün: {time.strftime('%d.%m.%Y')}. Ruh halin: {self.brain.app.mood.band}."
-        return GeminiLive(s.gemini_api_key, s.gemini_live_model, s.gemini_voice, "tr-TR",
-                          INSTRUCTION.replace("{team}", team.name).replace("{context}", context), tools(), VOCABULARY)
+        p = team.persona
+        instruction = (p.get("instruction") or INSTRUCTION).replace("{team}", team.name).replace("{context}", context)
+        return GeminiLive(s.gemini_api_key, s.gemini_live_model, s.gemini_voice, p.get("language_code") or "tr-TR",
+                          instruction, tools(), list(p.get("vocabulary") or VOCABULARY))
 
     # ---- mic thread -----------------------------------------------------------------
 
     def on_frame(self, frame) -> None:
+        if self.speaker.speaking or self.brain.performer.busy:
+            self._last_robot_sound = self.clock()
         if self.vad is not None:
             self.vad.feed(frame)
         self.chat.on_frame(frame)
@@ -108,7 +113,10 @@ class Talker:
         b = self.brain
         self._last_activity = self.clock()
         if cmd == "stop":
-            self.go_quiet()
+            self.go_quiet()                          # works over a song: that's what it's for
+            return
+        if self.clock() - self._last_robot_sound < 1.5:
+            log.info("ignoring %s: that was the robot's own voice or song", cmd)
             return
         if cmd == "bordo" and not self.asleep:
             if not self.chat.active:                 # in a chat, Gemini answers "Mavi!" itself
@@ -116,22 +124,26 @@ class Talker:
             return
         if cmd in ("wake_bordo", "name"):
             self.quiet = False
+            reply = self._reply("mavi" if cmd == "wake_bordo" else "name_reply",
+                                "enthusiastic1" if cmd == "wake_bordo" else "attentive1")
             if self.asleep:
-                self.wake_up()
+                self.wake_up(then=reply)                  # one script: wake up, then "Mavi!"
+            elif not self.chat.active:
+                b.performer.perform(Plan(f"talk:{cmd}", 6, reply))
             if self.chat.active:
                 return
-            self._say("mavi" if cmd == "wake_bordo" else "name_reply",
-                      "enthusiastic1" if cmd == "wake_bordo" else "attentive1")
             if b.ball_rolling():
                 return                               # during play the robot only reacts
             self.chat.start("called")
 
     def _say(self, key: str, move: str) -> None:
-        b = self.brain
+        self.brain.performer.perform(Plan(f"talk:{key}", 6, self._reply(key, move)))
+
+    def _reply(self, key: str, move: str) -> list:
         steps: list = [Gesture(move, sound=False)]
-        if say := b._line(key):
+        if say := self.brain._line(key):
             steps.append(say)
-        b.performer.perform(Plan(f"talk:{key}", 6, steps))
+        return steps
 
     # ---- states -----------------------------------------------------------------------
 
@@ -144,28 +156,35 @@ class Talker:
         log.info("quiet until called by name")
 
     def sleep(self) -> None:
+        """Any thread: the robot itself is moved by the performer's thread only."""
         if self.asleep:
             return
         self.chat.stop("sleep")
         self.asleep = True
-        for fn, args in ((self.brain.mini.stop_head_tracking, ()), (self.brain.mini.goto_sleep, ())):
-            try:
-                fn(*args)
-            except Exception:
-                log.exception("going to sleep failed")
+        mini = self.brain.mini
+
+        def lie_down():
+            self._safe(mini.disable_wobbling)
+            self._safe(mini.stop_head_tracking)
+            self._safe(mini.goto_sleep)
+        self._wobbling = False
+        self.brain.performer.perform(Plan("sleep", 6, [Call(lie_down)], track_after=False))
         log.info("asleep (wake with 'Otto bordo')")
 
-    def wake_up(self) -> None:
+    def wake_up(self, then: list | None = None) -> None:
         if not self.asleep:
             return
         self.asleep = False
         self._last_activity = self.clock()
-        for fn, args in ((self.brain.mini.wake_up, ()), (self.brain.mini.start_head_tracking, (1.0,))):
-            try:
-                fn(*args)
-            except Exception:
-                log.exception("waking up failed")
+        self.brain.performer.perform(Plan("wake", 8, [Call(lambda: self._safe(self.brain.mini.wake_up)), *(then or [])]))
         log.info("awake")
+
+    @staticmethod
+    def _safe(fn, *args):
+        try:
+            fn(*args)
+        except Exception:
+            log.exception("%s failed", getattr(fn, "__name__", fn))
 
     def face_recent(self, within_s: float) -> bool:
         return self.clock() - self._face_last <= within_s
@@ -173,7 +192,6 @@ class Talker:
     def _on_chat_state(self, state: str) -> None:
         if state == "off":
             self._last_chat_end = self.clock()
-            self._end_requested = False
         self._last_activity = self.clock()
 
     # ---- main loop, every second ------------------------------------------------------
@@ -187,12 +205,9 @@ class Talker:
         self._update_face(now)
         if self.chat.active or b.performer.busy or self.speaker.speaking:
             self._last_activity = now
-        if self._end_requested and not self.speaker.speaking:
-            self.chat.stop("goodbye")
         self._update_wobble()
         if self._should_self_start(now):
-            self.chat.start("saw a face", nudge="(Program notu: karşına biri geldi. Kısa, coşkulu bir selam ver ve "
-                                                "bir Trabzonspor sorusuyla sohbet aç.)")
+            self.chat.start("saw a face", nudge=(b.app.team.persona.get("opener") or "").replace("{team}", b.app.team.name))
             self._face_since = None
         sleep_after = b.app.settings.sleep_after_min * 60
         if sleep_after and now - self._last_activity > sleep_after and not b.room.enabled and b.quiz.phase == "idle":
@@ -304,7 +319,7 @@ class Talker:
         r = self.brain.start_quiz(int(questions or 5), force=True)
         if r.get("ok"):
             self.chat.mute_until_spoken_to()
-            self._end_requested = True
+            self.chat.end_after_turn()               # the quiz runs on the phones
         return r
 
     def tool_express(self, emotion: str = "joy") -> dict:
@@ -318,13 +333,12 @@ class Talker:
         return {"ok": True, "note": "Hiçbir şey söyleme."}
 
     def tool_end_conversation(self) -> dict:
-        self._end_requested = True
-        return {"ok": True}
+        self.chat.end_after_turn()
+        return {"ok": True, "note": "Şimdi kısa vedanı söyle."}
 
     def tool_go_to_sleep(self) -> dict:
-        self._end_requested = True
-        threading.Timer(4.0, self.sleep).start()
-        return {"ok": True}
+        self.chat.end_after_turn(then=self.sleep)
+        return {"ok": True, "note": "Şimdi kısa bir 'İyi geceler!' de."}
 
     def status(self) -> dict:
         return {"chat": self.chat.state, "asleep": self.asleep, "quiet": self.quiet, "caption": self.chat.caption,

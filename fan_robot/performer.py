@@ -52,12 +52,19 @@ class Clip:
 
 
 @dataclass
+class Call:
+    """Something the robot does that isn't a move file (going to sleep, waking up): on this thread too."""
+    fn: Callable[[], None]
+
+
+@dataclass
 class Plan:
     moment: str
     priority: int
     steps: list = field(default_factory=list)
     on_done: Callable[[bool], None] | None = None    # called with interrupted=True/False
     title: str = ""                                    # shown on the remote while it plays
+    track_after: bool = True                           # follow faces again afterwards (not after falling asleep)
 
     @property
     def move(self) -> str | None:
@@ -211,9 +218,12 @@ class Performer:
                     self._abort.wait(step.seconds)
                 elif isinstance(step, Clip):
                     self._clip(step)
+                elif isinstance(step, Call):
+                    step.fn()
             return self._abort.is_set()
         finally:
-            m.start_head_tracking(1.0)
+            if plan.track_after:
+                m.start_head_tracking(1.0)
 
     def _gesture(self, g: Gesture, priority: int) -> None:
         if self.library is not None and g.name in self.library.list_moves():

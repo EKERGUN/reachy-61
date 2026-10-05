@@ -15,6 +15,7 @@ from .feed import ApiFootball
 log = logging.getLogger(__name__)
 
 SUPER_LIG = 203
+KEEP_FOR_MATCH = 30                     # requests the chat never spends: the live match feed needs them
 
 
 class LiveFootball:
@@ -26,7 +27,7 @@ class LiveFootball:
         hit = self._cache.get(key)
         if hit and self.clock() - hit[0] < ttl:
             return hit[1]
-        value = fetch()
+        value = fetch()                     # an error is not cached: the next question tries again
         self._cache[key] = (self.clock(), value)
         return value
 
@@ -36,20 +37,25 @@ class LiveFootball:
             raise RuntimeError("team not found on API-Football")
         return team_id
 
+    def _last10(self, team: int) -> list:
+        return self._cached("last10", 1800, lambda: self.api.get("fixtures", keep=KEEP_FOR_MATCH, team=team, last=10,
+                                                                 timezone=self.timezone))
+
     def recent(self, n: int = 5) -> dict:
         team = self._team()
-        fixtures = self._cached(f"last{n}", 1800, lambda: self.api.get("fixtures", team=team, last=n, timezone=self.timezone))
-        return {"matches": [summary(fx, team) for fx in fixtures]}
+        return {"matches": [summary(fx, team) for fx in self._last10(team)[:n]]}
 
     def next_match(self) -> dict:
         team = self._team()
-        fixtures = self._cached("next", 3 * 3600, lambda: self.api.get("fixtures", team=team, next=1, timezone=self.timezone))
+        fixtures = self._cached("next", 3 * 3600, lambda: self.api.get("fixtures", keep=KEEP_FOR_MATCH, team=team, next=1,
+                                                                       timezone=self.timezone))
         return {"match": summary(fixtures[0], team)} if fixtures else {"match": None}
 
     def standing(self) -> dict:
         team = self._team()
         season = self._season(team)
-        rows = self._cached(f"table{season}", 1800, lambda: self.api.get("standings", league=SUPER_LIG, season=season))
+        rows = self._cached(f"table{season}", 1800, lambda: self.api.get("standings", keep=KEEP_FOR_MATCH, league=SUPER_LIG,
+                                                                         season=season))
         table = (rows[0]["league"]["standings"][0] if rows else [])
         ours = next((r for r in table if r["team"]["id"] == team), None)
         top = [{"rank": r["rank"], "team": r["team"]["name"], "points": r["points"]} for r in table[:5]]
@@ -62,8 +68,7 @@ class LiveFootball:
 
     def _season(self, team: int) -> int:
         """The current season's start year, from our last match (falls back to the calendar)."""
-        last = self._cached("last5", 1800, lambda: self.api.get("fixtures", team=team, last=5, timezone=self.timezone))
-        for fx in last:
+        for fx in self._last10(team):
             if (fx.get("league") or {}).get("id") == SUPER_LIG:
                 return int(fx["league"]["season"])
         today = dt.date.today()

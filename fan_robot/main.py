@@ -167,8 +167,7 @@ class FanBrain:
 
     def _robot_busy(self) -> bool:
         """The robot's own sound (a reaction, a song, its voice in a chat) is not the room."""
-        t = self.talker
-        return self.performer.busy or t.chat.active or t.speaker.speaking
+        return self.performer.busy or self.talker.speaker.speaking
 
     def run(self, stop_event: threading.Event) -> None:
         m = self.mini
@@ -444,7 +443,7 @@ class FanBrain:
             return
         if self.room.enabled:
             return                                   # a move (and its sound) would make it deaf to the room
-        if self.talker.asleep or self.talker.chat.active:
+        if self.talker.asleep or self.talker.chat.active or self.talker.quiet:
             return
         self._next_idle = time.monotonic() + self.rng.uniform(60, 150)
         band = self.app.mood.band

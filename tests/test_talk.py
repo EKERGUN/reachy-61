@@ -224,7 +224,8 @@ def test_after_a_performance_starts_the_robots_chat_voice_is_dropped():
     time.sleep(0.05)
     assert not speaker.pushed
     chat.on_speech_start()                            # the person talks again: answers are back
-    assert wait_for(lambda: "start" in live.sent)
+    chat.on_speech_end()
+    assert wait_for(lambda: live.sent[-1:] == ["end"])
     chat._loop.call_soon_threadsafe(live.cb.on_model_audio, np.zeros(1600, dtype=np.float32))
     assert wait_for(lambda: speaker.pushed)
 
@@ -246,7 +247,7 @@ def test_recent_results_and_the_table_from_api_football():
     calls = []
 
     class Api:
-        def get(self, path, **params):
+        def get(self, path, keep=0, **params):
             calls.append((path, params))
             if path == "fixtures":
                 return [FX]
@@ -262,7 +263,8 @@ def test_recent_results_and_the_table_from_api_football():
     st = lf.standing()
     assert st["rank"] == 2 and st["season"] == 2026 and st["goals"] == "15-6"
     lf.recent(3)
-    assert [c[0] for c in calls].count("fixtures") == 2     # cached (last3 once, last5 for the season)
+    assert [c[0] for c in calls].count("fixtures") == 1     # one cached call serves results and the season
+    assert all(c[1].get("last", 10) == 10 for c in calls if c[0] == "fixtures")
     away = summary({**FX, "teams": {"home": {"id": 1, "name": "X"}, "away": {"id": 998}}}, 998)
     assert away["venue"] == "away" and away["score_us_them"] == "1-2" and away["result"] == "loss"
 
@@ -280,3 +282,105 @@ def test_only_mens_voices_and_sane_sleep_times_are_saved(tmp_path, monkeypatch):
     assert c.post("/settings", json={"GEMINI_VOICE": "Kore"}).status_code == 400
     assert c.post("/settings", json={"GEMINI_VOICE": "Puck", "FAN_ROBOT_SLEEP_AFTER_MIN": "9999"}).json()["ok"]
     assert owner.settings.gemini_voice == "Puck" and owner.settings.sleep_after_min == 600.0
+
+
+# ---- from the review --------------------------------------------------------------------------
+
+def test_after_a_goal_the_rest_of_the_answer_is_dropped_not_resumed():
+    chat, live, speaker = make_chat()
+    chat.start("phone")
+    assert wait_for(lambda: chat.state == "on")
+    audio = lambda: chat._loop.call_soon_threadsafe(live.cb.on_model_audio, np.zeros(1600, dtype=np.float32))  # noqa: E731
+    audio()
+    assert wait_for(lambda: len(speaker.pushed) == 1)
+    chat.interrupt()                                   # a goal
+    audio(); time.sleep(0.05)
+    assert len(speaker.pushed) == 1                    # the rest of that answer: dropped
+    chat._loop.call_soon_threadsafe(live.cb.on_turn_complete)
+    audio()
+    assert wait_for(lambda: len(speaker.pushed) == 2)  # the next answer plays
+
+
+def test_speech_with_nobody_in_front_is_not_a_turn():
+    face = [False]
+    chat, live, speaker = make_chat(face_recent=lambda s: face[0])
+    chat.start("phone")
+    assert wait_for(lambda: chat.state == "on")
+    chat.on_speech_start(); time.sleep(0.05)
+    assert "start" not in live.sent                    # the TV
+    face[0] = True
+    chat.on_speech_start()
+    assert wait_for(lambda: "start" in live.sent)
+
+
+def test_the_goodbye_is_heard_before_the_chat_ends():
+    chat, live, speaker = make_chat()
+    chat.start("phone")
+    assert wait_for(lambda: chat.state == "on")
+    after = []
+    chat.end_after_turn(then=lambda: after.append("sleep"))   # the tool comes before the goodbye
+    time.sleep(1.2)
+    chat._loop.call_soon_threadsafe(live.cb.on_model_audio, np.zeros(1600, dtype=np.float32))  # "Görüşürüz!"
+    assert wait_for(lambda: speaker.pushed)
+    assert chat.state == "on"
+    chat._loop.call_soon_threadsafe(live.cb.on_turn_complete)
+    assert wait_for(lambda: chat.state == "off", timeout=3.0) and after == ["sleep"]
+
+
+def test_an_old_session_closing_late_does_not_end_the_new_one():
+    lives = []
+
+    def make():
+        lives.append(FakeLive())
+        return lives[-1]
+    chat = Chat(make, FakeSpeaker(), on_tool=lambda n, a: {})
+    chat.start_loop()
+    chat.start("x")
+    assert wait_for(lambda: chat.state == "on")
+    chat.stop("Otto dur")
+    chat.start("called")
+    assert wait_for(lambda: chat.state == "on" and len(lives) == 2)
+    lives[0].cb.on_closed(None)                        # the first session's close arrives now
+    time.sleep(0.1)
+    assert chat.state == "on" and chat.live is lives[1]
+
+
+def test_quiet_means_no_idle_moves_and_echo_is_not_a_command(tmp_path, monkeypatch):
+    brain, t = talker(tmp_path, monkeypatch)
+    t.quiet = True
+    brain._next_idle = 0
+    brain.app.mood.add(0.9)
+    brain._maybe_idle()
+    assert not brain.performer.busy
+    t._last_robot_sound = t.clock()                     # the robot just said "...bordo-mavi kal!"
+    t.on_command("bordo")
+    assert not brain.performer.busy
+    t.on_command("stop")                                # "Otto dur" always works
+    assert t.quiet
+
+
+def test_a_new_wake_listener_stops_the_old_one(tmp_path, monkeypatch):
+    brain, t = talker(tmp_path, monkeypatch)
+    stopped = []
+    t.wake = SimpleNamespace(stop=lambda: stopped.append(1))
+    monkeypatch.setattr("fan_robot.talk.try_wake_listener", lambda d, cb: None)
+    t.reload()
+    assert stopped == [1] and t.wake is None
+
+
+def test_sleeping_and_waking_move_the_robot_from_the_performer_only(tmp_path, monkeypatch):
+    brain, t = talker(tmp_path, monkeypatch)
+    calls = []
+    brain.mini.goto_sleep = lambda: calls.append(("sleep", __import__("threading").current_thread().name))
+    brain.mini.wake_up = lambda: calls.append(("wake", __import__("threading").current_thread().name))
+    t.sleep(); wait_idle(brain)
+    t.on_command("wake_bordo"); wait_idle(brain)
+    assert calls == [("sleep", "performer"), ("wake", "performer")]
+    assert brain.mini.moves[-1] == "enthusiastic1"      # then "Mavi!"
+
+
+def test_the_chat_keeps_some_requests_for_the_match():
+    from fan_robot.feed import Budget
+    import tempfile, pathlib
+    b = Budget(pathlib.Path(tempfile.mkdtemp()) / "u.json", per_day=31)
+    assert b.take(keep=30) and not b.take(keep=30) and b.take()

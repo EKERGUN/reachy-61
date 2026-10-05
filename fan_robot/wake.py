@@ -77,6 +77,13 @@ class WakeListener:
             self._speaking = False
             self._put("end")
 
+    def stop(self) -> None:
+        """Ends the thread (and frees the model) when the listener is replaced."""
+        try:
+            self._q.put_nowait(None)
+        except queue.Full:
+            pass
+
     def _put(self, item) -> None:
         try:
             self._q.put_nowait(item)
@@ -90,6 +97,8 @@ class WakeListener:
         rec = None
         while True:
             item = self._q.get()
+            if item is None:
+                return
             try:
                 if isinstance(item, str):
                     if item == "start":

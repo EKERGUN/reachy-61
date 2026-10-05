@@ -42,6 +42,7 @@ class Budget:
 
     def __init__(self, path: Path, per_day: int = 95, today=lambda: dt.date.today().isoformat()):
         self.path, self.per_day, self.today = path, per_day, today
+        self._lock = threading.Lock()                # the match feed and the chat both spend it
         self._used: tuple[str, int] | None = None     # (day, count): no disk read per status poll
 
     def _load(self) -> dict:
@@ -57,10 +58,15 @@ class Budget:
             self._used = (day, int(self._load().get(day, 0)))
         return self._used[1]
 
-    def take(self) -> bool:
+    def take(self, keep: int = 0) -> bool:
+        """Spend one request, leaving at least `keep` for others (the chat leaves some for the match)."""
+        with self._lock:
+            return self._take(keep)
+
+    def _take(self, keep: int) -> bool:
         data = self._load()
         n = int(data.get(self.today(), 0))
-        if n >= self.per_day:
+        if n >= self.per_day - keep:
             return False
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.path.write_text(json.dumps({self.today(): n + 1}))
@@ -72,8 +78,8 @@ class ApiFootball:
     def __init__(self, key: str, budget: Budget, opener=urllib.request.urlopen):
         self.key, self.budget, self._open = key, budget, opener
 
-    def get(self, path: str, **params) -> list:
-        if not self.budget.take():
+    def get(self, path: str, keep: int = 0, **params) -> list:
+        if not self.budget.take(keep):
             raise RuntimeError("daily request budget used up")
         url = f"{BASE}/{path}?{urllib.parse.urlencode(params)}"
         req = urllib.request.Request(url, headers={"x-apisports-key": self.key})
