@@ -559,6 +559,8 @@ class AnswerForm(BaseModel):
 def setup_logging() -> None:
     level = os.environ.get("LOG_LEVEL", "INFO").upper()
     logging.basicConfig(level=level, format="%(asctime)s %(levelname)s %(name)s: %(message)s", force=True)
+    # The status/setup pages poll every second: one log line per request buried everything else.
+    logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
 
 
 class TooLarge(Exception):
