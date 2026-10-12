@@ -256,7 +256,11 @@ class Performer:
         import numpy as np
         a = 35 if priority >= 7 else 15
         for x in (a, -a / 3, a, 0):
-            self.mini.goto_target(antennas=np.deg2rad([x, -x]), duration=0.25, body_yaw=None)
+            try:
+                self.mini.goto_target(antennas=np.deg2rad([x, -x]), duration=0.25, body_yaw=None)
+            except Exception as e:      # daemon timing glitch (SDK 1.11): the step was over anyway
+                if "out of range [0,1]" not in str(e):
+                    raise
 
 
 def write_silence(path: Path, seconds: float = 0.05) -> Path:
